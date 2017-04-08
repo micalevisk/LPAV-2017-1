@@ -9,14 +9,16 @@
 #include "ordenacaoAnalytics.hpp"
 using namespace std;
 
-template class OrdenacaoAnalytics<int>;
 
 
-template<typename T>
-OrdenacaoAnalytics<T>::OrdenacaoAnalytics(vector<T> _dados, string _nomeAlgoritmo){
-	nomeAlgoritmo = _nomeAlgoritmo;
-	analise = Analytics();
+OrdenacaoAnalytics::OrdenacaoAnalytics(vector<T> _dados){
 	dados = _dados;
+}
+
+
+void OrdenacaoAnalytics::printDados(){
+	for(auto d : dados) cout << d << ',';
+	cout << endl;
 }
 
 // https://isocpp.org/wiki/faq/templates

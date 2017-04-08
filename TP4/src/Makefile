@@ -5,19 +5,35 @@
 ##
 
 RM  := rm -rf
-CXX      := g++ -std=c++11 -w
-CPPFLAGS := -I ./headers
+CXX      := g++
+CPPFLAGS := -std=c++11 -w -I ./headers
 LDLIBS := -lm
 EXEC := teste
-SRCS := testes.cc ordenacaoAnalytics.cc
+SRCS := testes.cc ordenacaoAnalytics.cc bubblesort.cc
 OBJS := $(SRCS:.cc=.o)
+
+
+##########################################
+ifneq ($(origin PRECISION), undefined)
+	CPPFLAGS += -D PRECISION=$(PRECISION)
+endif
+ifneq ($(origin TIPO), undefined)
+	CPPFLAGS += -D T=$(TIPO)
+endif
+ifneq ($(origin VERBOSE), undefined)
+	CPPFLAGS += -D VERBOSE
+endif
+ifneq ($(origin DECRESCENTE), undefined)
+	CPPFLAGS += -D DECRESCENTE
+endif
+##########################################
 
 all: $(EXEC)
 
 $(EXEC): $(OBJS)
 	$(CXX) $(CPPFLAGS) $(CPPFLAGS) -o $@ $^ $(LDLIBS)
 
-test: all
+test: clean all
 	./$(EXEC)
 
 # .cpp.o:

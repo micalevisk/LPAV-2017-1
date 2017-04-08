@@ -10,29 +10,34 @@
 
 ///// dependencies
 #include "analytics.hpp"
+#include "extras.hpp"
 
 #include <iostream>
 #include <vector>
-#include <string>
 
 
-template<typename T>
+#ifndef T
+	#define T int
+#endif
+
+#ifdef DECRESCENTE
+	#define SINAL <
+#else
+	#define SINAL >
+#endif
+
 class OrdenacaoAnalytics {
-	std::string nomeAlgoritmo;
-	Analytics analise;
 	std::vector<T> dados;
 
 	public:
-		OrdenacaoAnalytics(std::vector<T>, std::string);
+		void printDados();//for tests
+		OrdenacaoAnalytics(std::vector<T>);
 
-		friend std::ostream& operator<< (std::ostream& out, const OrdenacaoAnalytics<T>& oa){
-			out << '#' << oa.nomeAlgoritmo << '\n'
-				<< oa.analise << '\n';
-			return out;
-		}
-
-
+		//Algoritmos de ordenação:
+		Analytics analytics_bubblesort();
 };
+
+
 
 
 
