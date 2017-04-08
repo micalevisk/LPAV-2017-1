@@ -1,6 +1,16 @@
 # Trabalho 4: 07/04 + 13/04
 
 
+## make {MACROS}
+
+| macro	| default | descrição |
+|:-----:|:-------:|:---------:|
+| VERBOSE | 0 | mostrar o estado dos vetores/arrays & significado do CSV `Analytics`
+| PRECISION | 2 | quantidade de casas do tempo de execução
+| DECRESCENTE | 0 | se `true` então ordena em ordem decrescente
+| TIPO | int | tipo (`C++`) dos elementos lidos
+
+
 PARTE 1
 =======
 - [ ] calcular quantidade (médio) de comparações
@@ -27,4 +37,3 @@ PARTE 3
 - [ ] Considerando somente a métrica "quantidade de comparações
 
 - [ ] Considerando as métricas "quantidade de trocas" e "quantidade de comparações" faça uma relação entre essas duas métricas e diga uma função que representa tal relação.
-
