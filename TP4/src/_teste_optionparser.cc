@@ -34,7 +34,7 @@ const option::Descriptor usage[] = {
 	{VERBOSE,      0,"","verbose", option::Arg::None,		"  --verbose*  \tMostra o estado dos arrays (default: false)." },
 	{HELP,         0,"h","help",   option::Arg::None,		"  -h, --help   \tPrint usage and exit." },
 	{DECRESCENTE,  0,"","decrescente", option::Arg::None,	"  --decrescente*  \tOrdena em ordem decrescente." },
-	{TIPO,         0,"t","tipo",   Arg::Required,			"  -t <T>,--tipo=<T>*  \tTipo dos valores gerados (default: int)." },
+	{TIPO,         0,"t","tipo",   Arg::Required,			"  -t <T>,--tipo=<T>*  \tTipo (primitivo) dos valores gerados (default: int)." },
 	{SIZE,         0,"s","size",   Arg::Numeric,  			"  -s <S>,--size=<S>   \tDefine o tamanho da instância gerada (default: 10)." },
 	{PRECISAO,     0,"p","precisao",Arg::Numeric,			"  -p <P>,--precisao=<P>*  \tNúmero de casas do tempo de execução (default: 2)." },
 	{ALGORITMOS,   0,"","algoritmos",Arg::Required,			"  --algoritmos=ALG   \tAlgoritmos que serão executados (default: all)." },
