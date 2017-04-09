@@ -11,7 +11,20 @@ using namespace std;
 
 Analytics analise = Analytics("bubble");
 
-// O(n) ou O(n²)
+/*
+ALGORITMO PARA ORDENAÇÃO CRESCENTE O(n) ou O(n²):
+-------------------------------------------------------------------------
+Recebe:
+- um array 'vetor'
+- quantidade 'N' de elementos nesse array
+
+Para i de 0 até N-1, faça
+	Para j de 0 até (N-1)-i, faça
+		Se vetor[j] > vetor[j+1], então
+			Swap(vetor[j], vetor[j+1])
+-------------------------------------------------------------------------
+*/
+
 void _bubblesort(T* v, size_t n){//não altera o 'dados'
 	unsigned i, j;
 	for(i=0; i < n-1; ++i){
