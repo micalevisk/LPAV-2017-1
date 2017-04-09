@@ -4,13 +4,13 @@
 ##	Copyright (c) 2016 mllc@icomp.ufam.edu.br; All rights reserved.
 ##
 
-RM  := rm -rf
-CXX      := g++
-CPPFLAGS := -std=c++11 -w -I ./headers -I ./algoritmos -I./
+RM := rm -rf
+CXX := g++
+CPPFLAGS := -std=c++11 -w -I ./headers -I ./headers/lib -I./
 LDLIBS := -lm
-EXEC := teste
 SRCS := main.cc ordenacaoAnalytics.cc algoritmos/bubblesort.cc
 OBJS := $(SRCS:.cc=.o)
+EXEC := teste
 
 
 ##########################################
@@ -44,7 +44,7 @@ clean:
 	$(RM) $(OBJS) $(EXEC)
 
 mostlyclean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) 
 
 #\
 	$@ name of the target\
