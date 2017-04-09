@@ -8,6 +8,7 @@
 #define ORDENACAO_ANALYTICS_HPP
 
 
+
 ///// dependencies
 #include "analytics.hpp"
 #include "extras.hpp"
@@ -36,9 +37,6 @@ class OrdenacaoAnalytics {
 		//Algoritmos de ordenação:
 		Analytics analytics_bubblesort();
 };
-
-
-
 
 
 

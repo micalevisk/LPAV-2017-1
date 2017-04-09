@@ -1,5 +1,13 @@
+//
+//	[extras.hpp]
+//	Created by Micael Levi on 04/08/2017
+//	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
+//
+
 #ifndef EXTRAS_HPP
 #define EXTRAS_HPP
+
+
 
 #include <iostream>
 
@@ -16,6 +24,7 @@ void foreach(Type* arr, size_t tam, char delim='-'){
 		std::cout << arr[i] << delim;
 	std::cout << '\n';
 }
+
 
 
 #endif

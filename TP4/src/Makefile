@@ -6,10 +6,10 @@
 
 RM  := rm -rf
 CXX      := g++
-CPPFLAGS := -std=c++11 -w -I ./headers
+CPPFLAGS := -std=c++11 -w -I ./headers -I ./algoritmos -I./
 LDLIBS := -lm
 EXEC := teste
-SRCS := testes.cc ordenacaoAnalytics.cc bubblesort.cc
+SRCS := main.cc ordenacaoAnalytics.cc algoritmos/bubblesort.cc
 OBJS := $(SRCS:.cc=.o)
 
 
@@ -31,7 +31,7 @@ endif
 all: $(EXEC)
 
 $(EXEC): $(OBJS)
-	$(CXX) $(CPPFLAGS) $(CPPFLAGS) -o $@ $^ $(LDLIBS)
+	$(CXX) $(CPPFLAGS) -o $@ $^ $(LDLIBS)
 
 test: clean all
 	./$(EXEC)
@@ -42,6 +42,9 @@ test: clean all
 
 clean:
 	$(RM) $(OBJS) $(EXEC)
+
+mostlyclean:
+	$(RM) $(OBJS)
 
 #\
 	$@ name of the target\

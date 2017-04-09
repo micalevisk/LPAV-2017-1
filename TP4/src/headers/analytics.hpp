@@ -7,6 +7,8 @@
 #ifndef ANALYTICS_HPP
 #define ANALYTICS_HPP
 
+
+
 #ifndef PRECISION
 	#define PRECISION 2
 #endif
@@ -53,9 +55,6 @@ struct Analytics {
 		unsigned long qtdTrocas;
 		float tempoExecucao;//ms
 };
-
-
-
 
 
 

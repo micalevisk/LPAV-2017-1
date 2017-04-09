@@ -1,20 +1,21 @@
 # Trabalho 4: 07/04 + 13/04
 
-
+<!-- http://fnal.gov/docs/products/gcc/libg++/libg++_toc.html -->
 <!-- LEGENDAS DA TREE DIRECTORY:
 {pasta}
 @executavel
 -->
 ```
 .
-├── [ 929]  bubblesort.cc
-├── [   0]  {headers}
-│   ├── [1.5K]  analytics.hpp
-│   ├── [ 356]  extras.hpp
-│   └── [ 674]  ordenacaoAnalytics.hpp
-├── [1.0K]  @Makefile
-├── [ 459]  ordenacaoAnalytics.cc
-└── [ 626]  testes.cc
+├── {algoritmos}
+│   └── bubblesort.cc
+├── {headers}
+│   ├── analytics.hpp
+│   ├── extras.hpp
+│   └── ordenacaoAnalytics.hpp
+├── main.cc
+├── @Makefile
+└── ordenacaoAnalytics.cc
 ```
 
 ## make {MACROS}
