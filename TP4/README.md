@@ -8,7 +8,8 @@
 ```
 .
 ├── {algoritmos}
-│   └── bubblesort.cc
+│   ├── bubblesort.cc
+│   └── selectionsort.cc
 ├── {headers}
 │   ├── analytics.hpp
 │   ├── extras.hpp
@@ -20,6 +21,7 @@
 ├── main.cc
 ├── @Makefile
 └── ordenacaoAnalytics.cc
+
 ```
 
 ## make {MACROS}
