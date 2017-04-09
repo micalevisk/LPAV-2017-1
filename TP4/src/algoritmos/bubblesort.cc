@@ -9,7 +9,6 @@
 using namespace std;
 
 
-Analytics analiseBubble = Analytics("bubble");
 
 /*
 ALGORITMO PARA ORDENAÇÃO CRESCENTE O(n) ou O(n²):
@@ -27,14 +26,14 @@ Para i de 0 até N-1, faça
 -------------------------------------------------------------------------
 */
 
-void bubblesort(T* v, size_t n){//não altera o 'dados'
+void bubblesort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
 	unsigned i, j;
 	for(i=0; i < n-1; ++i){
 		for(j=0; j < n-1-i; ++j)
 			if( v[j] SINAL v[j+1] ){
-				analiseBubble.incrementar_qtdComparacoes();
+				analise.incrementar_qtdComparacoes();
 				trocarElementos<T>(v[j], v[j+1]);
-				analiseBubble.incrementar_qtdTrocas();
+				analise.incrementar_qtdTrocas();
 			}
 	}
 }
@@ -45,12 +44,13 @@ Analytics OrdenacaoAnalytics::analytics_bubblesort(){
 	T* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	analiseBubble.iniciarTempo();
-	bubblesort(arr, tam);
-	analiseBubble.pararTempo();
+	Analytics analise = Analytics("bubble");
+	analise.iniciarTempo();
+	bubblesort(arr, tam, analise);
+	analise.pararTempo();
 	#ifdef VERBOSE
 		cout << "{depois do Bubble}: "; foreach(arr, tam);//resultado interno
 	#endif
 
-	return analiseBubble;
+	return analise;
 }

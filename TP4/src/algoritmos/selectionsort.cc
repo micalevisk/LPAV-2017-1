@@ -9,7 +9,6 @@
 using namespace std;
 
 
-Analytics analiseSelection = Analytics("selection");
 
 /*
 ALGORITMO PARA ORDENAÇÃO CRESCENTE O(n²) ou O(n²):
@@ -31,19 +30,19 @@ Para i de 0 até N-2, faça
 -------------------------------------------------------------------------
 */
 
-void selectionsort(T* v, size_t n){//não altera o 'dados'
+void selectionsort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
 	for(unsigned i=0; i < n-1; ++i){
 		unsigned posPivot = i;//pivot é o menor/maior elemento (depende do tipo de ordenação)
 		for(unsigned j=i+1; j < n; ++j){
 			if(v[posPivot] SINAL v[j]){
 				posPivot = j;
-				analiseSelection.incrementar_qtdComparacoes();
+				analise.incrementar_qtdComparacoes();
 			}
 		}
 
 		if(i != posPivot){
 			trocarElementos<T>(v[i], v[posPivot]);
-			analiseSelection.incrementar_qtdTrocas();
+			analise.incrementar_qtdTrocas();
 		}
 	}
 }
@@ -54,12 +53,13 @@ Analytics OrdenacaoAnalytics::analytics_selectionsort(){
 	T* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	analiseSelection.iniciarTempo();
-	selectionsort(arr, tam);
-	analiseSelection.pararTempo();
+	Analytics analise = Analytics("selection");
+	analise.iniciarTempo();
+	selectionsort(arr, tam, analise);
+	analise.pararTempo();
 	#ifdef VERBOSE
 		cout << "{depois do Selection}: "; foreach(arr, tam);//resultado interno
 	#endif
 
-	return analiseSelection;
+	return analise;
 }
