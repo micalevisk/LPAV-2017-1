@@ -12,6 +12,10 @@
 ├── {headers}
 │   ├── analytics.hpp
 │   ├── extras.hpp
+│   ├── {lib}
+│   │   ├── arg.hpp
+│   │   ├── optionparser.h
+│   │   └── stringparser.hpp
 │   └── ordenacaoAnalytics.hpp
 ├── main.cc
 ├── @Makefile
