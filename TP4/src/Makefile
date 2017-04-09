@@ -8,7 +8,7 @@ RM := rm -rf
 CXX := g++
 CPPFLAGS := -std=c++11 -w -I ./headers -I ./headers/lib -I./
 LDLIBS := -lm
-SRCS := main.cc ordenacaoAnalytics.cc algoritmos/bubblesort.cc
+SRCS := main.cc ordenacaoAnalytics.cc algoritmos/bubblesort.cc algoritmos/selectionsort.cc
 OBJS := $(SRCS:.cc=.o)
 EXEC := teste
 
@@ -44,7 +44,7 @@ clean:
 	$(RM) $(OBJS) $(EXEC)
 
 mostlyclean:
-	$(RM) $(OBJS) 
+	$(RM) $(OBJS)
 
 #\
 	$@ name of the target\
