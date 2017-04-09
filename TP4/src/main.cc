@@ -3,7 +3,6 @@
 //	Created by Micael Levi on 04/08/2017
 //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 //
-// https://isocpp.org/wiki/faq/templates
 
 #include <iostream>
 #include <vector>
@@ -23,7 +22,7 @@ void alterar(vector<int> v){//não deve alterar 'v'
 
 int main(){
 
-	vector<int> v = {4,2,5};
+	vector<int> v = {4,2,5,1,6,3,0,1};//8
 
 	// alterar(v);
 	// cout << v[0] << ' ' << v[1] << endl;
@@ -33,9 +32,18 @@ int main(){
 	/// Teste do Bubble Sort
 	cout << obj.analytics_bubblesort();
 	#ifdef VERBOSE
-		cout << "[depois do bubble]: "; obj.printDados();
+		cout << "[depois do bubble]: ";
+		obj.printDados();
+		cout << endl;
 	#endif
-	cout << endl;
+
+	/// Teste do Selection Sort
+	cout << obj.analytics_selectionsort();
+	#ifdef VERBOSE
+		cout << "[depois do selection]: ";
+		obj.printDados();
+		cout << endl;
+	#endif
 
 
 	return 0;
