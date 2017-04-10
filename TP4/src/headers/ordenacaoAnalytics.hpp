@@ -38,6 +38,7 @@ class OrdenacaoAnalytics {
 		Analytics analytics_bubblesort();
 		Analytics analytics_selectionsort();
 		Analytics analytics_insertionsort();
+		Analytics analytics_mergesort();
 };
 
 

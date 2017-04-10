@@ -53,6 +53,14 @@ int main(){
 		cout << endl;
 	#endif
 
+	/// Teste do Merge Sort
+	cout << obj.analytics_mergesort();
+	#ifdef VERBOSE
+		cout << "[depois do merge]: ";
+		obj.printDados();
+		cout << endl;
+	#endif
+
 
 
 
