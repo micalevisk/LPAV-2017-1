@@ -45,6 +45,18 @@ int main(){
 		cout << endl;
 	#endif
 
+	/// Teste do Insertion Sort
+	cout << obj.analytics_insertionsort();
+	#ifdef VERBOSE
+		cout << "[depois do insertion]: ";
+		obj.printDados();
+		cout << endl;
+	#endif
+
+
+
+
+
 
 	return 0;
 }

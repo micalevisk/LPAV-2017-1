@@ -37,6 +37,7 @@ class OrdenacaoAnalytics {
 		//Algoritmos de ordenação:
 		Analytics analytics_bubblesort();
 		Analytics analytics_selectionsort();
+		Analytics analytics_insertionsort();
 };
 
 
