@@ -58,7 +58,7 @@ Analytics OrdenacaoAnalytics::analytics_selectionsort(){
 	selectionsort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do Selection}: "; foreach(arr, tam);//resultado interno
+		cout << "{depois do Selection}: "; foreach(copiaDados);//resultado interno
 	#endif
 
 	return analise;

@@ -49,7 +49,7 @@ Analytics OrdenacaoAnalytics::analytics_bubblesort(){
 	bubblesort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do Bubble}: "; foreach(arr, tam);//resultado interno
+		cout << "{depois do Bubble}: "; foreach(copiaDados);//resultado interno
 	#endif
 
 	return analise;

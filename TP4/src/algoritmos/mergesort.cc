@@ -130,7 +130,7 @@ Analytics OrdenacaoAnalytics::analytics_mergesort(){
 	mergesort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do merge}: "; foreach(arr, tam);//resultado interno
+		cout << "{depois do merge}: "; foreach(copiaDados);
 	#endif
 
 	return analise;
