@@ -1,5 +1,5 @@
 //
-//	[insertion.cc]
+//	[insertionsort.cc]
 //	Created by Micael Levi on 04/10/2017
 //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 //
