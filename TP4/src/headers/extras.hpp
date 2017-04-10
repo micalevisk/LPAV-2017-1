@@ -10,6 +10,8 @@
 
 
 #include <iostream>
+#include <algorithm>
+#include <vector>
 
 template<typename Type>
 void trocarElementos(Type& a, Type& b){
@@ -19,9 +21,10 @@ void trocarElementos(Type& a, Type& b){
 }
 
 template<typename Type>
-void foreach(Type* arr, size_t tam, char delim='-'){
-	for(unsigned i=0; i < tam; ++i)
-		std::cout << arr[i] << delim;
+void foreach(std::vector<Type> v, char delim='-'){
+	for_each(v.begin(), v.end(), [delim](const Type& n){
+		std::cout << n << delim;
+	});
 	std::cout << '\n';
 }
 
