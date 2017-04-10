@@ -9,7 +9,7 @@ RM := rm -rf
 CXX := g++
 CPPFLAGS := -std=c++11 -w -I ./headers -I ./headers/lib -I./
 LDLIBS := -lm
-SRCS_ALGORITMOS := $(addprefix algoritmos/, bubblesort.cc selectionsort.cc insertionsort.cc)
+SRCS_ALGORITMOS := $(addsuffix .cc, $(addprefix algoritmos/, bubblesort selectionsort insertionsort mergesort ) )
 SRCS := main.cc ordenacaoAnalytics.cc $(SRCS_ALGORITMOS)
 OBJS := $(SRCS:.cc=.o)
 EXEC := teste
