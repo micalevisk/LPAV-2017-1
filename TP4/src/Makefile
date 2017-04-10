@@ -3,12 +3,14 @@
 ##	Created by Micael Levi on 04/08/2017
 ##	Copyright (c) 2016 mllc@icomp.ufam.edu.br; All rights reserved.
 ##
+## https://www.gnu.org/savannah-checkouts/gnu/make/manual/html_node/File-Name-Functions.html#index-addsuffix-591
 
 RM := rm -rf
 CXX := g++
 CPPFLAGS := -std=c++11 -w -I ./headers -I ./headers/lib -I./
 LDLIBS := -lm
-SRCS := main.cc ordenacaoAnalytics.cc algoritmos/bubblesort.cc algoritmos/selectionsort.cc
+SRCS_ALGORITMOS := $(addprefix algoritmos/, bubblesort.cc selectionsort.cc insertionsort.cc)
+SRCS := main.cc ordenacaoAnalytics.cc $(SRCS_ALGORITMOS)
 OBJS := $(SRCS:.cc=.o)
 EXEC := teste
 
