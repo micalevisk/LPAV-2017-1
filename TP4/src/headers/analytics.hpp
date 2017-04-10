@@ -43,8 +43,11 @@ struct Analytics {
 	void iniciarTempo(){ gettimeofday(&antes, 0); }
 	void pararTempo(){
 		gettimeofday(&depois, 0);
-		tempoExecucao = (depois.tv_sec + depois.tv_usec/1000000.0) - (antes.tv_sec  + antes.tv_usec /1000000.0);
-		// tempoExecucao = ((depois.tv_sec * 1000000 + depois.tv_usec) - (antes.tv_sec * 1000000 + antes.tv_usec));
+		#ifdef MILLISECONDS
+			tempoExecucao = ((depois.tv_sec * 1000000 + depois.tv_usec) - (antes.tv_sec * 1000000 + antes.tv_usec));
+		#else
+			tempoExecucao = (depois.tv_sec + depois.tv_usec/1000000.0) - (antes.tv_sec  + antes.tv_usec /1000000.0);
+		#endif
 	}
 
 	private:

@@ -28,10 +28,11 @@
 
 | macro	| default | descrição |
 |:-----:|:-------:|:---------:|
-| VERBOSE | 0 | mostrar o estado dos vetores/arrays & significado do CSV `Analytics`
+| VERBOSE | false | mostrar o estado dos vetores/arrays & significado do CSV `Analytics`
 | PRECISION | 2 | quantidade de casas do tempo de execução
-| DECRESCENTE | 0 | se `true` então ordena em ordem decrescente
+| DECRESCENTE | false | se `true` então ordena em ordem decrescente
 | TIPO | int | tipo (`C++`) dos elementos lidos
+| MILLISECONDS | false | se `true` então o tempo de execução será dado em milissegundos
 
 
 PARTE 1

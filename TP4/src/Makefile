@@ -26,6 +26,9 @@ endif
 ifneq ($(origin DECRESCENTE), undefined)
 	CPPFLAGS += -D DECRESCENTE
 endif
+ifneq ($(origin MILLISECONDS), undefined)
+	CPPFLAGS += -D MILLISECONDS
+endif
 ##########################################
 
 all: $(EXEC)
