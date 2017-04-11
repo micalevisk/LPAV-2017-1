@@ -12,20 +12,10 @@ using namespace std;
 #include "ordenacaoAnalytics.hpp"
 
 
-void alterar(vector<int> v){//não deve alterar 'v'
-	int* arr = &v.at(0);//casting vector TO simple array
-
-	arr[0] = 1;
-	arr[1] = 2;
-}
-
 
 int main(){
 
 	vector<int> v = {4,2,5,1,6,3,0,1};//8
-
-	// alterar(v);
-	// cout << v[0] << ' ' << v[1] << endl;
 
 	OrdenacaoAnalytics obj(v);
 
@@ -65,6 +55,14 @@ int main(){
 	cout << obj.analytics_quicksort();
 	#ifdef VERBOSE
 		cout << "[depois do quick]: ";
+		obj.printDados();
+		cout << endl;
+	#endif
+
+	/// Teste do Heap Sort
+	cout << obj.analytics_heapsort();
+	#ifdef VERBOSE
+		cout << "[depois do heap]: ";
 		obj.printDados();
 		cout << endl;
 	#endif

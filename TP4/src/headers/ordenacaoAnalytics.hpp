@@ -42,6 +42,7 @@ class OrdenacaoAnalytics {
 		Analytics analytics_insertionsort();
 		Analytics analytics_mergesort();
 		Analytics analytics_quicksort();
+		Analytics analytics_heapsort();
 };
 
 
