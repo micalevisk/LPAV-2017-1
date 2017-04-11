@@ -21,7 +21,7 @@ void trocarElementos(Type& a, Type& b){
 }
 
 template<typename Type>
-void foreach(std::vector<Type> v, char delim='-'){
+void foreach(std::vector<Type>& v, char delim='-'){
 	for_each(v.begin(), v.end(), [delim](const Type& n){
 		std::cout << n << delim;
 	});
