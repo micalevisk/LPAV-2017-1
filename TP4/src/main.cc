@@ -61,6 +61,14 @@ int main(){
 		cout << endl;
 	#endif
 
+	/// Teste do Quick Sort
+	cout << obj.analytics_quicksort();
+	#ifdef VERBOSE
+		cout << "[depois do quick]: ";
+		obj.printDados();
+		cout << endl;
+	#endif
+
 
 
 
