@@ -12,6 +12,7 @@
 ///// dependencies
 #include "analytics.hpp"
 #include "extras.hpp"
+#include "unittest.hpp"
 
 #include <iostream>
 #include <vector>
@@ -21,9 +22,10 @@
 	#define T int
 #endif
 
-#ifdef DECRESCENTE
+#ifdef DESCENDING
 	#define SINAL <
 #else
+	#define DESCENDING false
 	#define SINAL >
 #endif
 
@@ -39,6 +41,7 @@ class OrdenacaoAnalytics {
 		Analytics analytics_selectionsort();
 		Analytics analytics_insertionsort();
 		Analytics analytics_mergesort();
+		Analytics analytics_quicksort();
 };
 
 
