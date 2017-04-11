@@ -55,6 +55,9 @@ Analytics OrdenacaoAnalytics::analytics_insertionsort(){
 	#ifdef VERBOSE
 		cout << "{depois do insertion}: "; foreach(copiaDados);//resultado interno
 	#endif
+	#ifdef DEBUG
+		UnitTest::isSorted<T>(copiaDados, DESCENDING);
+	#endif
 
 	return analise;
 }

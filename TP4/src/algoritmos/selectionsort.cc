@@ -60,6 +60,9 @@ Analytics OrdenacaoAnalytics::analytics_selectionsort(){
 	#ifdef VERBOSE
 		cout << "{depois do Selection}: "; foreach(copiaDados);//resultado interno
 	#endif
+	#ifdef DEBUG
+		UnitTest::isSorted<T>(copiaDados, DESCENDING);
+	#endif
 
 	return analise;
 }

@@ -132,6 +132,9 @@ Analytics OrdenacaoAnalytics::analytics_mergesort(){
 	#ifdef VERBOSE
 		cout << "{depois do merge}: "; foreach(copiaDados);
 	#endif
+	#ifdef DEBUG
+		UnitTest::isSorted<T>(copiaDados, DESCENDING);
+	#endif
 
 	return analise;
 }
