@@ -9,6 +9,9 @@
 .
 ├── {algoritmos}
 │   ├── bubblesort.cc
+│   ├── insertionsort.cc
+│   ├── mergesort.cc
+│   ├── quicksort.cc
 │   └── selectionsort.cc
 ├── {headers}
 │   ├── analytics.hpp
@@ -16,12 +19,12 @@
 │   ├── {lib}
 │   │   ├── arg.hpp
 │   │   ├── optionparser.h
-│   │   └── stringparser.hpp
+│   │   ├── stringparser.hpp
+│   │   └── unittest.hpp
 │   └── ordenacaoAnalytics.hpp
 ├── main.cc
 ├── @Makefile
 └── ordenacaoAnalytics.cc
-
 ```
 
 ## make {MACROS}
