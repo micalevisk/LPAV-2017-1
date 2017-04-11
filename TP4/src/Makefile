@@ -9,7 +9,7 @@ RM := rm -rf
 CXX := g++
 CPPFLAGS := -std=c++11 -w -I ./headers -I ./headers/lib -I./
 LDLIBS := -lm
-SRCS_ALGORITMOS := $(addsuffix .cc, $(addprefix algoritmos/, bubblesort selectionsort insertionsort mergesort ) )
+SRCS_ALGORITMOS := $(addsuffix .cc, $(addprefix algoritmos/, bubblesort selectionsort insertionsort mergesort quicksort ) )
 SRCS := main.cc ordenacaoAnalytics.cc $(SRCS_ALGORITMOS)
 OBJS := $(SRCS:.cc=.o)
 EXEC := teste
@@ -25,11 +25,14 @@ endif
 ifneq ($(origin VERBOSE), undefined)
 	CPPFLAGS += -D VERBOSE
 endif
-ifneq ($(origin DECRESCENTE), undefined)
-	CPPFLAGS += -D DECRESCENTE
+ifneq ($(origin DESCENDING), undefined)
+	CPPFLAGS += -D DESCENDING
 endif
 ifneq ($(origin MILLISECONDS), undefined)
 	CPPFLAGS += -D MILLISECONDS
+endif
+ifneq ($(origin DEBUG), undefined)
+	CPPFLAGS += -D DEBUG
 endif
 ##########################################
 
