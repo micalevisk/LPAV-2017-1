@@ -30,9 +30,10 @@
 |:-----:|:-------:|:---------:|
 | VERBOSE | false | mostrar o estado dos vetores/arrays & significado do CSV `Analytics`
 | PRECISION | 2 | quantidade de casas do tempo de execução
-| DECRESCENTE | false | se `true` então ordena em ordem decrescente
+| DESCENDING | false | se definido, então ordena em ordem decrescente
 | TIPO | int | tipo (`C++`) dos elementos lidos
-| MILLISECONDS | false | se `true` então o tempo de execução será dado em milissegundos
+| MILLISECONDS | false | se definido, então o tempo de execução será dado em milissegundos
+| DEBUG | false | se definido, então executa operações do teste unitário
 
 
 PARTE 1
