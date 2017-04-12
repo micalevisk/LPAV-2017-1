@@ -12,21 +12,45 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <string>
 
-template<typename Type>
-void trocarElementos(Type& a, Type& b){
-	Type temp = a;
-	a = b;
-	b = temp;
-}
 
-template<typename Type>
-void foreach(std::vector<Type>& v, char delim='-'){
-	for_each(v.begin(), v.end(), [delim](const Type& n){
-		std::cout << n << delim;
-	});
-	std::cout << '\n';
-}
+struct Extras {
+
+	template<typename Type>
+	static void trocarElementos(Type& a, Type& b){
+		Type temp = a;
+		a = b;
+		b = temp;
+	}
+
+	template<typename Type>
+	static void foreach(std::vector<Type>& v, char delim='-'){
+		for_each(v.begin(), v.end(), [delim](const Type& n){
+			std::cout << n << delim;
+		});
+		std::cout << '\n';
+	}
+
+
+	static std::vector<std::string> splitString(const char* str, std::string delimiter=","){
+		std::vector<std::string> generated;
+		std::string s(str);
+		s.erase(std::remove(s.begin(),s.end(),' '),s.end());//apaga os brancos
+
+		size_t pos = 0;
+		std::string token;
+		while((pos = s.find(delimiter)) != std::string::npos){
+			token = s.substr(0, pos);
+			if(!token.empty()) generated.push_back(token);
+			s.erase(0, pos + delimiter.length());
+		}
+		generated.push_back(s);
+
+		return generated;
+	}
+
+};
 
 
 

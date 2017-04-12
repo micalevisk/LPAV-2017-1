@@ -16,7 +16,6 @@ using namespace std;
 ///dependencies
 #include "optionparser.h"
 #include "arg.hpp"
-#include "stringparser.hpp"
 
 
 //============================================================================//
@@ -83,7 +82,7 @@ Parameters GetOpts::readOptions(option::Parser parse, vector<option::Option>& op
 
 			case ALGORITHMS: {
 				// fprintf(stdout, "--algorithms=[<%s>]\n", Arg::toString(opt.arg));
-				vector<string> strAlgoritmos = StringParser::splitString(opt.arg);//
+				vector<string> strAlgoritmos = Extras::splitString(opt.arg);//
 				params.algoritmosUtilizados.at('a') = false;
 				for(auto s : strAlgoritmos) params.algoritmosUtilizados.at(s[0]) = true;
 				break;

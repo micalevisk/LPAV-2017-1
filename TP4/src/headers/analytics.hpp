@@ -21,9 +21,6 @@
 
 struct Analytics {
 	friend std::ostream& operator <<(std::ostream& out, const Analytics& a){//CSV
-		#ifdef VERBOSE
-			out << "algoritmo,comparacoes,trocas,tempo\n";//regex: '([a-zA-Z]+),([^)]+),([^)]+),([^)]+)'
-		#endif
 		out << a.nomeAlgoritmo << ','
 			<< a.qtdComparacoes << ','
 			<< a.qtdTrocas << ','
