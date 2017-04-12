@@ -53,7 +53,7 @@ Analytics OrdenacaoAnalytics::analytics_insertionsort(){
 	insertionsort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do insertion}: "; foreach(copiaDados);//resultado interno
+		cout << "{depois do insertion}: "; Extras::foreach(copiaDados);//resultado interno
 	#endif
 	#ifdef DEBUG
 		UnitTest::isSorted<T>(copiaDados, DESCENDING);

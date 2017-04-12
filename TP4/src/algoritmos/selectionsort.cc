@@ -41,7 +41,7 @@ void selectionsort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
 		}
 
 		if(i != posPivot){
-			trocarElementos<T>(v[i], v[posPivot]);
+			Extras::trocarElementos<T>(v[i], v[posPivot]);
 			analise.incrementar_qtdTrocas();
 		}
 	}
@@ -58,7 +58,7 @@ Analytics OrdenacaoAnalytics::analytics_selectionsort(){
 	selectionsort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do Selection}: "; foreach(copiaDados);//resultado interno
+		cout << "{depois do Selection}: "; Extras::foreach(copiaDados);//resultado interno
 	#endif
 	#ifdef DEBUG
 		UnitTest::isSorted<T>(copiaDados, DESCENDING);

@@ -130,7 +130,7 @@ Analytics OrdenacaoAnalytics::analytics_mergesort(){
 	mergesort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do merge}: "; foreach(copiaDados);
+		cout << "{depois do merge}: "; Extras::foreach(copiaDados);
 	#endif
 	#ifdef DEBUG
 		UnitTest::isSorted<T>(copiaDados, DESCENDING);

@@ -21,7 +21,6 @@
 │   │   ├── arg.hpp
 │   │   ├── getopts.hpp
 │   │   ├── optionparser.h
-│   │   ├── stringparser.hpp
 │   │   └── unittest.hpp
 │   └── ordenacaoAnalytics.hpp
 ├── main.cc

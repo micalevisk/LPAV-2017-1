@@ -74,7 +74,7 @@ void heapify(T* v, unsigned pai, int posUltimo, Analytics& analise){
 	}
 
 	if(posMaior != pai){
-		trocarElementos<T>(v[pai], v[posMaior]);
+		Extras::trocarElementos<T>(v[pai], v[posMaior]);
 		analise.incrementar_qtdTrocas();
 	}
 
@@ -89,7 +89,7 @@ void buildHeap(T* v, unsigned n, Analytics& analise){
 void heapsort(T* v, unsigned n, Analytics& analise){
 	buildHeap(v, n, analise);
 	for(int i=n-1; i > 0;){
-		trocarElementos<T>(v[i], v[0]);
+		Extras::trocarElementos<T>(v[i], v[0]);
 		analise.incrementar_qtdTrocas();
 		heapify(v, 0, --i, analise);
 	}
@@ -106,7 +106,7 @@ Analytics OrdenacaoAnalytics::analytics_heapsort(){
 	heapsort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do heap}: "; foreach(copiaDados);//resultado interno
+		cout << "{depois do heap}: "; Extras::foreach(copiaDados);//resultado interno
 	#endif
 	#ifdef DEBUG
 		UnitTest::isSorted<T>(copiaDados, DESCENDING);

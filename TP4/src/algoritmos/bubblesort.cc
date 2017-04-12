@@ -32,7 +32,7 @@ void bubblesort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
 		for(j=0; j < n-1-i; ++j)
 			if( v[j] SINAL v[j+1] ){
 				analise.incrementar_qtdComparacoes();
-				trocarElementos<T>(v[j], v[j+1]);
+				Extras::trocarElementos<T>(v[j], v[j+1]);
 				analise.incrementar_qtdTrocas();
 			}
 	}
@@ -49,7 +49,7 @@ Analytics OrdenacaoAnalytics::analytics_bubblesort(){
 	bubblesort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do Bubble}: "; foreach(copiaDados);//resultado interno
+		cout << "{depois do Bubble}: "; Extras::foreach(copiaDados);//resultado interno
 	#endif
 	#ifdef DEBUG
 		UnitTest::isSorted<T>(copiaDados, DESCENDING);

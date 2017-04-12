@@ -60,10 +60,10 @@ void particionar(T* v, unsigned inicio, unsigned fim, Analytics& analise){//não
 	do{
 		// for(; v[i] < pivot; ++i) analise.incrementar_qtdComparacoes();
 		// for(; v[j] > pivot; --j) analise.incrementar_qtdComparacoes();
-		for(; pivot SINAL v[i]; ++i) analise.incrementar_qtdComparacoes();
-		for(; v[j] SINAL pivot; --j) analise.incrementar_qtdComparacoes();
+		for(; pivot > v[i]; ++i) analise.incrementar_qtdComparacoes();
+		for(; v[j] > pivot; --j) analise.incrementar_qtdComparacoes();
 		if(i <= j){
-			trocarElementos<T>(v[i], v[j]);
+			Extras::trocarElementos<T>(v[i], v[j]);
 			++i; --j;
 			analise.incrementar_qtdTrocas();
 		}
@@ -87,7 +87,7 @@ Analytics OrdenacaoAnalytics::analytics_quicksort(){
 	quicksort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do quick}: "; foreach(copiaDados);//resultado interno
+		cout << "{depois do quick}: "; Extras::foreach(copiaDados);//resultado interno
 	#endif
 	#ifdef DEBUG
 		UnitTest::isSorted<T>(copiaDados, DESCENDING);
