@@ -19,6 +19,9 @@ int main(){
 
 	OrdenacaoAnalytics obj(v);
 
+	/// Header do CSV
+	cout << "instancia,algoritmo,comparacoes,trocas,tempo\n";//regex: '([0-9]+),([a-zA-Z]+),([^)]+),([^)]+),([^)]+)'
+
 	/// Teste do Bubble Sort
 	cout << obj.analytics_bubblesort();
 	#ifdef VERBOSE
