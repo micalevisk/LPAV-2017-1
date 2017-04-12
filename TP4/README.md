@@ -19,11 +19,13 @@
 │   ├── extras.hpp
 │   ├── {lib}
 │   │   ├── arg.hpp
+│   │   ├── getopts.hpp
 │   │   ├── optionparser.h
 │   │   ├── stringparser.hpp
 │   │   └── unittest.hpp
 │   └── ordenacaoAnalytics.hpp
 ├── main.cc
+├── main-getopt.cc
 ├── @Makefile
 └── ordenacaoAnalytics.cc
 ```
