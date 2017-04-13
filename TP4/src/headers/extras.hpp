@@ -38,7 +38,7 @@ struct Extras {
 	 * @param sep Um caractere para separar os elementos na impressão (opcional).
 	 */
 	template<class InputIt>
-	void imprimirElementos(InputIt first, InputIt last, char sep=','){
+	static void imprimirElementos(InputIt first, InputIt last, char sep=','){
 		for(; first != last-1; ++first) std::cout << *first << sep;
 		std::cout << *first << '\n';
 	}
