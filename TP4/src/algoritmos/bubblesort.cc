@@ -49,7 +49,7 @@ Analytics OrdenacaoAnalytics::analytics_bubblesort(){
 	bubblesort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do Bubble}: "; Extras::foreach(copiaDados);//resultado interno
+		cout << "{depois do Bubble}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
 		UnitTest::isSorted<T>(copiaDados, DESCENDING);

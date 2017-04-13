@@ -106,7 +106,7 @@ Analytics OrdenacaoAnalytics::analytics_heapsort(){
 	heapsort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do heap}: "; Extras::foreach(copiaDados);//resultado interno
+		cout << "{depois do heap}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
 		UnitTest::isSorted<T>(copiaDados, DESCENDING);

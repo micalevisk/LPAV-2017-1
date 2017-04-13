@@ -9,18 +9,30 @@
 ///// dependencies
 #include "ordenacaoAnalytics.hpp"
 
-
+/**
+ * Construtor do OrdenacaoAnalytics.
+ * @param _dados Vetor que armazena os elementos que deverão analisados.
+ * @return instância de OrdenacaoAnalytics.
+ */
 OrdenacaoAnalytics::OrdenacaoAnalytics(std::vector<T> _dados){
 	dados = _dados;
 }
 
-
+/**
+ * Imprime os valores do atributo 'dados' separando-os pelo caractere 'sep'.
+ * @param sep Separador (visual) dos elementos.
+ */
 void OrdenacaoAnalytics::printDados(char sep){
 	Extras::foreach(dados, sep);
 }
 
-void OrdenacaoAnalytics::executarAlgoritmo(char inicial){
-	switch (inicial) {
+/**
+ * Seletor para o algoritmo que deverá ser rodado sobre a massa de daddos.
+ * Caso o id seja inválido, i.e., não exista um algoritmo com essa inicial, força o fim do programa.
+ * @param id Hash para o algoritmo = primeiro caractere do seu nome (minúsculo).
+ */
+void OrdenacaoAnalytics::executarAlgoritmo(char id){
+	switch (id) {
 		///////////// BUBBLE
 		case 'b':{
 			std::cout << analytics_bubblesort();
@@ -91,6 +103,3 @@ void OrdenacaoAnalytics::executarAlgoritmo(char inicial){
 	}
 
 }
-
-
-// https://isocpp.org/wiki/faq/templates

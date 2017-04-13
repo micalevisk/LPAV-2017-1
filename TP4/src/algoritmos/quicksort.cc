@@ -87,7 +87,7 @@ Analytics OrdenacaoAnalytics::analytics_quicksort(){
 	quicksort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do quick}: "; Extras::foreach(copiaDados);//resultado interno
+		cout << "{depois do quick}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
 		UnitTest::isSorted<T>(copiaDados, DESCENDING);
