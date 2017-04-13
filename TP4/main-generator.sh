@@ -10,7 +10,7 @@
 # ----------------------------------- [ HELP ] ----------------------------------- #
 [ $# -lt 1 ] && {
 	echo -e "USO: \033[40;31;1m./main-generator.sh\033[0m \033[40;32;1m<N>\033[0m \033[40;35m[M]\033[0m"
-	echo -e 'Para executar o teste \033[40;35mM\033[0m (default 10) vezes com \033[40;32mN\033[0m elementos.'
+	echo -e 'Para executar o teste \033[40;35mM\033[0m (default 10) vezes com \033[40;32mN\033[0m elementos (pode usar "k" como 1000).'
 	exit 1
 }
 # ------------------------------------------------------------------------------- #
@@ -20,7 +20,7 @@ readonly LOOPABLE="./Loopable.sh"
 readonly TP4_SORT="./src/tp4_sort"
 readonly PATH_DADOS=${3:-"dadoscoletados/"}
 
-declare -ri QTD_ELEMENTOS=$1 QTD_VEZES=${2:-10}
+declare -ri QTD_ELEMENTOS=${1//k/000} QTD_VEZES=${2:-10}
 declare -a ARR_ALGORITMOS=("merge" "quick" "heap" "insertion" "selection" "bubble")
 # ------------------------------------------------------------------------------- #
 
