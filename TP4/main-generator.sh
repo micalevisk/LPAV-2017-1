@@ -25,8 +25,9 @@ declare -a ARR_ALGORITMOS=("merge" "quick" "heap" "insertion" "selection" "bubbl
 # ------------------------------------------------------------------------------- #
 
 ## Verifica se o caminho alvo (onde serão armazenados os testes) existe
-[ -d "$PATH_DADOS" ] || { echo "Crie o diretório '${PATH_DADOS}'" ; exit 1 ; }
+# [ -d "$PATH_DADOS" ] || { echo "Crie o diretório '${PATH_DADOS}'" ; exit 1 ; }
 [ -x "$TP4_SORT" ] || { echo "Compile o código para gerar o '${TP4_SORT}'" ; exit 2 ; }
+mkdir -p "${PATH_DADOS}"
 
 ## Executa
 for algoritmo in "${ARR_ALGORITMOS[@]}"
