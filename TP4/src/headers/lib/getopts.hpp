@@ -59,22 +59,9 @@ Parameters GetOpts::readOptions(option::Parser parse, vector<option::Option>& op
 		option::Option& opt = buffer[i];
 		// fprintf(stdout, "Argument #%d is ", i);
 		switch (opt.index()){
-			case _VERBOSE://**
-				// fprintf(stdout, "--verbose definido\n");
-				break;
-
 			case SIZE:
 				// fprintf(stdout, "--size=<%d>\n", Arg::toInteger(opt.arg));
 				params.qtdElementos = Arg::toInteger(opt.arg);
-				break;
-
-			case _PRECISION:
-				// fprintf(stdout, "--precision=<%d>\n", Arg::toInteger(opt.arg));
-				params.precisao = Arg::toInteger(opt.arg);
-				break;
-
-			case _DESCENDING://**
-				// fprintf(stdout, "--descending definido\n");
 				break;
 
 			case ALGORITHMS: {
