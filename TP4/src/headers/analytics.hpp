@@ -21,7 +21,8 @@
 
 struct Analytics {
 	friend std::ostream& operator <<(std::ostream& out, const Analytics& a){//CSV
-		out << a.nomeAlgoritmo << ','
+		out << a.qtdElementos << ','
+			<< a.nomeAlgoritmo << ','
 			<< a.qtdComparacoes << ','
 			<< a.qtdTrocas << ','
 			<< std::fixed << std::setprecision(PRECISION) << a.tempoExecucao
@@ -29,8 +30,9 @@ struct Analytics {
 		return out;
 	}
 
-	Analytics(std::string _nomeAlgoritmo){
+	Analytics(std::string _nomeAlgoritmo, size_t _qtdElementos){
 		nomeAlgoritmo = _nomeAlgoritmo;
+		qtdElementos = _qtdElementos;
 		qtdComparacoes = qtdTrocas = 0;
 		tempoExecucao = 0;
 	}
@@ -47,13 +49,13 @@ struct Analytics {
 		#endif
 	}
 
+	std::string nomeAlgoritmo;
 	private:
 		struct timeval antes, depois;
-
-		std::string nomeAlgoritmo;
+		size_t qtdElementos;
 		unsigned long qtdComparacoes;
 		unsigned long qtdTrocas;
-		float tempoExecucao;//ms
+		float tempoExecucao;//default seconds
 };
 
 
