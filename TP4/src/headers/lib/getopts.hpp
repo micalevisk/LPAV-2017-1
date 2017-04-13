@@ -77,10 +77,6 @@ Parameters GetOpts::readOptions(option::Parser parse, vector<option::Option>& op
 				// fprintf(stdout, "--descending definido\n");
 				break;
 
-			case TYPE://**
-				// fprintf(stdout, "--type=<%s>\n", Arg::toString(opt.arg));
-				break;
-
 			case ALGORITHMS: {
 				// fprintf(stdout, "--algorithms=[<%s>]\n", Arg::toString(opt.arg));
 				vector<string> strAlgoritmos = Extras::splitString(opt.arg);
