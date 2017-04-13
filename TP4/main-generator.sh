@@ -1,7 +1,7 @@
 #!/bin/bash
 # //
 # //	v0.13-4
-# //	Usado para compilar e excutar o 'Loopable.sh'
+# //	Usado para excutar o 'Loopable.sh' e salvar dados coletados.
 # //	Created by Micael Levi on 04/13/2017
 # //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 # //
@@ -26,6 +26,7 @@ declare -a ARR_ALGORITMOS=("merge" "quick" "heap" "insertion" "selection" "bubbl
 
 ## Verifica se o caminho alvo (onde serão armazenados os testes) existe
 [ -d "$PATH_DADOS" ] || { echo "Crie o diretório '${PATH_DADOS}'" ; exit 1 ; }
+[ -x "$TP4_SORT" ] || { echo "Compile o código para gerar o '${TP4_SORT}'" ; exit 2 ; }
 
 ## Executa
 for algoritmo in "${ARR_ALGORITMOS[@]}"
