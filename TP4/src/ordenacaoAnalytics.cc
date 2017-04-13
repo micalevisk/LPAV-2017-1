@@ -23,7 +23,7 @@ OrdenacaoAnalytics::OrdenacaoAnalytics(std::vector<T> _dados){
  * @param sep Separador (visual) dos elementos.
  */
 void OrdenacaoAnalytics::printDados(char sep){
-	Extras::foreach(dados, sep);
+	Extras::imprimirElementos(dados.begin(), dados.end(), sep);
 }
 
 /**
