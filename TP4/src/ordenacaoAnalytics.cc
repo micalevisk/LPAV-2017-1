@@ -14,7 +14,7 @@
  * @param _dados Vetor que armazena os elementos que deverão analisados.
  * @return instância de OrdenacaoAnalytics.
  */
-OrdenacaoAnalytics::OrdenacaoAnalytics(std::vector<T> _dados){
+OrdenacaoAnalytics::OrdenacaoAnalytics(std::vector<int> _dados){
 	dados = _dados;
 }
 

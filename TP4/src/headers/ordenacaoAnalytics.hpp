@@ -16,11 +16,6 @@
 #include "unittest.hpp"
 
 
-
-#ifndef T
-	#define T int
-#endif
-
 #ifdef DESCENDING
 	#define SINAL <
 #else
@@ -33,7 +28,7 @@
  * estatísicas da execução dos mesmos sobre a massa de dados.
  */
 class OrdenacaoAnalytics {
-	std::vector<T> dados;
+	std::vector<int> dados;
 
 	//Algoritmos de ordenação:
 	Analytics analytics_bubblesort();
@@ -46,7 +41,7 @@ class OrdenacaoAnalytics {
 	public:
 		void printDados(char);
 		void printDados(){ printDados(' '); }
-		OrdenacaoAnalytics(std::vector<T>);
+		OrdenacaoAnalytics(std::vector<int>);
 		void executarAlgoritmo(char);
 
 };

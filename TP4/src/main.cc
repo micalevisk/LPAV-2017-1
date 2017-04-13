@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
 	srand(time(NULL));
 	Parameters params = GetOpts::getParameters(argc, argv);
 
-	vector<T> v(params.qtdElementos);
+	vector<int> v(params.qtdElementos);
 
 	/// Gera e insere os números N aleatórios
 	for(unsigned i=0; i < params.qtdElementos; ++i) v.at(i) = rand() % 10;
