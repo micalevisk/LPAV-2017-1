@@ -58,8 +58,8 @@ Rotina_Heapsort
 */
 
 
-void heapify(int* v, long int pai, int posUltimo, Analytics& analise){
-	long int esq, dir, posMaior;
+void heapify(int* v, unsigned long pai, int posUltimo, Analytics& analise){
+	unsigned long esq, dir, posMaior;
 	esq = 2*pai + 1;
 	dir = esq + 1;
 	posMaior = pai;
@@ -76,6 +76,7 @@ void heapify(int* v, long int pai, int posUltimo, Analytics& analise){
 	if(posMaior != pai){
 		Extras::trocarElementos<int>(v[pai], v[posMaior]);
 		analise.incrementar_qtdTrocas();
+		heapify(v, posMaior, posUltimo, analise);
 	}
 
 }
@@ -88,10 +89,11 @@ void buildHeap(int* v, unsigned n, Analytics& analise){
 
 void heapsort(int* v, unsigned n, Analytics& analise){
 	buildHeap(v, n, analise);
-	for(int i=n-1; i > 0;){
+	for(int i=n-1; i > 0; ){
 		Extras::trocarElementos<int>(v[i], v[0]);
 		analise.incrementar_qtdTrocas();
-		heapify(v, 0, --i, analise);
+		--i;
+		heapify(v, 0, i, analise);
 	}
 }
 
