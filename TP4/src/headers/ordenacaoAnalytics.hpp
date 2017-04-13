@@ -8,14 +8,13 @@
 #define ORDENACAO_ANALYTICS_HPP
 
 
+#include <vector>
 
 ///// dependencies
 #include "analytics.hpp"
 #include "extras.hpp"
 #include "unittest.hpp"
 
-#include <iostream>
-#include <vector>
 
 
 #ifndef T
@@ -29,20 +28,27 @@
 	#define SINAL >
 #endif
 
+/**
+ * Classe que contém a implementação de cada algoritmo e as
+ * estatísicas da execução dos mesmos sobre a massa de dados.
+ */
 class OrdenacaoAnalytics {
 	std::vector<T> dados;
 
-	public:
-		void printDados();//for tests
-		OrdenacaoAnalytics(std::vector<T>);
+	//Algoritmos de ordenação:
+	Analytics analytics_bubblesort();
+	Analytics analytics_selectionsort();
+	Analytics analytics_insertionsort();
+	Analytics analytics_mergesort();
+	Analytics analytics_quicksort();
+	Analytics analytics_heapsort();
 
-		//Algoritmos de ordenação:
-		Analytics analytics_bubblesort();
-		Analytics analytics_selectionsort();
-		Analytics analytics_insertionsort();
-		Analytics analytics_mergesort();
-		Analytics analytics_quicksort();
-		Analytics analytics_heapsort();
+	public:
+		void printDados(char);
+		void printDados(){ printDados(' '); }
+		OrdenacaoAnalytics(std::vector<T>);
+		void executarAlgoritmo(char);
+
 };
 
 

@@ -53,12 +53,12 @@ Analytics OrdenacaoAnalytics::analytics_selectionsort(){
 	T* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	Analytics analise = Analytics("selection");
+	Analytics analise = Analytics("selection", tam);
 	analise.iniciarTempo();
 	selectionsort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do Selection}: "; Extras::foreach(copiaDados);//resultado interno
+		cout << "{depois do Selection}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
 		UnitTest::isSorted<T>(copiaDados, DESCENDING);

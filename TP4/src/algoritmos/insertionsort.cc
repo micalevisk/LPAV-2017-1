@@ -48,12 +48,12 @@ Analytics OrdenacaoAnalytics::analytics_insertionsort(){
 	T* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	Analytics analise = Analytics("insertion");
+	Analytics analise = Analytics("insertion", tam);
 	analise.iniciarTempo();
 	insertionsort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do insertion}: "; Extras::foreach(copiaDados);//resultado interno
+		cout << "{depois do insertion}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
 		UnitTest::isSorted<T>(copiaDados, DESCENDING);

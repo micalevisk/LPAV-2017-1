@@ -58,10 +58,10 @@ Rotina_Heapsort
 */
 
 
-void heapify(T* v, unsigned pai, int posUltimo, Analytics& analise){
-	unsigned esq, dir, posMaior;
-	esq = (pai << 1) | 1;//2*pai + 1;
-	dir = (pai << 1) + 2;//esq + 1;
+void heapify(T* v, long int pai, int posUltimo, Analytics& analise){
+	long int esq, dir, posMaior;
+	esq = 2*pai + 1;
+	dir = esq + 1;
 	posMaior = pai;
 
 	if((esq <= posUltimo) && (v[esq] > v[posMaior])){
@@ -101,12 +101,12 @@ Analytics OrdenacaoAnalytics::analytics_heapsort(){
 	T* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	Analytics analise = Analytics("heap");
+	Analytics analise = Analytics("heap", tam);
 	analise.iniciarTempo();
 	heapsort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do heap}: "; Extras::foreach(copiaDados);//resultado interno
+		cout << "{depois do heap}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
 		UnitTest::isSorted<T>(copiaDados, DESCENDING);

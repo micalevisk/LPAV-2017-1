@@ -44,12 +44,12 @@ Analytics OrdenacaoAnalytics::analytics_bubblesort(){
 	T* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	Analytics analise = Analytics("bubble");
+	Analytics analise = Analytics("bubble", tam);
 	analise.iniciarTempo();
 	bubblesort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do Bubble}: "; Extras::foreach(copiaDados);//resultado interno
+		cout << "{depois do Bubble}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
 		UnitTest::isSorted<T>(copiaDados, DESCENDING);
