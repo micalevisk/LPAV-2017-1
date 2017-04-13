@@ -30,7 +30,7 @@ Rotina_Particionar
 	j := fim
 	pivot := vetor[(i+j)/2]
 
-	Fazer,
+	Enquanto i <= j, faça
 		Enquanto vetor[i] < pivot, faça
 			i := i + 1
 		Enquanto vetor[j] > pivot, faça
@@ -39,8 +39,10 @@ Rotina_Particionar
 			Swap(vetor[i], vetor[j])
 			i := i + 1
 			j := j - 1
-	Enquanto i <= j, repetir instruções anteriores
-
+	Se j > inicio, então
+		Rotina_Particionar(vetor, inicio, j)
+	Se i < fim, então
+		Rotina_Particionar(vetor, i, fim)
 ________________
 Rotina_Quicksort
 	Recebe:
@@ -54,12 +56,9 @@ Rotina_Quicksort
 void particionar(int* v, unsigned inicio, unsigned fim, Analytics& analise){//não altera o 'dados'
 	if(fim <= inicio) return;
 	int i=inicio, j=fim;
-	// int pivot = v[(i+j)/2];
-	int pivot = v[i+(j-i)/2];
+	int pivot = v[(i+j)/2];
 
-	do{
-		// for(; v[i] < pivot; ++i) analise.incrementar_qtdComparacoes();
-		// for(; v[j] > pivot; --j) analise.incrementar_qtdComparacoes();
+	while(i <= j){
 		for(; pivot > v[i]; ++i) analise.incrementar_qtdComparacoes();
 		for(; v[j] > pivot; --j) analise.incrementar_qtdComparacoes();
 		if(i <= j){
@@ -67,9 +66,9 @@ void particionar(int* v, unsigned inicio, unsigned fim, Analytics& analise){//n�
 			++i; --j;
 			analise.incrementar_qtdTrocas();
 		}
-	}while(i <= j);
+	}
 
-	if(inicio < j) particionar(v, inicio, j, analise);
+	if(j > inicio) particionar(v, inicio, j, analise);
 	if(i < fim) particionar(v, i, fim, analise);
 }
 
