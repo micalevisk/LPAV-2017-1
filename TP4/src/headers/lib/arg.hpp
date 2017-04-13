@@ -9,6 +9,16 @@
 
 
 
+#define PROGRAM_NAME "./tp4_sort"
+///Cores para o --help
+#define CDEFAULT "\033[0m"
+#define CRED "\033[40;31m"
+#define CLRED "\033[40;31;1m"
+#define CYELLOW "\033[40;33m"
+#define CLYELLOW "\033[40;33;1m"
+#define CLMAGENTA "\033[40;35;1m"
+#define CCYAN "\033[40;36m"
+
 struct Arg: public option::Arg {
 	static const char* toString(const char* arg){ return ( arg + (arg[0]=='=') ); }
 	static int toInteger(const char* arg){ return atoi(arg); }
@@ -37,16 +47,16 @@ struct Arg: public option::Arg {
 
 enum  optionIndex { UNKNOWN, HELP, SIZE, ALGORITHMS };
 const option::Descriptor usage[] = {
-	{UNKNOWN, 0, "", "",option::Arg::None, "USAGE: tp4_sort [OPTIONS]\n\n"
-															"OPTIONS:" },
-	{HELP,         0,"h","help",   option::Arg::None,		"  -h, --help   \tPrint usage and exit." },
+	{UNKNOWN, 0, "", "",option::Arg::None, "USAGE: " CLMAGENTA PROGRAM_NAME " " CYELLOW "[OPTIONS]" CDEFAULT "\n\n"
+															CLYELLOW "OPTIONS:" CDEFAULT },
+	{HELP,         0,"h","help",   option::Arg::None,		"  -h, --help   \tExibe esta mensagem e finaliza." },
 	{SIZE,         0,"s","size",    Arg::Numeric,  			"  -s <S>,--size=<S>   \tDefine o tamanho da instância gerada (default: 10)." },
 	{ALGORITHMS,   0,"","algorithms",Arg::Required,			"  --algorithms=ALG   \tAlgoritmos que serão executados (default: all)." },
 
-	{UNKNOWN, 0, "", "",option::Arg::None, "\nALG (CSV):\n  all bubble selection insertion heap merge quick\n" },
-	{UNKNOWN, 0, "", "",option::Arg::None,	"Examples:\n"
-											"  tp4_sort -s5 --algortimos=quick,insertion \n"
-											"  tp4_sort --size 3 --algorithms 'heap,selection'\n" },
+	{UNKNOWN, 0, "", "",option::Arg::None, "\n" CLRED "ALG" CDEFAULT " (CSV):\n  all bubble selection insertion heap merge quick\n" },
+	{UNKNOWN, 0, "", "",option::Arg::None,	CCYAN "Examples:\n" CDEFAULT
+											"  " PROGRAM_NAME " -s5 --algortimos=quick,insertion \n"
+											"  " PROGRAM_NAME " --size 3 --algorithms 'heap,selection'\n" },
 	{0,0,0,0,0,0}
 };
 

@@ -19,6 +19,8 @@ using namespace std;
 #include "optionparser.h"
 #include "arg.hpp"
 
+#define MAP_CHAR_BOOL unordered_map<char,bool>
+
 //============================================================================//
 struct Parameters {//lidos das opções (com valores default)
 	///Quantidade de valores aletórios que serão gerados
@@ -26,7 +28,18 @@ struct Parameters {//lidos das opções (com valores default)
 	///Quantidade de casas que o tempo de execução terá
 	unsigned short precisao;
 	///A chave é a inicial (minúscula) do nome do algoritmo (ou 'a' de 'all') => booleano que indica se ele será executado
-	unordered_map<char, bool> algoritmosUtilizados;
+	MAP_CHAR_BOOL algoritmosUtilizados;
+
+	/**
+	 * Para verificar se um algoritmo (pelo primeiro caractere do seu nome)
+	 * está na lista de algoritmos que podem ser utilizados.
+	 * @param id - Primeira letra do nome do algoritmo (minúsucla).
+	 * @return True se ele for válido, false caso contrário.
+	 */
+	bool contemChave(char id){
+		MAP_CHAR_BOOL::iterator it = algoritmosUtilizados.find(id);
+		return it != algoritmosUtilizados.end();
+	}
 
 	Parameters() :
 		qtdElementos(10)
@@ -68,7 +81,11 @@ Parameters GetOpts::readOptions(option::Parser parse, vector<option::Option>& op
 				// fprintf(stdout, "--algorithms=[<%s>]\n", Arg::toString(opt.arg));
 				vector<string> strAlgoritmos = Extras::splitString(opt.arg);
 				params.algoritmosUtilizados.at('a') = false;
-				for(auto s : strAlgoritmos) params.algoritmosUtilizados.at( tolower(s[0]) ) = true;
+				for(auto s : strAlgoritmos){
+					char id = tolower(s[0]);
+					if( params.contemChave(id) )
+						params.algoritmosUtilizados.at(id) = true;
+				}
 				break;
 			}
 

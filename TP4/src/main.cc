@@ -6,13 +6,10 @@
 
 #include <iostream>
 #include <vector>
-#include <cstdlib>
-#include <ctime>
 using namespace std;
 
 #include "ordenacaoAnalytics.hpp"
 #include "getopts.hpp"
-
 
 
 int main(int argc, char* argv[])
@@ -20,6 +17,7 @@ int main(int argc, char* argv[])
 	srand(time(NULL));
 	Parameters params = GetOpts::getParameters(argc, argv);
 
+	if(params.qtdElementos <= 0) return 1;
 	vector<int> v(params.qtdElementos);
 
 	/// Gera e insere os números N aleatórios
