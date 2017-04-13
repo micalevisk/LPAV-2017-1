@@ -6,25 +6,25 @@
 
 RM := rm -rf
 CXX := g++
-CPPFLAGS := -std=c++11 -w -I ./headers -I ./headers/lib -I./
+CPPFLAGS := -std=c++11 -w -I ./headers -I ./headers/lib
 LDLIBS := -lm
 SRCS_ALGORITMOS := $(addsuffix .cc, $(addprefix algoritmos/, bubblesort selectionsort insertionsort mergesort quicksort heapsort) )
 SRCS := $(addsuffix .cc, main ordenacaoAnalytics) $(SRCS_ALGORITMOS)
 OBJS := $(SRCS:.cc=.o)
-EXEC := teste
+EXEC := tp4_sort
 
 
 ##########################################
 ifneq ($(origin PRECISION), undefined)
 	CPPFLAGS += -D PRECISION=$(PRECISION)
 endif
-ifneq ($(origin VERBOSE), undefined)
+ifeq ($(VERBOSE), true)
 	CPPFLAGS += -D VERBOSE
 endif
-ifneq ($(origin MILLISECONDS), undefined)
+ifeq ($(MILLISECONDS), true)
 	CPPFLAGS += -D MILLISECONDS
 endif
-ifneq ($(origin DEBUG), undefined)
+ifeq ($(DEBUG), true)
 	CPPFLAGS += -D DEBUG
 endif
 ##########################################
@@ -36,10 +36,6 @@ $(EXEC): $(OBJS)
 
 test: clean all
 	./$(EXEC)
-
-# .cpp.o:
-# 	$(CXX) $(CPPFLAGS) -c $< -o $@
-
 
 clean:
 	$(RM) $(OBJS) $(EXEC)
