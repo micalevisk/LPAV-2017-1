@@ -109,7 +109,7 @@ Analytics OrdenacaoAnalytics::analytics_heapsort(){
 		cout << "{depois do heap}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
-		UnitTest::isSorted<int>(copiaDados, DESCENDING);
+		UnitTest::isSorted<int>(copiaDados);
 	#endif
 
 	return analise;

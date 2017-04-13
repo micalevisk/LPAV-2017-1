@@ -34,7 +34,7 @@ void selectionsort(int* v, size_t n, Analytics& analise){//não altera o 'dados'
 	for(unsigned i=0; i < n-1; ++i){
 		unsigned posPivot = i;//pivot é o menor/maior elemento (depende do tipo de ordenação)
 		for(unsigned j=i+1; j < n; ++j){
-			if(v[posPivot] SINAL v[j]){
+			if(v[posPivot] > v[j]){
 				posPivot = j;
 				analise.incrementar_qtdComparacoes();
 			}
@@ -61,7 +61,7 @@ Analytics OrdenacaoAnalytics::analytics_selectionsort(){
 		cout << "{depois do Selection}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
-		UnitTest::isSorted<int>(copiaDados, DESCENDING);
+		UnitTest::isSorted<int>(copiaDados);
 	#endif
 
 	return analise;

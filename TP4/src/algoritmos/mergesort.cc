@@ -77,7 +77,7 @@ static void intercalar(int* v, int* vaux, unsigned inicio, unsigned fim, unsigne
 	j = meio+1;
 
 	for(; (i <= meio) && (j <= fim); ++k){
-		if(v[j] SINAL v[i]){
+		if(v[j] > v[i]){
 			vaux[k] = v[i];
 			++i;
 		}
@@ -133,7 +133,7 @@ Analytics OrdenacaoAnalytics::analytics_mergesort(){
 		cout << "{depois do merge}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());
 	#endif
 	#ifdef DEBUG
-		UnitTest::isSorted<int>(copiaDados, DESCENDING);
+		UnitTest::isSorted<int>(copiaDados);
 	#endif
 
 	return analise;

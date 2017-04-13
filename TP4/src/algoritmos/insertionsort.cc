@@ -33,7 +33,7 @@ void insertionsort(int* v, size_t n, Analytics& analise){//não altera o 'dados'
 		pivot = v[i];
 		j = i-1;
 
-		for(; (j >= 0) && (v[j] SINAL pivot); --j){
+		for(; (j >= 0) && (v[j] > pivot); --j){
 			v[j+1] = v[j];
 			analise.incrementar_qtdComparacoes();
 			analise.incrementar_qtdTrocas();
@@ -56,7 +56,7 @@ Analytics OrdenacaoAnalytics::analytics_insertionsort(){
 		cout << "{depois do insertion}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
-		UnitTest::isSorted<int>(copiaDados, DESCENDING);
+		UnitTest::isSorted<int>(copiaDados);
 	#endif
 
 	return analise;

@@ -90,7 +90,7 @@ Analytics OrdenacaoAnalytics::analytics_quicksort(){
 		cout << "{depois do quick}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
-		UnitTest::isSorted<int>(copiaDados, DESCENDING);
+		UnitTest::isSorted<int>(copiaDados);
 	#endif
 
 	return analise;
