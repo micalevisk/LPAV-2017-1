@@ -20,6 +20,12 @@ void compareVectorsData(Iterator f1, Iterator f2, Iterator last) {
 		assert(*it1 == *it2);
 }
 */
+
+
+/**
+ * Classe para realizar um 'teste' de checagem do vector.
+ * Utiliza assertion
+ */
 struct UnitTest {
 	/*
 	template<typename Type>
@@ -29,6 +35,12 @@ struct UnitTest {
 	}
 	*/
 
+	/**
+	 * Verifica se um vector está ordenado.
+	 * Caso não esteja, a assert dispara um erro de checagem.
+	 * @param v Vector que será analisado.
+	 * @param decrescente Define se o vector deve estar em ordem decrescente (opcional).
+	 */
 	template<typename Type>
 	static void isSorted(std::vector<Type> v, bool decrescente=false){
 		if(decrescente){

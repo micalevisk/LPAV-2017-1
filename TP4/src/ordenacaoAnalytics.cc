@@ -20,9 +20,9 @@ OrdenacaoAnalytics::OrdenacaoAnalytics(std::vector<T> _dados){
 
 /**
  * Imprime os valores do atributo 'dados' separando-os pelo caractere 'sep'.
- * @param sep Separador (visual) dos elementos.
+ * @param sep Separador (visual) dos elementos (opcional).
  */
-void OrdenacaoAnalytics::printDados(char sep){
+void OrdenacaoAnalytics::printDados(char sep=' '){
 	Extras::imprimirElementos(dados.begin(), dados.end(), sep);
 }
 
@@ -32,7 +32,7 @@ void OrdenacaoAnalytics::printDados(char sep){
  * @param id Hash para o algoritmo = primeiro caractere do seu nome (minúsculo).
  */
 void OrdenacaoAnalytics::executarAlgoritmo(char id){
-	switch (id) {
+	switch( tolower(id) ){
 		///////////// BUBBLE
 		case 'b':{
 			std::cout << analytics_bubblesort();

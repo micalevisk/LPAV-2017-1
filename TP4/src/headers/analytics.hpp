@@ -19,7 +19,12 @@
 #include <sys/time.h>
 #include <stdio.h>
 
+/**
+ * Classe para armazenar os dados computados sobre um algoritmo.
+ */
 struct Analytics {
+	std::string nomeAlgoritmo;
+	
 	friend std::ostream& operator <<(std::ostream& out, const Analytics& a){//CSV
 		out << a.qtdElementos << ','
 			<< a.nomeAlgoritmo << ','
@@ -30,6 +35,11 @@ struct Analytics {
 		return out;
 	}
 
+	/**
+	 * Construtor do Analytics
+	 * @paam _nomeAlgoritmo String que representa o nome do algoritmo.
+	 * @param qtdElementos Quantidade de elementos que estão sendo analisados.
+	 */
 	Analytics(std::string _nomeAlgoritmo, size_t _qtdElementos){
 		nomeAlgoritmo = _nomeAlgoritmo;
 		qtdElementos = _qtdElementos;
@@ -49,7 +59,6 @@ struct Analytics {
 		#endif
 	}
 
-	std::string nomeAlgoritmo;
 	private:
 		struct timeval antes, depois;
 		size_t qtdElementos;
