@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_map>
 using namespace std;
 
 ///dependencies
@@ -26,12 +26,12 @@ struct Parameters {//lidos das opções (com valores default)
 	///Quantidade de casas que o tempo de execução terá
 	unsigned short precisao;
 	///A chave é a inicial (minúscula) do nome do algoritmo (ou 'a' de 'all') => booleano que indica se ele será executado
-	map<char, bool> algoritmosUtilizados;
+	unordered_map<char, bool> algoritmosUtilizados;
 
 	Parameters() :
 		qtdElementos(10)
 		,precisao(2)
-		,algoritmosUtilizados({{'a', true}, {'b', false}, {'h', false}, {'i', false}, {'s', false}, {'m', false}, {'q', false}}) {}
+		,algoritmosUtilizados({{'a', true}, {'h', false}, {'i', false}, {'s', false}, {'m', false}, {'q', false}, {'b', false}}) {}
 };
 //============================================================================//
 
@@ -83,9 +83,9 @@ Parameters GetOpts::readOptions(option::Parser parse, vector<option::Option>& op
 
 			case ALGORITHMS: {
 				// fprintf(stdout, "--algorithms=[<%s>]\n", Arg::toString(opt.arg));
-				vector<string> strAlgoritmos = Extras::splitString(opt.arg);//
+				vector<string> strAlgoritmos = Extras::splitString(opt.arg);
 				params.algoritmosUtilizados.at('a') = false;
-				for(auto s : strAlgoritmos) params.algoritmosUtilizados.at(s[0]) = true;
+				for(auto s : strAlgoritmos) params.algoritmosUtilizados.at( tolower(s[0]) ) = true;
 				break;
 			}
 
