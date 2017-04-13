@@ -8,14 +8,13 @@
 #define ORDENACAO_ANALYTICS_HPP
 
 
+#include <vector>
 
 ///// dependencies
 #include "analytics.hpp"
 #include "extras.hpp"
 #include "unittest.hpp"
 
-#include <iostream>
-#include <vector>
 
 
 #ifndef T
@@ -33,8 +32,10 @@ class OrdenacaoAnalytics {
 	std::vector<T> dados;
 
 	public:
-		void printDados();//for tests
+		void printDados(char);
+		void printDados(){ printDados(' '); }
 		OrdenacaoAnalytics(std::vector<T>);
+		void executarAlgoritmo(char);
 
 		//Algoritmos de ordenação:
 		Analytics analytics_bubblesort();
