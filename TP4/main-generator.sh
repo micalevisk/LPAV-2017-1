@@ -31,12 +31,12 @@ declare -a ARR_ALGORITMOS=("merge" "quick" "heap" "insertion" "selection" "bubbl
 ## Executa
 for algoritmo in "${ARR_ALGORITMOS[@]}"
 do
-	arquivoSaida="${algoritmo}_${QTD_ELEMENTOS}.tsv"
-	echo -e "comparações\ttrocas\ttempo" > "$PATH_DADOS$arquivoSaida"
+	arquivoSaida="$PATH_DADOS${QTD_ELEMENTOS}_${algoritmo}.tsv"
+	echo -e "comparações\ttrocas\ttempo" > "$arquivoSaida"
 
 	comando="${TP4_SORT} --size=${QTD_ELEMENTOS} --algorithms=${algoritmo}"
 	comando="${comando} | sed '1d ; y/,./\t,/' | cut --fields=3- >> ${arquivoSaida}"
 
-	echo "${LOOPABLE} ${QTD_VEZES} \"${comando}\""
+	echo "${LOOPABLE} ${QTD_VEZES} \"${comando}\"" | sh
 
 done
