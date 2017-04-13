@@ -16,12 +16,7 @@
 #include "unittest.hpp"
 
 
-#ifdef DESCENDING
-	#define SINAL <
-#else
-	#define DESCENDING false
-	#define SINAL >
-#endif
+
 
 /**
  * Classe que contém a implementação de cada algoritmo e as
@@ -39,6 +34,7 @@ class OrdenacaoAnalytics {
 	Analytics analytics_heapsort();
 
 	public:
+		std::vector<char> nomeAlgoritmos = {'m','q','h','i','s','b'};///em ordem de melhor tempo (será a ordem de execução).
 		void printDados(char);
 		void printDados(){ printDados(' '); }
 		OrdenacaoAnalytics(std::vector<int>);

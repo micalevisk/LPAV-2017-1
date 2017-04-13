@@ -26,18 +26,20 @@ int main(int argc, char* argv[])
 	for(unsigned i=0; i < params.qtdElementos; ++i) v.at(i) = rand() % 10;
 
 	OrdenacaoAnalytics obj(v);
-	#ifdef VERBOSE
-		cout << "VALORES: "; obj.printDados(); cout << '\n';
-	#endif
 
+	#ifdef VERBOSE
+		cout << "VALORES: ";
+		obj.printDados();
+		cout << '\n';
+	#endif
 
 	/// Header do CSV
 	cout << "instancia,algoritmo,comparacoes,trocas,tempo\n";//regex: '([0-9]+),([a-zA-Z]+),([^)]+),([^)]+),([^)]+)'
 
 	bool runAll = params.algoritmosUtilizados['a'];
-	for(unordered_map<char,bool>::iterator it=++params.algoritmosUtilizados.begin(); it!=params.algoritmosUtilizados.end(); ++it){
-		if(runAll || it->second)
-			obj.executarAlgoritmo(it->first);
+	for(const auto& algoritmo : obj.nomeAlgoritmos){
+		if(runAll || params.algoritmosUtilizados[algoritmo])
+			obj.executarAlgoritmo(algoritmo);
 	}
 
 
