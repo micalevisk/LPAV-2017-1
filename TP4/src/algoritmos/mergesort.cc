@@ -125,7 +125,7 @@ Analytics OrdenacaoAnalytics::analytics_mergesort(){
 	T* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	Analytics analise = Analytics("merge");
+	Analytics analise = Analytics("merge", tam);
 	analise.iniciarTempo();
 	mergesort(arr, tam, analise);
 	analise.pararTempo();

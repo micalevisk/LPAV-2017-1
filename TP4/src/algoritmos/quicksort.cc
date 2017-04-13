@@ -82,7 +82,7 @@ Analytics OrdenacaoAnalytics::analytics_quicksort(){
 	T* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	Analytics analise = Analytics("quick");
+	Analytics analise = Analytics("quick", tam);
 	analise.iniciarTempo();
 	quicksort(arr, tam, analise);
 	analise.pararTempo();

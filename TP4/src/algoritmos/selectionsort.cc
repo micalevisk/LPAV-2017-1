@@ -53,7 +53,7 @@ Analytics OrdenacaoAnalytics::analytics_selectionsort(){
 	T* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	Analytics analise = Analytics("selection");
+	Analytics analise = Analytics("selection", tam);
 	analise.iniciarTempo();
 	selectionsort(arr, tam, analise);
 	analise.pararTempo();

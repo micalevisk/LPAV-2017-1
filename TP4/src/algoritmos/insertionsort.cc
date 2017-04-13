@@ -48,7 +48,7 @@ Analytics OrdenacaoAnalytics::analytics_insertionsort(){
 	T* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	Analytics analise = Analytics("insertion");
+	Analytics analise = Analytics("insertion", tam);
 	analise.iniciarTempo();
 	insertionsort(arr, tam, analise);
 	analise.pararTempo();

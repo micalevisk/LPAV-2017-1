@@ -44,7 +44,7 @@ Analytics OrdenacaoAnalytics::analytics_bubblesort(){
 	T* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	Analytics analise = Analytics("bubble");
+	Analytics analise = Analytics("bubble", tam);
 	analise.iniciarTempo();
 	bubblesort(arr, tam, analise);
 	analise.pararTempo();
