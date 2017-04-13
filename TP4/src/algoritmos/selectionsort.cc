@@ -30,7 +30,7 @@ Para i de 0 até N-2, faça
 -------------------------------------------------------------------------
 */
 
-void selectionsort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
+void selectionsort(int* v, size_t n, Analytics& analise){//não altera o 'dados'
 	for(unsigned i=0; i < n-1; ++i){
 		unsigned posPivot = i;//pivot é o menor/maior elemento (depende do tipo de ordenação)
 		for(unsigned j=i+1; j < n; ++j){
@@ -41,7 +41,7 @@ void selectionsort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
 		}
 
 		if(i != posPivot){
-			Extras::trocarElementos<T>(v[i], v[posPivot]);
+			Extras::trocarElementos<int>(v[i], v[posPivot]);
 			analise.incrementar_qtdTrocas();
 		}
 	}
@@ -49,8 +49,8 @@ void selectionsort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
 
 
 Analytics OrdenacaoAnalytics::analytics_selectionsort(){
-	vector<T> copiaDados(dados);
-	T* arr = &copiaDados.at(0);
+	vector<int> copiaDados(dados);
+	int* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
 	Analytics analise = Analytics("selection", tam);
@@ -61,7 +61,7 @@ Analytics OrdenacaoAnalytics::analytics_selectionsort(){
 		cout << "{depois do Selection}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
-		UnitTest::isSorted<T>(copiaDados, DESCENDING);
+		UnitTest::isSorted<int>(copiaDados, DESCENDING);
 	#endif
 
 	return analise;

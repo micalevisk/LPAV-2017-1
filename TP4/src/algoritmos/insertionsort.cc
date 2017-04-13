@@ -27,8 +27,8 @@ Para i de 1 até N-1, faça
 -------------------------------------------------------------------------
 */
 
-void insertionsort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
-	T pivot;
+void insertionsort(int* v, size_t n, Analytics& analise){//não altera o 'dados'
+	int pivot;
 	for(int i=1, j; i < n; ++i){
 		pivot = v[i];
 		j = i-1;
@@ -44,8 +44,8 @@ void insertionsort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
 
 
 Analytics OrdenacaoAnalytics::analytics_insertionsort(){
-	vector<T> copiaDados(dados);
-	T* arr = &copiaDados.at(0);
+	vector<int> copiaDados(dados);
+	int* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
 	Analytics analise = Analytics("insertion", tam);
@@ -56,7 +56,7 @@ Analytics OrdenacaoAnalytics::analytics_insertionsort(){
 		cout << "{depois do insertion}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
-		UnitTest::isSorted<T>(copiaDados, DESCENDING);
+		UnitTest::isSorted<int>(copiaDados, DESCENDING);
 	#endif
 
 	return analise;

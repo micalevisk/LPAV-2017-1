@@ -19,9 +19,6 @@ EXEC := teste
 ifneq ($(origin PRECISION), undefined)
 	CPPFLAGS += -D PRECISION=$(PRECISION)
 endif
-ifneq ($(origin TIPO), undefined)
-	CPPFLAGS += -D T=$(TIPO)
-endif
 ifneq ($(origin VERBOSE), undefined)
 	CPPFLAGS += -D VERBOSE
 endif

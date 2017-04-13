@@ -51,11 +51,11 @@ Rotina_Quicksort
 -------------------------------------------------------------------------
 */
 
-void particionar(T* v, unsigned inicio, unsigned fim, Analytics& analise){//não altera o 'dados'
+void particionar(int* v, unsigned inicio, unsigned fim, Analytics& analise){//não altera o 'dados'
 	if(fim <= inicio) return;
 	int i=inicio, j=fim;
-	// T pivot = v[(i+j)/2];
-	T pivot = v[i+(j-i)/2];
+	// int pivot = v[(i+j)/2];
+	int pivot = v[i+(j-i)/2];
 
 	do{
 		// for(; v[i] < pivot; ++i) analise.incrementar_qtdComparacoes();
@@ -63,7 +63,7 @@ void particionar(T* v, unsigned inicio, unsigned fim, Analytics& analise){//não
 		for(; pivot > v[i]; ++i) analise.incrementar_qtdComparacoes();
 		for(; v[j] > pivot; --j) analise.incrementar_qtdComparacoes();
 		if(i <= j){
-			Extras::trocarElementos<T>(v[i], v[j]);
+			Extras::trocarElementos<int>(v[i], v[j]);
 			++i; --j;
 			analise.incrementar_qtdTrocas();
 		}
@@ -73,13 +73,13 @@ void particionar(T* v, unsigned inicio, unsigned fim, Analytics& analise){//não
 	if(i < fim) particionar(v, i, fim, analise);
 }
 
-void quicksort(T* v, size_t n, Analytics& analise){
+void quicksort(int* v, size_t n, Analytics& analise){
 	particionar(v, 0, n-1, analise);
 }
 
 Analytics OrdenacaoAnalytics::analytics_quicksort(){
-	vector<T> copiaDados(dados);
-	T* arr = &copiaDados.at(0);
+	vector<int> copiaDados(dados);
+	int* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
 	Analytics analise = Analytics("quick", tam);
@@ -90,7 +90,7 @@ Analytics OrdenacaoAnalytics::analytics_quicksort(){
 		cout << "{depois do quick}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
-		UnitTest::isSorted<T>(copiaDados, DESCENDING);
+		UnitTest::isSorted<int>(copiaDados, DESCENDING);
 	#endif
 
 	return analise;
