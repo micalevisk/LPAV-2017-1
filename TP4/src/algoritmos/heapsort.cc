@@ -58,10 +58,10 @@ Rotina_Heapsort
 */
 
 
-void heapify(T* v, unsigned pai, int posUltimo, Analytics& analise){
-	unsigned esq, dir, posMaior;
-	esq = (pai << 1) | 1;//2*pai + 1;
-	dir = (pai << 1) + 2;//esq + 1;
+void heapify(int* v, long int pai, int posUltimo, Analytics& analise){
+	long int esq, dir, posMaior;
+	esq = 2*pai + 1;
+	dir = esq + 1;
 	posMaior = pai;
 
 	if((esq <= posUltimo) && (v[esq] > v[posMaior])){
@@ -74,22 +74,22 @@ void heapify(T* v, unsigned pai, int posUltimo, Analytics& analise){
 	}
 
 	if(posMaior != pai){
-		Extras::trocarElementos<T>(v[pai], v[posMaior]);
+		Extras::trocarElementos<int>(v[pai], v[posMaior]);
 		analise.incrementar_qtdTrocas();
 	}
 
 }
 
-void buildHeap(T* v, unsigned n, Analytics& analise){
+void buildHeap(int* v, unsigned n, Analytics& analise){
 	for(int i=(n-1)/2; i >= 0; --i)
 		heapify(v, i, n-1, analise);
 }
 
 
-void heapsort(T* v, unsigned n, Analytics& analise){
+void heapsort(int* v, unsigned n, Analytics& analise){
 	buildHeap(v, n, analise);
 	for(int i=n-1; i > 0;){
-		Extras::trocarElementos<T>(v[i], v[0]);
+		Extras::trocarElementos<int>(v[i], v[0]);
 		analise.incrementar_qtdTrocas();
 		heapify(v, 0, --i, analise);
 	}
@@ -97,19 +97,19 @@ void heapsort(T* v, unsigned n, Analytics& analise){
 
 
 Analytics OrdenacaoAnalytics::analytics_heapsort(){
-	vector<T> copiaDados(dados);
-	T* arr = &copiaDados.at(0);
+	vector<int> copiaDados(dados);
+	int* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	Analytics analise = Analytics("heap");
+	Analytics analise = Analytics("heap", tam);
 	analise.iniciarTempo();
 	heapsort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do heap}: "; Extras::foreach(copiaDados);//resultado interno
+		cout << "{depois do heap}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
-		UnitTest::isSorted<T>(copiaDados, DESCENDING);
+		UnitTest::isSorted<int>(copiaDados);
 	#endif
 
 	return analise;

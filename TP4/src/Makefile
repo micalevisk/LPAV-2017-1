@@ -3,7 +3,6 @@
 ##	Created by Micael Levi on 04/08/2017
 ##	Copyright (c) 2016 mllc@icomp.ufam.edu.br; All rights reserved.
 ##
-## https://www.gnu.org/savannah-checkouts/gnu/make/manual/html_node/File-Name-Functions.html#index-addsuffix-591
 
 RM := rm -rf
 CXX := g++
@@ -19,14 +18,8 @@ EXEC := teste
 ifneq ($(origin PRECISION), undefined)
 	CPPFLAGS += -D PRECISION=$(PRECISION)
 endif
-ifneq ($(origin TIPO), undefined)
-	CPPFLAGS += -D T=$(TIPO)
-endif
 ifneq ($(origin VERBOSE), undefined)
 	CPPFLAGS += -D VERBOSE
-endif
-ifneq ($(origin DESCENDING), undefined)
-	CPPFLAGS += -D DESCENDING
 endif
 ifneq ($(origin MILLISECONDS), undefined)
 	CPPFLAGS += -D MILLISECONDS
@@ -53,8 +46,3 @@ clean:
 
 mostlyclean:
 	$(RM) $(OBJS)
-
-#\
-	$@ name of the target\
-	$^ name of all prerequisites with duplicates removed\
-	$< name of the first prerequisite

@@ -26,13 +26,13 @@ Para i de 0 até N-1, faça
 -------------------------------------------------------------------------
 */
 
-void bubblesort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
+void bubblesort(int* v, size_t n, Analytics& analise){//não altera o 'dados'
 	unsigned i, j;
 	for(i=0; i < n-1; ++i){
 		for(j=0; j < n-1-i; ++j)
-			if( v[j] SINAL v[j+1] ){
+			if( v[j] > v[j+1] ){
 				analise.incrementar_qtdComparacoes();
-				Extras::trocarElementos<T>(v[j], v[j+1]);
+				Extras::trocarElementos<int>(v[j], v[j+1]);
 				analise.incrementar_qtdTrocas();
 			}
 	}
@@ -40,19 +40,19 @@ void bubblesort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
 
 
 Analytics OrdenacaoAnalytics::analytics_bubblesort(){
-	vector<T> copiaDados(dados);
-	T* arr = &copiaDados.at(0);
+	vector<int> copiaDados(dados);
+	int* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	Analytics analise = Analytics("bubble");
+	Analytics analise = Analytics("bubble", tam);
 	analise.iniciarTempo();
 	bubblesort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do Bubble}: "; Extras::foreach(copiaDados);//resultado interno
+		cout << "{depois do Bubble}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
-		UnitTest::isSorted<T>(copiaDados, DESCENDING);
+		UnitTest::isSorted<int>(copiaDados);
 	#endif
 
 	return analise;

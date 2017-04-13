@@ -6,73 +6,41 @@
 
 #include <iostream>
 #include <vector>
-#include <string>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 #include "ordenacaoAnalytics.hpp"
+#include "getopts.hpp"
 
 
 
-int main(){
+int main(int argc, char* argv[])
+{
+	srand(time(NULL));
+	Parameters params = GetOpts::getParameters(argc, argv);
 
-	vector<int> v = {4,2,5,1,6,3,0,1};//8
+	vector<int> v(params.qtdElementos);
+
+	/// Gera e insere os números N aleatórios
+	for(unsigned i=0; i < params.qtdElementos; ++i) v.at(i) = rand() % 10;
 
 	OrdenacaoAnalytics obj(v);
+
+	#ifdef VERBOSE
+		cout << "VALORES: ";
+		obj.printDados();
+		cout << '\n';
+	#endif
 
 	/// Header do CSV
 	cout << "instancia,algoritmo,comparacoes,trocas,tempo\n";//regex: '([0-9]+),([a-zA-Z]+),([^)]+),([^)]+),([^)]+)'
 
-	/// Teste do Bubble Sort
-	cout << obj.analytics_bubblesort();
-	#ifdef VERBOSE
-		cout << "[depois do bubble]: ";
-		obj.printDados();
-		cout << endl;
-	#endif
-
-	/// Teste do Selection Sort
-	cout << obj.analytics_selectionsort();
-	#ifdef VERBOSE
-		cout << "[depois do selection]: ";
-		obj.printDados();
-		cout << endl;
-	#endif
-
-	/// Teste do Insertion Sort
-	cout << obj.analytics_insertionsort();
-	#ifdef VERBOSE
-		cout << "[depois do insertion]: ";
-		obj.printDados();
-		cout << endl;
-	#endif
-
-	/// Teste do Merge Sort
-	cout << obj.analytics_mergesort();
-	#ifdef VERBOSE
-		cout << "[depois do merge]: ";
-		obj.printDados();
-		cout << endl;
-	#endif
-
-	/// Teste do Quick Sort
-	cout << obj.analytics_quicksort();
-	#ifdef VERBOSE
-		cout << "[depois do quick]: ";
-		obj.printDados();
-		cout << endl;
-	#endif
-
-	/// Teste do Heap Sort
-	cout << obj.analytics_heapsort();
-	#ifdef VERBOSE
-		cout << "[depois do heap]: ";
-		obj.printDados();
-		cout << endl;
-	#endif
-
-
-
-
+	bool runAll = params.algoritmosUtilizados['a'];
+	for(const auto& algoritmo : obj.nomeAlgoritmos){
+		if(runAll || params.algoritmosUtilizados[algoritmo])
+			obj.executarAlgoritmo(algoritmo);
+	}
 
 
 	return 0;

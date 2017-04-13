@@ -35,22 +35,18 @@ struct Arg: public option::Arg {
 };
 
 
-enum  optionIndex { UNKNOWN, HELP, VERBOSE, PRECISION, DESCENDING, TYPE, SIZE, ALGORITHMS };
+enum  optionIndex { UNKNOWN, HELP, SIZE, ALGORITHMS };
 const option::Descriptor usage[] = {
-	{UNKNOWN, 0, "", "",option::Arg::None, "USAGE: example [OPTIONS]\n\n"
+	{UNKNOWN, 0, "", "",option::Arg::None, "USAGE: tp4_sort [OPTIONS]\n\n"
 															"OPTIONS:" },
-	{VERBOSE,      0,"","verbose", option::Arg::None,		"  --verbose*  \tMostra o estado dos arrays (default: false)." },
 	{HELP,         0,"h","help",   option::Arg::None,		"  -h, --help   \tPrint usage and exit." },
-	{TYPE,         0,"t","type",    Arg::Required,			"  -t <T>,--type=<T>*  \tTipo (primitivo) dos valores gerados (default: int)." },
 	{SIZE,         0,"s","size",    Arg::Numeric,  			"  -s <S>,--size=<S>   \tDefine o tamanho da instância gerada (default: 10)." },
-	{PRECISION,    0,"p","precision",Arg::Numeric,			"  -p <P>,--precision=<P>*  \tNúmero de casas do tempo de execução (default: 2)." },
-	{DESCENDING,   0,"d","descending", option::Arg::None,	"  -d, --descending*  \tOrdena em ordem decrescente." },
 	{ALGORITHMS,   0,"","algorithms",Arg::Required,			"  --algorithms=ALG   \tAlgoritmos que serão executados (default: all)." },
 
 	{UNKNOWN, 0, "", "",option::Arg::None, "\nALG (CSV):\n  all bubble selection insertion heap merge quick\n" },
 	{UNKNOWN, 0, "", "",option::Arg::None,	"Examples:\n"
-											"  example --verbose --type float -s5 -p0 --algortimos quick,insertion \n"
-											"  example --descending -t=int --algorithms 'heap,selection'\n" },
+											"  tp4_sort -s5 --algortimos=quick,insertion \n"
+											"  tp4_sort --size 3 --algorithms 'heap,selection'\n" },
 	{0,0,0,0,0,0}
 };
 

@@ -27,13 +27,13 @@ Para i de 1 até N-1, faça
 -------------------------------------------------------------------------
 */
 
-void insertionsort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
-	T pivot;
+void insertionsort(int* v, size_t n, Analytics& analise){//não altera o 'dados'
+	int pivot;
 	for(int i=1, j; i < n; ++i){
 		pivot = v[i];
 		j = i-1;
 
-		for(; (j >= 0) && (v[j] SINAL pivot); --j){
+		for(; (j >= 0) && (v[j] > pivot); --j){
 			v[j+1] = v[j];
 			analise.incrementar_qtdComparacoes();
 			analise.incrementar_qtdTrocas();
@@ -44,19 +44,19 @@ void insertionsort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
 
 
 Analytics OrdenacaoAnalytics::analytics_insertionsort(){
-	vector<T> copiaDados(dados);
-	T* arr = &copiaDados.at(0);
+	vector<int> copiaDados(dados);
+	int* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	Analytics analise = Analytics("insertion");
+	Analytics analise = Analytics("insertion", tam);
 	analise.iniciarTempo();
 	insertionsort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do insertion}: "; Extras::foreach(copiaDados);//resultado interno
+		cout << "{depois do insertion}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
 	#endif
 	#ifdef DEBUG
-		UnitTest::isSorted<T>(copiaDados, DESCENDING);
+		UnitTest::isSorted<int>(copiaDados);
 	#endif
 
 	return analise;

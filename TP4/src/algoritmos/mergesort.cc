@@ -71,13 +71,13 @@ Rotina_MergeSort
 */
 
 
-static void intercalar(T* v, T* vaux, unsigned inicio, unsigned fim, unsigned meio, Analytics& analise){
+static void intercalar(int* v, int* vaux, unsigned inicio, unsigned fim, unsigned meio, Analytics& analise){
 	unsigned i, j, k;
 	k = i = inicio;
 	j = meio+1;
 
 	for(; (i <= meio) && (j <= fim); ++k){
-		if(v[j] SINAL v[i]){
+		if(v[j] > v[i]){
 			vaux[k] = v[i];
 			++i;
 		}
@@ -102,7 +102,7 @@ static void intercalar(T* v, T* vaux, unsigned inicio, unsigned fim, unsigned me
 	}
 }
 
-static void mergeInterno(T* v, T* vaux, unsigned inicio, unsigned fim, Analytics& analise){
+static void mergeInterno(int* v, int* vaux, unsigned inicio, unsigned fim, Analytics& analise){
 	if(inicio < fim){
 		unsigned meio = (inicio + fim)/2;
 		mergeInterno(v, vaux, inicio, meio, analise);
@@ -113,27 +113,27 @@ static void mergeInterno(T* v, T* vaux, unsigned inicio, unsigned fim, Analytics
 
 
 
-void mergesort(T* v, size_t n, Analytics& analise){//não altera o 'dados'
-	T* vaux = (T*) malloc( sizeof(T)*n );
+void mergesort(int* v, size_t n, Analytics& analise){//não altera o 'dados'
+	int* vaux = (int*) malloc( sizeof(int)*n );
 	mergeInterno(v, vaux, 0, n-1, analise);
 	free(vaux);
 }
 
 
 Analytics OrdenacaoAnalytics::analytics_mergesort(){
-	vector<T> copiaDados(dados);
-	T* arr = &copiaDados.at(0);
+	vector<int> copiaDados(dados);
+	int* arr = &copiaDados.at(0);
 	size_t tam = copiaDados.size();
 
-	Analytics analise = Analytics("merge");
+	Analytics analise = Analytics("merge", tam);
 	analise.iniciarTempo();
 	mergesort(arr, tam, analise);
 	analise.pararTempo();
 	#ifdef VERBOSE
-		cout << "{depois do merge}: "; Extras::foreach(copiaDados);
+		cout << "{depois do merge}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());
 	#endif
 	#ifdef DEBUG
-		UnitTest::isSorted<T>(copiaDados, DESCENDING);
+		UnitTest::isSorted<int>(copiaDados);
 	#endif
 
 	return analise;
