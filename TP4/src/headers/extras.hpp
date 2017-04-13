@@ -25,10 +25,8 @@ struct Extras {
 	}
 
 	template<typename Type>
-	static void foreach(std::vector<Type>& v, char delim='-'){
-		for_each(v.begin(), v.end(), [delim](const Type& n){
-			std::cout << n << delim;
-		});
+	static void foreach(const std::vector<Type>& v, char sep=','){
+		for(const auto& i : v) std::cout << i << sep;
 		std::cout << '\n';
 	}
 
