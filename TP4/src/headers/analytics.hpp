@@ -26,8 +26,8 @@ struct Analytics {
 	std::string nomeAlgoritmo;
 
 	friend std::ostream& operator <<(std::ostream& out, const Analytics& a){//CSV
-		out << a.qtdElementos << ','
-			<< a.nomeAlgoritmo << ','
+		out << a.nomeAlgoritmo << ','
+			<< a.qtdElementos << ','
 			<< a.qtdComparacoes << ','
 			<< a.qtdTrocas << ','
 			<< std::fixed << std::setprecision(PRECISION) << a.tempoExecucao

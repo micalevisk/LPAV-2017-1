@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
 	vector<int> v(params.qtdElementos);
 
 	/// Gera e insere os números N aleatórios
-	for(unsigned i=0; i < params.qtdElementos; ++i) v.at(i) = rand() % 10;
+	for(unsigned i=0; i < params.qtdElementos; ++i) v.at(i) = rand();
 
 	OrdenacaoAnalytics obj(v);
 
@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
 	#endif
 
 	/// Header do CSV
-	cout << "instancia,algoritmo,comparacoes,trocas,tempo\n";//regex: '([0-9]+),([a-zA-Z]+),([^)]+),([^)]+),([^)]+)'
+	cout << "algoritmo,instancia,comparacoes,trocas,tempo\n";
 
 	bool runAll = params.algoritmosUtilizados['a'];
 	for(const auto& algoritmo : obj.nomeAlgoritmos){
