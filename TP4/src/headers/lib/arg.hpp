@@ -12,12 +12,12 @@
 #define PROGRAM_NAME "./tp4_sort"
 ///Cores para o --help
 #define CDEFAULT "\033[0m"
-#define CRED "\033[40;31m"
-#define CLRED "\033[40;31;1m"
-#define CYELLOW "\033[40;33m"
-#define CLYELLOW "\033[40;33;1m"
-#define CLMAGENTA "\033[40;35;1m"
-#define CCYAN "\033[40;36m"
+#define CRED "\033[31m"
+#define CLRED "\033[31;1m"
+#define CYELLOW "\033[33m"
+#define CLYELLOW "\033[33;1m"
+#define CLMAGENTA "\033[35;1m"
+#define CLCYAN "\033[36;1m"
 
 struct Arg: public option::Arg {
 	static const char* toString(const char* arg){ return ( arg + (arg[0]=='=') ); }
@@ -54,7 +54,7 @@ const option::Descriptor usage[] = {
 	{ALGORITHMS,   0,"","algorithms",Arg::Required,			"  --algorithms=ALG   \tAlgoritmos que serão executados (default: all)." },
 
 	{UNKNOWN, 0, "", "",option::Arg::None, "\n" CLRED "ALG" CDEFAULT " (CSV):\n  all bubble selection insertion heap merge quick\n" },
-	{UNKNOWN, 0, "", "",option::Arg::None,	CCYAN "Examples:\n" CDEFAULT
+	{UNKNOWN, 0, "", "",option::Arg::None,	CLCYAN "Examples:\n" CDEFAULT
 											"  " PROGRAM_NAME " -s5 --algortimos=quick,insertion \n"
 											"  " PROGRAM_NAME " --size 3 --algorithms 'heap,selection'\n" },
 	{0,0,0,0,0,0}
