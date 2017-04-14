@@ -9,7 +9,7 @@
 
 # ----------------------------------- [ HELP ] ----------------------------------- #
 [ $# -lt 1 ] && {
-	echo -e "USO: \033[40;31;1m./main-generator.sh\033[0m \033[40;32;1m<N>\033[0m \033[40;35m[M]\033[0m"
+	echo -e "USO: \033[40;31;1m$0\033[0m \033[40;32;1m<N>\033[0m \033[40;35m[M]\033[0m"
 	echo -e 'Para executar o teste \033[40;35mM\033[0m (default 10) vezes com \033[40;32mN\033[0m elementos (pode usar "k" como 1000).'
 	exit 1
 }

@@ -10,7 +10,7 @@
 declare -ri QTD_ARGS=2
 
 [ $# -lt $QTD_ARGS ] && {
-	echo -e "USAGE: \033[40;31;1m./Loopable.sh\033[0m \033[40;32;1m<N>\033[0m \033[40;35m<command>\033[0m"
+	echo -e "USAGE: \033[40;31;1m$0\033[0m \033[40;32;1m<N>\033[0m \033[40;35m<command>\033[0m"
 	echo -e 'To run \033[40;35mcommand\033[0m \033[40;32mN\033[0m times.'
 	exit 1
 }
