@@ -44,20 +44,23 @@ void insertionsort(int* v, size_t n, Analytics& analise){//não altera o 'dados'
 
 
 Analytics OrdenacaoAnalytics::analytics_insertionsort(){
-	vector<int> copiaDados(dados);
-	int* arr = &copiaDados.at(0);
-	size_t tam = copiaDados.size();
+	int* dadosLidos = readArray();
 
-	Analytics analise = Analytics("insertion", tam);
+	Analytics analise = Analytics("insertion", tamanho);
 	analise.iniciarTempo();
-	insertionsort(arr, tam, analise);
+	insertionsort(dadosLidos, tamanho, analise);
 	analise.pararTempo();
+
 	#ifdef VERBOSE
-		cout << "{depois do insertion}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
+		cout << "{depois do insertion}: ";
+		Extras::imprimirElementos(dadosLidos, tamanho);//resultado interno
 	#endif
 	#ifdef DEBUG
+		vector<int> copiaDados(dadosLidos, dadosLidos + sizeof(dadosLidos)/sizeof(int));
 		UnitTest::isSorted<int>(copiaDados);
 	#endif
+
+	delete[] dadosLidos;
 
 	return analise;
 }

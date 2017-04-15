@@ -9,6 +9,9 @@
 
 
 #include <vector>
+#include <fstream>
+
+#define OUTPUT_TEMP_FILENAME ".dadosarray.bin"
 
 ///// dependencies
 #include "analytics.hpp"
@@ -16,14 +19,13 @@
 #include "unittest.hpp"
 
 
-
-
 /**
  * Classe que contém a implementação de cada algoritmo e as
  * estatísicas da execução dos mesmos sobre a massa de dados.
  */
 class OrdenacaoAnalytics {
-	std::vector<int> dados;
+	size_t tamanho;
+	std::fstream outputfile;
 
 	//Algoritmos de ordenação:
 	Analytics analytics_bubblesort();
@@ -37,7 +39,10 @@ class OrdenacaoAnalytics {
 		std::vector<char> nomeAlgoritmos = {'m','q','h','i','s','b'};///em ordem de melhor tempo (será a ordem de execução).
 		void printDados(char);
 		void printDados(){ printDados(' '); }
-		OrdenacaoAnalytics(std::vector<int>);
+		void definirDados(int*,size_t);
+		void destruirDados();
+		int* readArray();
+		OrdenacaoAnalytics();
 		void executarAlgoritmo(char);
 
 };
