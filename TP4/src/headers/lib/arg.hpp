@@ -45,19 +45,20 @@ struct Arg: public option::Arg {
 };
 
 
-enum  optionIndex { UNKNOWN, HELP, SIZE, ALGORITHMS };
+enum  optionIndex { UNKNOWN, HELP, SIZE, QUIET, ALGORITHMS };
 const option::Descriptor usage[] = {
 	{UNKNOWN, 0, "", "",option::Arg::None, "USAGE: " CLMAGENTA PROGRAM_NAME " " CYELLOW "[OPTIONS]" CDEFAULT "\n\n"
 															CLYELLOW "OPTIONS:" CDEFAULT },
-	{HELP,         0,"h","help",    option::Arg::None,		"  -h, --help  \tExibe esta mensagem e finaliza." },
-	{SIZE,         0,"s","size",    Arg::Numeric,  			"  -s <S>, --size=<S>  \tSerão gerados S valores aleatórios (default: 10)." },
+	{HELP,         0,"h","help",     option::Arg::None,		"  -h, --help  \tExibe esta mensagem e finaliza." },
+	{QUIET,        0,"q","quiet",    option::Arg::None,		"  -q, --quiet  \tA saída mostra apenas os dados úteis." },
+	{SIZE,         0,"s","size",     Arg::Numeric, 			"  -s <S>, --size=<S>  \tSerão gerados S valores aleatórios (default: 10)." },
 	{ALGORITHMS,   0,"","algorithms",Arg::Required, 		"  --algorithms=<ALG>  \tListar algoritmos a serem executados (default: all)." },
 
 	{UNKNOWN, 0, "", "",option::Arg::None, "\n" CLRED "ALG:" CDEFAULT "\n  a[ll] b[ubble] s[election] i[nsertion] h[eap] m[erge] q[uick]\n" },
 	{UNKNOWN, 0, "", "",option::Arg::None,	CLCYAN "Examples:\n" CDEFAULT
 											"  " PROGRAM_NAME " -s5 --algortimos=quick,insertion \n"
 											"  " PROGRAM_NAME " --size 3 --algorithms 'heap,selection'\n"
-											"  " PROGRAM_NAME " -s 24 --algorithms='b,s,i,h'\n" },
+											"  " PROGRAM_NAME " -s 24 -q --algorithms='b,s,i,h'\n" },
 	{0,0,0,0,0,0}
 };
 
