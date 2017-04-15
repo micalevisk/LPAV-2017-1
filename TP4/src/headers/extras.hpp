@@ -43,6 +43,25 @@ struct Extras {
 		std::cout << *first << '\n';
 	}
 
+	/**
+	 * Itera sobre um array de qualquer tipo
+	 * executando o operador '<<' sobre cada elemento.
+	 * @param arr O vetor alvo.
+	 * @param N O tamanho do vetor.
+	 * @param sep Um caractere para separar os elementos na impressão (opcional).
+	 */
+	template<class Type>
+	static void imprimirElementos(Type* arr, size_t N, char sep=','){
+		unsigned i=0;
+		for(; i < N-1; ++i) std::cout << arr[i] << sep;
+		std::cout << arr[i] << '\n';
+	}
+
+	template<class Type>
+	static std::vector<Type>& getVectorFromArray(Type* arr){
+		std::vector<Type> v(arr, arr + sizeof(arr)/sizeof(Type));
+		return v;
+	}
 
 	/**
 	 * Divide/quebra uma cadeia de caracteres de acordo com um delimitador.
