@@ -8,7 +8,6 @@
 * [MACROS](#macros)
 * [Compilar com o Makefile (comando `make`)](#compilar-com-o-makefile-comando-make)
 * [Compilar sem o Makefile (`g++`)](#compilar-sem-o-makefile-g)
-* [Help](#help)
 * [Exemplo de Execução](#exemplo-de-execuo)
 
 <!-- /TOC -->
@@ -69,15 +68,5 @@ g++ -std=c++11 -o tp4_sort -I./headers -I./headers/lib *.cc algoritmos/*.cc [<MA
 [![preview_compilando_com_o_g++](https://asciinema.org/a/09sbv3nsmny9lwvpjux68ocko.png)](https://asciinema.org/a/09sbv3nsmny9lwvpjux68ocko)
 
 
-## Help
-![help][preview-help]
-
-
 ## Exemplo de Execução
-[![exemplo de execução](https://asciinema.org/a/5iaibuszmo9dhd2abk2pejelx.png)](https://asciinema.org/a/5iaibuszmo9dhd2abk2pejelx)
-
-
-
-
-<!--- IMAGES REFERENCES -->
-[preview-help]: http://i.imgur.com/Noj23fl.png  "--help ou -h"
+[![exemplo de execução](https://asciinema.org/a/eyrhu27j373abvsrz149hy2co.png)](https://asciinema.org/a/eyrhu27j373abvsrz149hy2co)
