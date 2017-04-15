@@ -77,20 +77,23 @@ void quicksort(int* v, size_t n, Analytics& analise){
 }
 
 Analytics OrdenacaoAnalytics::analytics_quicksort(){
-	vector<int> copiaDados(dados);
-	int* arr = &copiaDados.at(0);
-	size_t tam = copiaDados.size();
+	int* dadosLidos = readArray();
 
-	Analytics analise = Analytics("quick", tam);
+	Analytics analise = Analytics("quick", tamanho);
 	analise.iniciarTempo();
-	quicksort(arr, tam, analise);
+	quicksort(dadosLidos, tamanho, analise);
 	analise.pararTempo();
+
 	#ifdef VERBOSE
-		cout << "{depois do quick}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
+		cout << "{depois do quick}: ";
+		Extras::imprimirElementos(dadosLidos, tamanho);//resultado interno
 	#endif
 	#ifdef DEBUG
+		vector<int> copiaDados(dadosLidos, dadosLidos + sizeof(dadosLidos)/sizeof(int));
 		UnitTest::isSorted<int>(copiaDados);
 	#endif
+
+	delete[] dadosLidos;
 
 	return analise;
 }

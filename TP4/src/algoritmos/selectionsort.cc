@@ -49,20 +49,23 @@ void selectionsort(int* v, size_t n, Analytics& analise){//não altera o 'dados'
 
 
 Analytics OrdenacaoAnalytics::analytics_selectionsort(){
-	vector<int> copiaDados(dados);
-	int* arr = &copiaDados.at(0);
-	size_t tam = copiaDados.size();
+	int* dadosLidos = readArray();
 
-	Analytics analise = Analytics("selection", tam);
+	Analytics analise = Analytics("selection", tamanho);
 	analise.iniciarTempo();
-	selectionsort(arr, tam, analise);
+	selectionsort(dadosLidos, tamanho, analise);
 	analise.pararTempo();
+
 	#ifdef VERBOSE
-		cout << "{depois do Selection}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
+		cout << "{depois do Selection}: ";
+		Extras::imprimirElementos(dadosLidos, tamanho);//resultado interno
 	#endif
 	#ifdef DEBUG
+		vector<int> copiaDados(dadosLidos, dadosLidos + sizeof(dadosLidos)/sizeof(int));
 		UnitTest::isSorted<int>(copiaDados);
 	#endif
+
+	delete[] dadosLidos;
 
 	return analise;
 }
