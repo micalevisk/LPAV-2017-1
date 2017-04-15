@@ -99,20 +99,23 @@ void heapsort(int* v, unsigned n, Analytics& analise){
 
 
 Analytics OrdenacaoAnalytics::analytics_heapsort(){
-	vector<int> copiaDados(dados);
-	int* arr = &copiaDados.at(0);
-	size_t tam = copiaDados.size();
+	int* dadosLidos = readArray();
 
-	Analytics analise = Analytics("heap", tam);
+	Analytics analise = Analytics("heap", tamanho);
 	analise.iniciarTempo();
-	heapsort(arr, tam, analise);
+	heapsort(dadosLidos, tamanho, analise);
 	analise.pararTempo();
+
 	#ifdef VERBOSE
-		cout << "{depois do heap}: "; Extras::imprimirElementos(copiaDados.begin(), copiaDados.end());//resultado interno
+		cout << "{depois do heap}: ";
+		Extras::imprimirElementos(dadosLidos, tamanho);//resultado interno
 	#endif
 	#ifdef DEBUG
+		vector<int> copiaDados(dadosLidos, dadosLidos + sizeof(dadosLidos)/sizeof(int));
 		UnitTest::isSorted<int>(copiaDados);
 	#endif
+
+	delete[] dadosLidos;
 
 	return analise;
 }

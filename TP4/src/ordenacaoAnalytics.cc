@@ -9,13 +9,48 @@
 ///// dependencies
 #include "ordenacaoAnalytics.hpp"
 
+
+void cleanOutputTempFile(){ std::remove(OUTPUT_TEMP_FILENAME); }
+
 /**
- * Construtor do OrdenacaoAnalytics.
- * @param _dados Vetor que armazena os elementos que deverão analisados.
- * @return instância de OrdenacaoAnalytics.
+ * Construtor.
+ * Inicilizar o descritor do arquivo "temporário" que armazenará os dados.
  */
-OrdenacaoAnalytics::OrdenacaoAnalytics(std::vector<int> _dados){
-	dados = _dados;
+OrdenacaoAnalytics::OrdenacaoAnalytics(){
+	tamanho = 0;
+	///Abre o arquivo que armazena a instância
+	std::atexit(cleanOutputTempFile);///Para apagar o arquivo criado antes de fechar o programa.
+	outputfile.open(OUTPUT_TEMP_FILENAME, std::ios::binary | std::ios::out | std::ios::trunc);
+	if(!outputfile.is_open()){ std::cout << "error while opening the file" ; exit(4); }
+}
+
+
+/**
+ * Define o array que contém os valores que serão analisados.
+ * @param dados Vetor que armazena os valores.
+ * @param _tamanho Quantidade de elementos no vetor.
+ */
+void OrdenacaoAnalytics::definirDados(int* dados, size_t _tamanho){
+	tamanho = _tamanho;
+	///Escreve o vetor no arquivo binário (aberto pelo método construtor)
+	outputfile.write((char*)&dados[0], sizeof(int) * tamanho);
+	outputfile.close();
+}
+
+void OrdenacaoAnalytics::destruirDados(){
+	tamanho = 0;
+}
+
+int* OrdenacaoAnalytics::readArray(){
+	int* lidos = new int[tamanho];
+	std::ifstream fin(OUTPUT_TEMP_FILENAME, std::ios::in | std::ios::binary);
+	fin.read((char*)&lidos[0], sizeof(int)*tamanho);
+	return lidos;
+	/*
+	outputfile.seekg(0);
+	int* dadosLidos = new int[tamanho];
+	outputfile.read((char*)&dadosLidos[0], sizeof(int) * tamanho);
+	*/
 }
 
 /**
@@ -23,7 +58,9 @@ OrdenacaoAnalytics::OrdenacaoAnalytics(std::vector<int> _dados){
  * @param sep Separador (visual) dos elementos (opcional).
  */
 void OrdenacaoAnalytics::printDados(char sep=' '){
-	Extras::imprimirElementos(dados.begin(), dados.end(), sep);
+	int* dadosLidos = readArray();
+	Extras::imprimirElementos<int>(dadosLidos, tamanho, sep);
+	delete[] dadosLidos;
 }
 
 /**
@@ -32,6 +69,7 @@ void OrdenacaoAnalytics::printDados(char sep=' '){
  * @param id Hash para o algoritmo = primeiro caractere do seu nome (minúsculo).
  */
 void OrdenacaoAnalytics::executarAlgoritmo(char id){
+	if(!tamanho) return;
 	switch( tolower(id) ){
 		///////////// BUBBLE
 		case 'b':{

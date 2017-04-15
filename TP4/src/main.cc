@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cstdio>
 using namespace std;
 
 #include "ordenacaoAnalytics.hpp"
@@ -18,27 +19,39 @@ int main(int argc, char* argv[])
 	Parameters params = GetOpts::getParameters(argc, argv);
 
 	if(params.qtdElementos <= 0) return 1;
-	vector<int> v(params.qtdElementos);
 
-	/// Gera e insere os números N aleatórios
-	for(unsigned i=0; i < params.qtdElementos; ++i) v.at(i) = rand() % 10;
+	OrdenacaoAnalytics obj;
 
-	OrdenacaoAnalytics obj(v);
+	if(!params.silencioso)
+		///Header do CSV
+		cout << "algoritmo,instancia,comparacoes,trocas,tempo\n";
+
+	///Aloca dinamicamente o array que armazenará os dados
+	int* vetor = new int[params.qtdElementos];// delete[] vetor
+
+	///Gera e insere os N números aleatórios
+	for(unsigned i=0; i < params.qtdElementos; ++i) vetor[i] = rand()%10;
+	obj.definirDados(vetor, params.qtdElementos);
 
 	#ifdef VERBOSE
-		cout << "VALORES: ";
-		obj.printDados();
-		cout << '\n';
+		cout << "VALORES: "; obj.printDados();
 	#endif
 
-	/// Header do CSV
-	cout << "instancia,algoritmo,comparacoes,trocas,tempo\n";//regex: '([0-9]+),([a-zA-Z]+),([^)]+),([^)]+),([^)]+)'
-
+	const auto& nomeAlgorimtos = obj.nomeAlgoritmos;
 	bool runAll = params.algoritmosUtilizados['a'];
-	for(const auto& algoritmo : obj.nomeAlgoritmos){
-		if(runAll || params.algoritmosUtilizados[algoritmo])
+
+	if(runAll){
+		for(const auto& algoritmo : nomeAlgorimtos)
 			obj.executarAlgoritmo(algoritmo);
 	}
+	else{
+		for(const auto& algoritmo : nomeAlgorimtos){
+			if(params.algoritmosUtilizados[algoritmo])
+				obj.executarAlgoritmo(algoritmo);
+		}
+	}
+
+	obj.destruirDados();
 
 
 	return 0;
