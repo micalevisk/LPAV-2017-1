@@ -27,6 +27,8 @@ struct Parameters {//lidos das opções (com valores default)
 	size_t qtdElementos;
 	///Quantidade de casas que o tempo de execução terá
 	unsigned short precisao;
+	///Mostrar apenas os dados úteis
+	bool silencioso;
 	///A chave é a inicial (minúscula) do nome do algoritmo (ou 'a' de 'all') => booleano que indica se ele será executado
 	MAP_CHAR_BOOL algoritmosUtilizados;
 
@@ -42,8 +44,9 @@ struct Parameters {//lidos das opções (com valores default)
 	}
 
 	Parameters() :
-		qtdElementos(10)
+		 qtdElementos(10)
 		,precisao(2)
+		,silencioso(false)
 		,algoritmosUtilizados({{'a', true}, {'h', false}, {'i', false}, {'s', false}, {'m', false}, {'q', false}, {'b', false}}) {}
 };
 //============================================================================//
@@ -75,6 +78,10 @@ Parameters GetOpts::readOptions(option::Parser parse, vector<option::Option>& op
 			case SIZE:
 				// fprintf(stdout, "--size=<%d>\n", Arg::toInteger(opt.arg));
 				params.qtdElementos = Arg::toInteger(opt.arg);
+				break;
+
+			case QUIET:
+				params.silencioso = true;
 				break;
 
 			case ALGORITHMS: {

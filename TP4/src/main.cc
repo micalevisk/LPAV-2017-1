@@ -23,8 +23,9 @@ int main(int argc, char* argv[])
 
 	OrdenacaoAnalytics obj;
 
-	///Header do CSV
-	cout << "algoritmo,instancia,comparacoes,trocas,tempo\n";
+	if(!params.silencioso)
+		///Header do CSV
+		cout << "algoritmo,instancia,comparacoes,trocas,tempo\n";
 
 	///Aloca dinamicamente o array que armazenará os dados
 	int* vetor = new int[params.qtdElementos];// delete[] vetor
