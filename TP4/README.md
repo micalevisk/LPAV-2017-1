@@ -8,7 +8,7 @@
 * [MACROS](#macros)
 * [Compilar com o Makefile (comando `make`)](#compilar-com-o-makefile-comando-make)
 * [Compilar sem o Makefile (`g++`)](#compilar-sem-o-makefile-g)
-* [Exemplo de Execução](#exemplo-de-execuo)
+* [Exemplo de Execução](#exemplo-de-execução)
 
 <!-- /TOC -->
 </details>
