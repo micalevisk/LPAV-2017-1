@@ -3,7 +3,6 @@
 //	Created by Micael Levi on 04/08/2017
 //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 //
-// http://www.cplusplus.com/doc/tutorial/dynamic/
 
 #include <iostream>
 #include <vector>
