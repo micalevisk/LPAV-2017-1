@@ -63,7 +63,7 @@ make clean # apaga os objetos e o executável gerados
 
 ## Compilar sem o Makefile (`g++`)
 ```bash
-g++ -std=c++11 -o tp4_sort -I./headers -I./headers/lib *.cc algoritmos/*.cc [<MACRO>=<valor>]
+g++ -std=c++11 [-D<MACRO>=<valor>] -o tp4_sort -I./headers -I./headers/lib *.cc algoritmos/*.cc
 ```
 [![preview_compilando_com_o_g++](https://asciinema.org/a/09sbv3nsmny9lwvpjux68ocko.png)](https://asciinema.org/a/09sbv3nsmny9lwvpjux68ocko)
 
