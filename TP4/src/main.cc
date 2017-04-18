@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 	int* vetor = new int[params.qtdElementos];// delete[] vetor
 
 	///Gera e insere os N números aleatórios
-	for(unsigned i=0; i < params.qtdElementos; ++i) vetor[i] = rand()%10;
+	for(unsigned i=0; i < params.qtdElementos; ++i) vetor[i] = rand();
 	obj.definirDados(vetor, params.qtdElementos);
 
 	#ifdef VERBOSE
