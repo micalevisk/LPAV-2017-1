@@ -5,7 +5,7 @@ for i in entrada*
 do
 	[[ $i =~ [0-9]$ ]] && {
 		echo "==== TESTANDO $i ===="
-		diff -w $i-saida <(./main < $i 2> /dev/null)
+		diff -w <(tail -n6 $i) <(./main < $i 2> /dev/null)
 	}
 done
 
