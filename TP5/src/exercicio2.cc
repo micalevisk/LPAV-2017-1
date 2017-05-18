@@ -46,17 +46,16 @@ Matriz<short> tabuleiro = Matriz<short>(QTD_LINHAS, QTD_COLUNAS);
 
 
 
-// {1} não deve ter 3 células consecutivas iguais
+//{REGRA 1} não deve ter 3 células consecutivas iguais
+//-------------------------------------------------------//
 bool regra1Valida_linha(unsigned i){
 	for(unsigned j=0; j < QTD_COLUNAS; ++j){
 		short* curr = tabuleiro.getElemento(i,j);
 		if(!curr || *curr == CELULA_INDEFINIDA) continue;
 
-		if( tabuleiro.celulasIguais(i,j , i,j+1) &&
-			tabuleiro.celulasIguais(i,j , i,j+2) ){
-				// fprintf(stderr, "\tFALHOU NA REGRA 1 - LINHA\n");
-				return false;
-			}
+		if( tabuleiro.celulasIguais(i,j , i,j+1)
+		&&  tabuleiro.celulasIguais(i,j , i,j+2) )
+			return false;
 	}
 
 	return true;
@@ -65,23 +64,20 @@ bool regra1Valida_coluna(unsigned j){
 	for(unsigned i=0; i < QTD_LINHAS; ++i){
 		short* curr = tabuleiro.getElemento(i,j);
 		if(!curr || *curr == CELULA_INDEFINIDA) continue;
-		if( tabuleiro.celulasIguais(i,j , i+1,j) &&
-			tabuleiro.celulasIguais(i,j , i+2,j) ){
-				// fprintf(stderr, "\tFALHOU NA REGRA 1 - COLUNA\n");
-				return false;
-			}
+
+		if( tabuleiro.celulasIguais(i,j , i+1,j)
+		&&  tabuleiro.celulasIguais(i,j , i+2,j) ){
+			return false;
+		}
 	}
 
 	return true;
 }
+//-------------------------------------------------------//
 
 
-bool ocorrenciasInvalida(unsigned* ocorrencias){
-	return ocorrencias[0] > OCORRENCIA_MAX
-	|| ocorrencias[1] > OCORRENCIA_MAX;
-}
-
-// {2} não deve ter mais que 3 ocorrências de 0s e 1s
+//{REGRA 2} não deve ter mais que 3 ocorrências de 0s e 1s
+//-------------------------------------------------------//
 bool regra2Valida_linha(unsigned i){
 	unsigned ocorrencias[2] = {0,0};
 
@@ -90,10 +86,7 @@ bool regra2Valida_linha(unsigned i){
 		if(!curr || *curr == CELULA_INDEFINIDA) continue;
 
 		ocorrencias[ *curr ]++;
-		if( ocorrenciasInvalida(ocorrencias) ){
-			// fprintf(stderr, "\tFALHOU NA REGRA 2 - LINHA\n");
-			return false;
-		}
+		if(ocorrencias[ *curr ] > OCORRENCIA_MAX) return false;
 	}
 
 	return true;
@@ -106,15 +99,40 @@ bool regra2Valida_coluna(unsigned j){
 		if(!curr || *curr == CELULA_INDEFINIDA) continue;
 
 		ocorrencias[ *curr ]++;
-		if( ocorrenciasInvalida(ocorrencias) ){
-			// fprintf(stderr, "\tFALHOU NA REGRA 2 - COLUNA\n");
-			return false;
-		}
+		if(ocorrencias[ *curr ] > OCORRENCIA_MAX) return false;
 	}
 
 	return true;
 }
+//-------------------------------------------------------//
 
+
+//{REGRA 3} linhas e colunas únicas
+//-------------------------------------------------------//
+bool linhaRepetidaComInicial(short valor, unsigned i){
+	vector<unsigned> linhas = tabuleiro.getLinhasComecamCom(valor,i);
+	for(const unsigned linha : linhas){
+		unsigned j=0;
+		do{
+			if( !tabuleiro.celulasIguais(i,j , linha,j) ) break;
+			++j;
+		}while(j < QTD_COLUNAS);
+		if(j==QTD_COLUNAS) return true;
+	}
+	return false;
+}
+bool colunaRepetidaComInicial(short valor, unsigned j){
+	vector<unsigned> colunas = tabuleiro.getColunasComecamCom(valor,j);
+	for(const unsigned coluna : colunas){
+		unsigned i=0;
+		do{
+			if( !tabuleiro.celulasIguais(i,j , i,coluna) ) break;
+			++i;
+		}while(i < QTD_LINHAS);
+		if(i==QTD_LINHAS) return true;
+	}
+	return false;
+}
 
 bool linhaCompleta(unsigned i){
 	for(unsigned j=0; j < QTD_COLUNAS; ++j){
@@ -133,93 +151,45 @@ bool colunaCompleta(unsigned j){
 	return true;
 }
 
-
-bool linhaRepetidaComInicial(short valor, unsigned i){
-	vector<unsigned> linhas = tabuleiro.getLinhasComecamCom(valor,i);
-	for(const unsigned linha : linhas){
-		unsigned j=0;
-		do{
-			if( !tabuleiro.celulasIguais(i,j , linha,j) ) break;
-			++j;
-		}while(j < QTD_COLUNAS);
-		if(j==QTD_COLUNAS) return true;
-	}
-	return false;
-}
-bool colunaRepetidaComInicial(short valor, unsigned j){
-	vector<unsigned> colunas = tabuleiro.getLinhasComecamCom(valor,j);
-	for(const unsigned coluna : colunas){
-		unsigned i=0;
-		do{
-			if( !tabuleiro.celulasIguais(i,j , i,coluna) ) break;
-			++i;
-		}while(i < QTD_LINHAS);
-		if(i==QTD_LINHAS) return true;
-	}
-	return false;
-}
-
-// {3} linhas e colunas únicas
 bool regra3Valida_linha(unsigned i){
-	if( !linhaCompleta(i) ) return true;
-	if( linhaRepetidaComInicial(0,i) || linhaRepetidaComInicial(1,i) ){
-		// fprintf(stderr, "\tFALHOU NA REGRA 3 - LINHA\n");
-		return false;
-	}
-	return true;
+	return !linhaCompleta(i)
+	||    (!linhaRepetidaComInicial(0,i) && !linhaRepetidaComInicial(1,i));
 }
 bool regra3Valida_coluna(unsigned j){
-	if( !colunaCompleta(j) ) return true;
-	if( colunaRepetidaComInicial(0,j) || colunaRepetidaComInicial(1,j) ){
-		// fprintf(stderr, "\tFALHOU NA REGRA 3 - COLUNA\n");
-		return false;
-	}
-	return true;
+	return !colunaCompleta(j)
+	||    (!colunaRepetidaComInicial(0,j) && !colunaRepetidaComInicial(1,j));
+}
+//-------------------------------------------------------//
+
+
+
+bool regrasValidasPara(unsigned i, unsigned j){
+	return
+		   regra1Valida_linha(i) && regra1Valida_coluna(j)///regra 1
+		&& regra2Valida_linha(i) && regra2Valida_coluna(j)///regra 2
+		&& regra3Valida_linha(i) && regra3Valida_coluna(j)///regra 3
+	;
 }
 
 
-bool regrasValidasPara(unsigned i, unsigned j){//admite coordenada (i,j) válida
-	short curr = * tabuleiro.getElemento(i,j);
-
-	///regra 1
-	if( !regra1Valida_linha(i) || !regra1Valida_coluna(j) ) return false;
-
-	///regra 2
-	if( !regra2Valida_linha(i) || !regra2Valida_coluna(j) ) return false;
-
-	///regra 3
-	if( !regra3Valida_linha(i) || !regra3Valida_coluna(j) ) return false;
-
-	return true;
+bool definirEValidar(unsigned i, unsigned j, short value){
+	tabuleiro.setElemento(i,j, value);
+	return regrasValidasPara(i,j);
 }
-
 
 bool freedomAtRow(unsigned i, unsigned j){
 	if(i == QTD_LINHAS) return true;///fim
-	if(j == QTD_COLUNAS) return freedomAtRow(i+1, 0);//vai pra próxima linha
+	if(j == QTD_COLUNAS) return freedomAtRow(i+1, 0);///próxima linha
 
 	short* curr = tabuleiro.getElemento(i,j);
 	if(!curr) return true;///não deve ocorrer
+	if(*curr != CELULA_INDEFINIDA) return freedomAtRow(i,j+1);///chamar próxima
 
-	if(*curr != CELULA_INDEFINIDA) return freedomAtRow(i,j+1);
-	// fprintf(stderr,"encontrou (%hd,%hd)\n", i,j);
+	if( (definirEValidar(i,j, 0) && freedomAtRow(i,j+1))///tentando com 0
+	||  (definirEValidar(i,j, 1) && freedomAtRow(i,j+1))///falhou com 0, tenta com 1
+	) return true;
 
-	tabuleiro.setElemento(i,j, 0);
-	// fprintf(stderr,"\ttentando %hd \n", 0);
-
-	if( regrasValidasPara(i,j) )//*
-		if( freedomAtRow(i,j+1) ) return true;
-
-	///falhou com 0, tenta com 1
-	tabuleiro.setElemento(i,j, 1);
-	// fprintf(stderr,"\ttentando %hd \n", 1);
-
-	if( regrasValidasPara(i,j) )//*
-		if( freedomAtRow(i,j+1) ) return true;
-
-	///falhou com 1 ou com algum caso do próximo
-	tabuleiro.setElemento(i,j, CELULA_INDEFINIDA);
-	// fprintf(stderr,"apagando (%hd,%hd)\n", i,j);
+	tabuleiro.setElemento(i,j, CELULA_INDEFINIDA);///falhou, apaga a célula
 	return false;
 }
 
