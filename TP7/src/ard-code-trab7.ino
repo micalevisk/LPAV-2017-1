@@ -23,20 +23,6 @@
  * @date 28/05/2017
  */
 
-
-
-/*** ====[CORES DOS FIOS]==== ***
-preto   - cátodo leds cima
-vermelho- ánodo leds cima
-cinza   - cátodo leds meio
-rosa    - ánodo leds meio
-marrom  - cátodo leds baixo
-roxo    - ánodo leds baixo
-turquesa- cátodo buzzer
-branco  - ánodo buzzer
-*****************************/
-
-
 #define BUZZER_PIN    13
 #define TAM_ARR_NOTAS 8
 #define TAM_ARR_PINOS 10
@@ -63,38 +49,36 @@ void setup()
 
 void loop()
 {
-	if(Serial.available() > 0){//definir a entrada
-		inString = readSerialString();
-		Serial.println("lido:{" + inString + "}");
+	if(! Serial.available() > 0) return;
+	inString = readSerialString();
+	Serial.println("lido:{" + inString + "}");
 
-		for(unsigned i=0; i < inString.length(); ++i){
-			char charCurr = inString.charAt(i);
+	for(unsigned i=0, tamString=inString.length(); i < tamString; ++i){///percorre a string lida
+		char charCurr = inString.charAt(i);
+		///Converte uma letra em índice (0-9), i.e., 'a' vira 0, 'b' vira 1, etc
+		unsigned charAsIndex = charToIndex(charCurr);
+		String pinosExtras = "";
 
-			///Converte uma letra em índice (0-9), i.e., 'a' vira 0, 'b' vira 1, etc
-			unsigned charAsIndex = charToIndex(charCurr);
-			String pinosExtras = "";
+		///Tratamento do alfabeto
+		if(charCurr >= 'k'){
+			if(charCurr == 'w') charAsIndex = TAM_ARR_PINOS - 1;//o índice do 'j'
+			else pinosExtras.concat("3");
 
-			///Tratamento do alfabeto
-			if(charCurr >= 'k'){
-				if(charCurr == 'w') charAsIndex = TAM_ARR_PINOS - 1;//o índice do 'j'
-				else pinosExtras.concat("3");
-
-				if(charCurr >= 'u'){
-					pinosExtras.concat("2");
-					if(charCurr > 'w') charAsIndex--;
-				}
+			if(charCurr >= 'u'){
+				pinosExtras.concat("2");
+				if(charCurr > 'w') charAsIndex--;
 			}
-
-			///Ativa as leds para o caractere lido
-			setPinos(HIGH, charAsIndex, pinosExtras);
-			delay(100);
-			///Desliga o som
-			noTone(BUZZER_PIN);
-			delay(1900);///espera 2 segundos após a representação do caractere
-			///Desativa as leds para o caractere lido
-			setPinos(LOW, charAsIndex, pinosExtras);
-			delay(550);///espera leds apagarem por completo
 		}
+
+		///Ativa as leds para o caractere lido
+		setPinos(HIGH, charAsIndex, pinosExtras);
+		delay(100);
+		///Desliga o som
+		noTone(BUZZER_PIN);
+		delay(1900);///espera 2 segundos após a representação do caractere
+		///Desativa as leds para o caractere lido
+		setPinos(LOW, charAsIndex, pinosExtras);
+		delay(550);///espera leds apagarem por completo
 	}
 }
 
@@ -114,12 +98,13 @@ String readSerialString(){
 	while(Serial.available() > 0){
 		charCurr = Serial.read();
 		if(!isAlpha(charCurr)) continue;
-		if(charCurr != '\n') strLida.concat(charCurr);
+		if(charCurr != '\n'){
+			charCurr = tolower(charCurr);
+			strLida.concat( charCurr );
+		}
 		delay(100);
 	}
 
-	strLida.trim();
-	strLida.toLowerCase();
 	return strLida;
 }
 
@@ -127,7 +112,7 @@ String readSerialString(){
 void setPinos(int valor, unsigned indice, String pinosExtras){
 	String strPinos = arrPinosLeds[ indice ] + pinosExtras;
 
-	for(unsigned j=0; j < strPinos.length(); ++j){
+	for(unsigned j=0, tamString=strPinos.length(); j < tamString; ++j){
 		char charCurr = strPinos.charAt(j);
 		int pino = charToInt(charCurr);
 
@@ -176,3 +161,14 @@ void setPinos(int valor, unsigned indice, String pinosExtras){
 	"7432"  z
 
 *****************************************************************************/
+
+/*** ====[CORES DOS FIOS]==== ***
+preto   - cátodo leds cima
+vermelho- ánodo leds cima
+cinza   - cátodo leds meio
+rosa    - ánodo leds meio
+marrom  - cátodo leds baixo
+roxo    - ánodo leds baixo
+turquesa- cátodo buzzer
+branco  - ánodo buzzer
+*****************************/
