@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
 	}
 
 	filename = argv[1];
-	qtdValores = atoi(argv[2]);
+	valuesAmount = atoi(argv[2]);
 
 	outputFile = fopen(filename, "w");
 	if(!outputFile){
