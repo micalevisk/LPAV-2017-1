@@ -8,12 +8,12 @@ assert_equal() {
 
 assert_range() {
 	if [ $1 -lt $2 ]; then
-		echo "expected: $1"
+		echo "expected    : $1"
 		echo "greater than: $2"
 		return 1
 	fi
 	if [ $1 -gt $3 ]; then
-		echo "expected: $1"
+		echo "expected : $1"
 		echo "less than: $3"
 		return 1
 	fi
@@ -42,8 +42,15 @@ assert_fail() {
 }
 
 executable_exists() {
-	if [ -x "$1" ]; then
-		return 0
+	if [ ! -x "$1" ]; then
+		echo "that file doesn't exist/executable"
+		return 1
 	fi
-	return 1
+}
+
+file_exists() {
+	if [ ! -r "$1" ]; then
+		echo "that file doesn't exist"
+		return 1
+	fi
 }
