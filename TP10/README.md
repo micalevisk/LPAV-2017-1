@@ -22,7 +22,7 @@ O relatório deve incluir também a arquitetura da máquina em que foram feito o
 ### TODO
 
 - [x] Implementar um programa para gerar N valores aleatórios salvando em um arquivo texto
-- [ ] Implementar o algoritmo de ordenação QuickSort Sequencial para ordenar um conjunto de N números em um array lidos anteriormente de um arquivo texto
+- [x] Implementar o algoritmo de ordenação QuickSort Sequencial para ordenar um conjunto de N números em um array lidos anteriormente de um arquivo texto
 - [ ] Escrever relatório com dados de tamanho: 32mil, 64mil, 128mil, 256mil, 512mil, 1024mil, 2048mil <!-- apenas os dados -->
 
 
