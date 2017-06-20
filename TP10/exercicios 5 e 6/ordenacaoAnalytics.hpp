@@ -29,7 +29,7 @@ class OrdenacaoAnalytics {
 		int* readArrayFromFile();
 		void printFileData(char);
 
-		Analytics getAnalytics_quicksort_sequencial(bool);
+		Analytics getAnalytics_quicksort_sequencial();
 };
 
 

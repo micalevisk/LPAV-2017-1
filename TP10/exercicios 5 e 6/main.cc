@@ -2,7 +2,7 @@
 //	[main.cc]
 //	Created by Micael Levi on 06/19/2017
 //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
-//	g++ -std=c++11 -O2 -o testes/main -I./headers ordenacaoAnalytics.cc main.cc algoritmos/quicksort_sequencial.cc -D DEBUG -D VERBOSE
+//	g++ -std=c++11 -O2 -o testes/main -I../lib ordenacaoAnalytics.cc main.cc algoritmos/quicksort_sequencial.cc -D DEBUG -D VERBOSE -D MILLISECONDS
 //
 
 #include <iostream>
@@ -14,18 +14,17 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+	if(argc != 2) return 1;
 	const char* nomeArquivo = argv[1];
 
 	OrdenacaoAnalytics obj(nomeArquivo);
 
 	#ifdef VERBOSE
-	cout << "=== ORIGINAL:\n";
-	obj.printFileData(',');
-
-
-	cout << "=== ORDENADO:\n";
+		cout << "ORIGINAL:";
+		obj.printFileData(',');
 	#endif
-	obj.getAnalytics_quicksort_sequencial(true);
+
+	cout << obj.getAnalytics_quicksort_sequencial();
 
 	return 0;
 }

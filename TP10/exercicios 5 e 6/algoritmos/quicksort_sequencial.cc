@@ -5,7 +5,7 @@
 //
 
 #include <iostream>
-#include "ordenacaoAnalytics.hpp"
+#include "../ordenacaoAnalytics.hpp"
 
 using namespace std;
 
@@ -73,7 +73,7 @@ void quicksort(int* array, size_t qtdElementos, Analytics& analise){
 }
 
 
-Analytics OrdenacaoAnalytics::getAnalytics_quicksort_sequencial(bool imprimirResultado=false){
+Analytics OrdenacaoAnalytics::getAnalytics_quicksort_sequencial(){
 	int* dadosLidos = readArrayFromFile();
 	Analytics analise = Analytics("quick-sequencial", tamanho);
 
@@ -81,8 +81,10 @@ Analytics OrdenacaoAnalytics::getAnalytics_quicksort_sequencial(bool imprimirRes
 	quicksort(dadosLidos, tamanho, analise);
 	analise.pararTempo();
 
-	if(imprimirResultado)
+	#ifdef VERBOSE
+		cout << "ORDENADO:";
 		Extras::imprimirElementos(dadosLidos, tamanho);
+	#endif
 
 	#ifdef DEBUG
 		vector<int> copiaDados(dadosLidos, dadosLidos + sizeof(dadosLidos)/sizeof(int));
