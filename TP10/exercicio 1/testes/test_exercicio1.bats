@@ -14,6 +14,14 @@ arrQtdThreads=(4 16 32 64 128 256 512 1024 2048 4096)
 
 ##================== TESTANDO AMBIENTE ==================##
 
+@test "[TC000] Sistema Operacional Com Quantidade de Threads Suficientes" {
+	run uname -s
+	if [[ $SO == "Linux" || $SO == "Darwin" ]]; then
+		run cat /proc/sys/kernel/threads-max
+		assert_range "$output" 4096
+	fi
+}
+
 @test "[TC001] Encontrar Código '$CODE_EXERCICIO1'" {
 	file_exists "$CODE_EXERCICIO1"
 	assert_success

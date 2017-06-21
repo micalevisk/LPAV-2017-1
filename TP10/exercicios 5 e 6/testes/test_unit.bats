@@ -19,7 +19,7 @@ EXEC_MAIN="main"
 	run ./$EXEC_NUMBERGENERATOR
 	assert_fail
 
-	assert_equal "${lines[0]}" "USAGE: ./$EXEC_NUMBERGENERATOR <output_text_file> <amount>"
+	assert_equal "USAGE: ./$EXEC_NUMBERGENERATOR <output_text_file> <amount>" "${lines[0]}"
 }
 
 @test "[] numberGenerator saída esperada" {
@@ -28,7 +28,7 @@ EXEC_MAIN="main"
 	assert_success
 
 	rm -f "____tmpfile"
-	assert_equal "${#lines[@]}" "3"
+	assert_equal "3" "${#lines[@]}"
 }
 
 @test "[] Entrada e saída arquivo '${ARQUIVO}'" {
@@ -37,5 +37,5 @@ EXEC_MAIN="main"
 	run bash -c "./$EXEC_MAIN $ARQUIVO | grep  -Po '(?<=ORDENADO:).+'"
 	assert_success
 
-	assert_equal "${lines[0]}" "105707361,348517155,388677745,671071951,1097177981,1429220927"
+	assert_equal "105707361,348517155,388677745,671071951,1097177981,1429220927" "${lines[0]}"
 }
