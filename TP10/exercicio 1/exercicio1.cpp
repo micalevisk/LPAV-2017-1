@@ -85,13 +85,17 @@ int main(int argc, char* argv[])
 	analise.pararTempo();
 	cout << analise;///<qtdThreads>,<qtdElementos>,<tempoExecucao>
 
-	pthread_mutex_lock(&mutex);
-	cout << somatorio << endl;
-	pthread_mutex_unlock(&mutex);
+	#ifdef DEBUG
+		pthread_mutex_lock(&mutex);
+		cout << somatorio << endl;
+		pthread_mutex_unlock(&mutex);
+	#endif
 
 	///fim
 	pthread_mutex_destroy(&mutex);
 	pthread_exit(NULL);
+
+	exit(EXIT_SUCCESS);
 }
 
 
