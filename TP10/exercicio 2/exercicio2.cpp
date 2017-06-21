@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	int qtdThreads = atoi(argv[1]);
+	int qtdThreads = atoi(argv[1]); assert(qtdThreads >= 0);
 	int qtdElementosLidos;
 	unsigned qtdElementosParaCada;
 	pthread_t* arrThreads;
