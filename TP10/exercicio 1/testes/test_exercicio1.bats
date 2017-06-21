@@ -3,9 +3,9 @@
 load ../../lib/test_helper
 
 #####################################################
-CODE_EXERCICIO1="../exercicio1.c"
+CODE_EXERCICIO1="../exercicio1.cpp"
 EXEC_EXERCICIO1=${CODE_EXERCICIO1#../}
-EXEC_EXERCICIO1=${EXEC_EXERCICIO1%.c}
+EXEC_EXERCICIO1=${EXEC_EXERCICIO1%.cpp}
 
 arrQtdThreads=(4 16 32 64 128 256 512 1024 2048 4096)
 #####################################################
@@ -18,7 +18,7 @@ arrQtdThreads=(4 16 32 64 128 256 512 1024 2048 4096)
 	run uname -s
 	if [[ $SO == "Linux" || $SO == "Darwin" ]]; then
 		run cat /proc/sys/kernel/threads-max
-		assert_range "$output" 4096
+		assert_range "$output" ${arrQtdThreads[-1]}
 	fi
 }
 
@@ -29,7 +29,7 @@ arrQtdThreads=(4 16 32 64 128 256 512 1024 2048 4096)
 
 @test "[TC002] Compilar Código '$CODE_EXERCICIO1'" {
 	executable_exists "$EXEC_EXERCICIO1" && skip "'$CODE_EXERCICIO1' já compilado!"
-	run gcc -std=gnu11 $CODE_EXERCICIO1 -o $EXEC_EXERCICIO1 -lpthread
+	run g++ -std=c++11 $CODE_EXERCICIO1 -o $EXEC_EXERCICIO1 -lpthread
 	assert_success
 }
 
@@ -46,7 +46,7 @@ arrQtdThreads=(4 16 32 64 128 256 512 1024 2048 4096)
 	for i in ${arrQtdThreads[@]}
 	do
 		run ./$EXEC_EXERCICIO1 $i <<< "$entrada"
-		assert_equal "$somatorioEsperado" "${lines[0]}"
+		assert_equal "$somatorioEsperado" "$output"
 		sleep 1
 	done
 }
@@ -60,7 +60,7 @@ arrQtdThreads=(4 16 32 64 128 256 512 1024 2048 4096)
 	for i in ${arrQtdThreads[@]}
 	do
 		run ./$EXEC_EXERCICIO1 $i <<< "$entrada"
-		assert_equal "$somatorioEsperado" "${lines[0]}"
+		assert_equal "$somatorioEsperado" "$output"
 		sleep 1
 	done
 }
@@ -74,7 +74,7 @@ arrQtdThreads=(4 16 32 64 128 256 512 1024 2048 4096)
 	for i in ${arrQtdThreads[@]}
 	do
 		run ./$EXEC_EXERCICIO1 $i <<< "$entrada"
-		assert_equal "$somatorioEsperado" "${lines[0]}"
+		assert_equal "$somatorioEsperado" "$output"
 		sleep 1
 	done
 }
@@ -88,7 +88,7 @@ arrQtdThreads=(4 16 32 64 128 256 512 1024 2048 4096)
 	for i in ${arrQtdThreads[@]}
 	do
 		run ./$EXEC_EXERCICIO1 $i <<< "$entrada"
-		assert_equal "$somatorioEsperado" "${lines[0]}"
+		assert_equal "$somatorioEsperado" "$output"
 		sleep 1
 	done
 }
@@ -102,7 +102,7 @@ arrQtdThreads=(4 16 32 64 128 256 512 1024 2048 4096)
 	for i in ${arrQtdThreads[@]}
 	do
 		run ./$EXEC_EXERCICIO1 $i <<< "$entrada"
-		assert_equal "$somatorioEsperado" "${lines[0]}"
+		assert_equal "$somatorioEsperado" "$output"
 		sleep 1
 	done
 }
@@ -116,7 +116,7 @@ arrQtdThreads=(4 16 32 64 128 256 512 1024 2048 4096)
 	for i in ${arrQtdThreads[@]}
 	do
 		run ./$EXEC_EXERCICIO1 $i <<< "$entrada"
-		assert_equal "$somatorioEsperado" "${lines[0]}"
+		assert_equal "$somatorioEsperado" "$output"
 		sleep 1
 	done
 }
@@ -130,7 +130,7 @@ arrQtdThreads=(4 16 32 64 128 256 512 1024 2048 4096)
 	for i in ${arrQtdThreads[@]}
 	do
 		run ./$EXEC_EXERCICIO1 $i <<< "$entrada"
-		assert_equal "$somatorioEsperado" "${lines[0]}"
+		assert_equal "$somatorioEsperado" "$output"
 		sleep 1
 	done
 }
