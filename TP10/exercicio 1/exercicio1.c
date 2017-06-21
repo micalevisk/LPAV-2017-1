@@ -43,30 +43,30 @@ int main(int argc, char* argv[])
 
 	///
 	qtdElementosParaCada = qtdElementosLidos / qtdThreads;
-    arrThreads = malloc(sizeof(pthread_t) * qtdThreads);
-    arrArgs = malloc(sizeof(argThread*) * qtdThreads);
- 
-    //==========================================================================//
-    for(unsigned i=0, inicioCurr=0; i < qtdThreads; ++i){
-        arrArgs[i] = malloc(sizeof(argThread));
-        arrArgs[i]->id = i;
-        arrArgs[i]->inicio = inicioCurr;
-        arrArgs[i]->fim    = (i==qtdThreads-1 ? qtdElementosLidos : (inicioCurr + qtdElementosParaCada) ) - 1 ;
+	arrThreads = malloc(sizeof(pthread_t) * qtdThreads);
+	arrArgs = malloc(sizeof(argThread*) * qtdThreads);
 
-        #ifdef DEBUG
+	//==========================================================================//
+	for(unsigned i=0, inicioCurr=0; i < qtdThreads; ++i){
+		arrArgs[i] = malloc(sizeof(argThread));
+		arrArgs[i]->id = i;
+		arrArgs[i]->inicio = inicioCurr;
+		arrArgs[i]->fim    = (i==qtdThreads-1 ? qtdElementosLidos : (inicioCurr + qtdElementosParaCada) ) - 1 ;
+
+		#ifdef DEBUG
 			fprintf(stderr, "[%u]{ %u , %u }\n", i, inicioCurr, inicioCurr + qtdElementosParaCada -1 );
 		#endif
 
- 		inicioCurr = arrArgs[i]->fim + 1;
+		inicioCurr = arrArgs[i]->fim + 1;
 
-        int rc = pthread_create(arrThreads+i, NULL, execSomatorio, arrArgs[i]);
-        assert(!rc);
-    }
- 
-    for(unsigned i=0; i < qtdThreads; ++i) pthread_join(arrThreads[i], NULL);
-    //==========================================================================//
+		int rc = pthread_create(arrThreads+i, NULL, execSomatorio, arrArgs[i]);
+		assert(!rc);
+	}
 
-    printf("%lld\n", somatorio);///resultado final
+	for(unsigned i=0; i < qtdThreads; ++i) pthread_join(arrThreads[i], NULL);
+	//==========================================================================//
+
+	printf("%lld\n", somatorio);///resultado final
 }
 
 
@@ -74,10 +74,10 @@ int main(int argc, char* argv[])
 void* execSomatorio(void* arg){
 	argThread* dados = (argThread*)arg;
 
-	unsigned id = dados->id;
+	unsigned id     = dados->id;
 	unsigned inicio = dados->inicio;
 	unsigned fim    = dados->fim;
-	
+
 	for(unsigned i=inicio; i <= fim; ++i){
 		pthread_mutex_lock(&mutex);
 		somatorio += vetor[i];
