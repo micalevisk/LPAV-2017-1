@@ -41,7 +41,11 @@ void* execSomatorio(void*);
 
 int main(int argc, char* argv[])
 {
-	if(argc != 2) return 1;
+	if(argc != 2){
+		fprintf(stdout, "USAGE: ");
+		fprintf(stdout, "%s <quantidade de threads a serem criadas>\n", argv[0]);
+		return 1;
+	}
 
 	int qtdThreads = atoi(argv[1]);
 	int qtdElementosLidos;
