@@ -30,6 +30,7 @@ class OrdenacaoAnalytics {
 		void printFileData(char);
 
 		Analytics getAnalytics_quicksort_sequencial();
+		Analytics getAnalytics_quicksort_paralelo();
 };
 
 
