@@ -68,7 +68,7 @@ void particionar(int* v, unsigned inicio, unsigned fim){//não altera o 'dados'
 	if(i < fim) particionar(v, i, fim);
 }
 
-void quicksort(int* array, size_t qtdElementos){
+static void quicksort(int* array, size_t qtdElementos){
 	particionar(array, 0, qtdElementos-1);
 }
 
