@@ -50,7 +50,7 @@ Rotina_Quicksort
 -------------------------------------------------------------------------
 */
 
-void particionar(int* v, unsigned inicio, unsigned fim, Analytics& analise){//não altera o 'dados'
+void particionar(int* v, unsigned inicio, unsigned fim){//não altera o 'dados'
 	if(fim <= inicio) return;
 	int i=inicio, j=fim;
 	int pivot = v[(i+j)/2];
@@ -64,12 +64,12 @@ void particionar(int* v, unsigned inicio, unsigned fim, Analytics& analise){//n�
 		}
 	}
 
-	if(j > inicio) particionar(v, inicio, j, analise);
-	if(i < fim) particionar(v, i, fim, analise);
+	if(j > inicio) particionar(v, inicio, j);
+	if(i < fim) particionar(v, i, fim);
 }
 
-void quicksort(int* array, size_t qtdElementos, Analytics& analise){
-	particionar(array, 0, qtdElementos-1, analise);
+void quicksort(int* array, size_t qtdElementos){
+	particionar(array, 0, qtdElementos-1);
 }
 
 
@@ -78,7 +78,7 @@ Analytics OrdenacaoAnalytics::getAnalytics_quicksort_sequencial(){
 	Analytics analise = Analytics("quick-sequencial", tamanho);
 
 	analise.iniciarTempo();
-	quicksort(dadosLidos, tamanho, analise);
+	quicksort(dadosLidos, tamanho);
 	analise.pararTempo();
 
 	#ifdef VERBOSE
