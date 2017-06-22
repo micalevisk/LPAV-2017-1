@@ -1,5 +1,5 @@
 //
-//	[quicksort_paralelo.cc]
+//	[quicksort_paralelo.cpp]
 //	Created by Micael Levi on 06/21/2017
 //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 //

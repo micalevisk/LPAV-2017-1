@@ -1,5 +1,5 @@
 //
-//	[quicksort_sequencial.cc]
+//	[quicksort_sequencial.cpp]
 //	Created by Micael Levi on 06/19/2017
 //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 //
