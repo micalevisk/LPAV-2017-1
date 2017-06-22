@@ -15,6 +15,7 @@ echo {1..32000} | tr ' ' '+' | bc
 #include <cassert>
 #include <cstdlib>
 #include <iostream>
+#include <cstdio>
 
 #include "analytics.hpp"
 using namespace std;

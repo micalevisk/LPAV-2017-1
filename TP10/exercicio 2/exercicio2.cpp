@@ -14,6 +14,7 @@ g++ -std=c++11 -I../lib exercicio2.cpp -o exercicio2 -lpthread -D MILLISECONDS
 #include <cassert>
 #include <cstdlib>
 #include <iostream>
+#include <cstdio>
 
 #include "analytics.hpp"
 using namespace std;
