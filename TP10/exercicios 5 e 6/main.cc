@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <cstdio>
+#include <cstring>
 using namespace std;
 
 #include "ordenacaoAnalytics.hpp"
@@ -14,9 +15,9 @@ using namespace std;
 //TODO adicionar opção de escolha de algoritmo
 int main(int argc, char* argv[])
 {
-	if(argc != 2){
+	if(argc < 2){
 		fprintf(stdout, "USAGE: ");
-		fprintf(stdout, "%s <nome do arquivo com as entradas>\n", argv[0]);
+		fprintf(stdout, "%s <nome do arquivo com as entradas> [-p, --paralelo]\n", argv[0]);
 		return 1;
 	}
 
@@ -29,8 +30,10 @@ int main(int argc, char* argv[])
 		analise.printFileData(',');
 	#endif
 
-	// cout << analise.getAnalytics_quicksort_sequencial();
-	cout << analise.getAnalytics_quicksort_paralelo();
+	if(argc == 3 && (!strcmp(argv[2],"-p") || !strcmp(argv[2],"--paralelo")))
+		cout << analise.getAnalytics_quicksort_paralelo();
+	else
+		cout << analise.getAnalytics_quicksort_sequencial();
 
 	return 0;
 }
