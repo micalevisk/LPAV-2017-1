@@ -10,7 +10,7 @@
 
 
 #ifndef TIME_PRECISION
-	#define TIME_PRECISION 2
+	#define TIME_PRECISION 4
 #endif
 
 #include <iostream>
