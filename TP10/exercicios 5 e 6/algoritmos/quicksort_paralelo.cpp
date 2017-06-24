@@ -44,8 +44,15 @@ void* particionar(void* arg){//não altera o 'dados'
 		}
 	}
 
-	if(j > inicio) particionar(arg);
-	if(i < fim) particionar(arg);
+	argThread* _args;
+	if(j > inicio){
+		_args = new argThread(v, inicio, j);
+		particionar((void*)_args);
+	}
+	if(i < fim){
+		_args = new argThread(v, i, fim);
+		particionar((void*)_args);
+	}
 }
 
 static void quicksort(int* array, size_t qtdElementos){
