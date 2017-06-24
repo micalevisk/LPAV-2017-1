@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
 	for(unsigned i=0; i < valuesAmount; ++i){
 		unsigned long long int randomNumber = rand() % (maxValue+1);
 		fprintf(outputFile, "%llu\n", randomNumber);
-		fprintf(stdout, "%llu\n", randomNumber);
+		fprintf(stdout, "%llu%s", randomNumber, i!=valuesAmount-1 ? "," : "\n");
 	}
 
 	fclose(outputFile);
