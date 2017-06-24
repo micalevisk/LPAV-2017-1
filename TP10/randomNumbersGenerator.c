@@ -35,7 +35,6 @@ int main(int argc, char* argv[])
 	}
 
 	fprintf(outputFile, "%u\n", valuesAmount);
-	fprintf(stdout, "%u\n", valuesAmount);
 
 	unsigned long long int maxValue = ULLONG_MAX - 1;
 	if(argc == 4) maxValue = strtoull(argv[3], (char **)NULL, 10);
@@ -43,7 +42,7 @@ int main(int argc, char* argv[])
 	for(unsigned i=0; i < valuesAmount; ++i){
 		unsigned long long int randomNumber = rand() % (maxValue+1);
 		fprintf(outputFile, "%llu\n", randomNumber);
-		fprintf(stdout, "%llu%s", randomNumber, i!=valuesAmount-1 ? "," : "\n");
+		fprintf(stdout, "%llu%s", randomNumber, i!=valuesAmount-1 ? "\n" : "");
 	}
 
 	fclose(outputFile);
