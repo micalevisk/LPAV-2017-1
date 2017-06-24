@@ -38,18 +38,17 @@ ARQUIVO_ENTRADA="test_input"
 	run bash -c "./$EXEC_EXERCICIOS56 $ARQUIVO_ENTRADA | grep  -Po '(?<=ORDENADO:).+'"
 	assert_success
 
-	assert_equal "105707361,348517155,388677745,671071951,1097177981,1429220927" "${lines[0]}"
+	assert_equal "1057,3485,3886,6710,10971,14292" "${lines[0]}"
 }
 
+@test "[TC034] Saída Esperada Para '$ARQUIVO_ENTRADA' Usando o Paralelo" {
+	executable_exists "$EXEC_EXERCICIOS56" || skip "'$EXEC_EXERCICIOS56' não encontrado!"
 
-# @test "[TC035] Saída Esperada Para '$ARQUIVO_ENTRADA' Usando o Paralelo" {
-# 	executable_exists "$EXEC_EXERCICIOS56" || skip "'$EXEC_EXERCICIOS56' não encontrado!"
-#
-# 	run bash -c "./$EXEC_EXERCICIOS56 $ARQUIVO_ENTRADA | grep  -Po '(?<=ORDENADO:).+'"
-# 	assert_success
-#
-# 	assert_equal "105707361,348517155,388677745,671071951,1097177981,1429220927" "${lines[0]}"
-# }
+	run bash -c "./$EXEC_EXERCICIOS56 $ARQUIVO_ENTRADA --paralelo | grep  -Po '(?<=ORDENADO:).+'"
+	assert_success
+
+	assert_equal "1057,3485,3886,6710,10971,14292" "${lines[0]}"
+}
 
 
 
