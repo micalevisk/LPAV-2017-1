@@ -4,63 +4,26 @@
 //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 //
 
+//FIXME seg fault para uma instância de 100
+
 #include <iostream>
 #include "../ordenacaoAnalytics.hpp"
 
 using namespace std;
 
 
-
-/*
-ALGORITMO PARA ORDENAÇÃO CRESCENTE O(nlogn) ou O(n²):
--------------------------------------------------------------------------
-__________________
-Rotina_Particionar
-	Recebe:
-	- um array 'vetor'
-	- números 'inicio' e 'fim'
-
-	Se fim <= inicio, então
-		Sair da rotina
-
-	i := inicio
-	j := fim
-	pivot := vetor[(i+j)/2]
-
-	Enquanto i <= j, faça
-		Enquanto vetor[i] < pivot, faça
-			i := i + 1
-		Enquanto vetor[j] > pivot, faça
-			j := j - 1
-		Se i <= j, então
-			Swap(vetor[i], vetor[j])
-			i := i + 1
-			j := j - 1
-	Se j > inicio, então
-		Rotina_Particionar(vetor, inicio, j)
-	Se i < fim, então
-		Rotina_Particionar(vetor, i, fim)
-________________
-Rotina_Quicksort
-	Recebe:
-	- um array 'vetor'
-	- quantidade 'N' de elementos nesse array
-
-	Rotina_Particionar(vetor, 0, N-1)
--------------------------------------------------------------------------
-*/
-
 void particionar(int* v, unsigned inicio, unsigned fim){//não altera o 'dados'
 	if(fim <= inicio) return;
 	int i=inicio, j=fim;
 	int pivot = v[(i+j)/2];
 
-	while(i <= j){
-		for(; pivot > v[i]; ++i);
-		for(; v[j] > pivot; --j);
-		if(i <= j){
-			Extras::trocarElementos<int>(v[i], v[j]);
-			++i; --j;
+	while(i < j){
+		while(v[i] <= pivot) i++;
+		while(v[j] > pivot)  j--;
+		if(i < j){
+			int aux = v[i];
+			v[i]    = v[j];
+			v[j]    = aux;
 		}
 	}
 

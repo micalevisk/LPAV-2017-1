@@ -4,7 +4,7 @@
 //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 //
 
-//FIXME seg fault
+//TODO inserir threads
 
 #include <iostream>
 #include <pthread.h>
@@ -44,14 +44,22 @@ void* particionar(void* arg){//não altera o 'dados'
 		}
 	}
 
-	argThread* _args;
+	free(args);
 	if(j > inicio){
-		_args = new argThread(v, inicio, j);
-		particionar((void*)_args);
+		args = new argThread(v, inicio, j);
+		particionar((void*)args);
 	}
 	if(i < fim){
-		_args = new argThread(v, i, fim);
-		particionar((void*)_args);
+		//FIXME criar thread aqui e dar join
+		args = new argThread(v, i, fim);
+		pthread_t thread;
+		int rc = pthread_create(&thread, NULL, particionar, (void*)args);
+		#ifdef DEBUG
+			assert(!rc);
+		#endif
+		pthread_join(thread, NULL);
+		// args = new argThread(v, i, fim);
+		// particionar((void*)args);
 	}
 }
 

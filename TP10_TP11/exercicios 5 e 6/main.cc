@@ -12,7 +12,6 @@ using namespace std;
 
 #include "ordenacaoAnalytics.hpp"
 
-//TODO adicionar opção de escolha de algoritmo
 int main(int argc, char* argv[])
 {
 	if(argc < 2){
