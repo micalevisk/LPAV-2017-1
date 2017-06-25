@@ -4,7 +4,6 @@
 //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 //
 
-
 /*
 g++ -std=c++11 -I../lib exercicio1.cpp -o exercicio1 -lpthread -D MILLISECONDS
 ./exercicio1 4 < <(echo 32000 ; echo {1..32000})
@@ -70,12 +69,11 @@ int main(int argc, char* argv[])
 		unsigned inicio = inicioCurr;
 		unsigned fim = (i==qtdThreads-1 ? qtdElementosLidos : (inicioCurr + qtdElementosParaCada) ) - 1;
 
-		arrArgs[i] = new argThread(indice, inicio, fim);
-
 		#ifdef VERBOSE
 			fprintf(stderr, "[%u]{ %u , %u }\n", indice, inicio, fim);
 		#endif
 
+		arrArgs[i] = new argThread(indice, inicio, fim);
 		inicioCurr = fim + 1;
 
 		analise.iniciarTempo();
