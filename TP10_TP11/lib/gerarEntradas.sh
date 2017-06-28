@@ -7,8 +7,8 @@ declare -ri MAIOR_NUMERO=1000000
 declare -a INSTANCIAS=("32k" "64k" "128k" "256k" "512k" "1024k" "2048k")
 # declare -a THREADS=(4 16 32 64 128 256 512 1024 2048 4096)
 
-readonly PATH_CSV="__dados__"
-readonly PATH_CODE="randomNumbersGenerator.c"
+readonly PATH_CSV="../__dados__"
+readonly PATH_CODE="../randomNumbersGenerator.c"
 readonly PATH_EXEC="${PATH_CODE/.c}"
 
 apagarTudoAoSair=0
