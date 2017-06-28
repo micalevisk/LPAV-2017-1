@@ -4,8 +4,7 @@
 
 # -------------------------- [ CONFIGURAÇÕES ] -------------------------- #
 # declare -ri MAIOR_NUMERO=1000000
-# declare -a INSTANCIAS=("32k" "64k" "128k" "256k" "512k" "1024k" "2048k")
-declare -a INSTANCIAS=("32k")
+declare -a INSTANCIAS=("32k" "64k" "128k" "256k" "512k" "1024k" "2048k")
 declare -a THREADS=(4 16 32 64 128 256 512 1024 2048 4096)
 declare -i numExercicio
 
