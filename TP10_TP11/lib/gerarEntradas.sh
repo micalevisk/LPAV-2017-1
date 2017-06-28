@@ -7,7 +7,7 @@ declare -ri MAIOR_NUMERO=1000000
 declare -a INSTANCIAS=("32k" "64k" "128k" "256k" "512k" "1024k" "2048k")
 # declare -a THREADS=(4 16 32 64 128 256 512 1024 2048 4096)
 
-readonly PATH_CSV="../__dados__"
+readonly PATH_OUTPUT="../__dados__"
 readonly PATH_CODE="../randomNumbersGenerator.c"
 readonly PATH_EXEC="${PATH_CODE/.c}"
 
@@ -30,17 +30,17 @@ function compilar(){
 function apagarArquivosGerados(){
 	echo "Apagando arquivos gerados" 1>&3
 	rm -f "$PATH_EXEC"
-	echo "rm -f $PATH_CSV/*" | sh
+	echo "rm -f $PATH_OUTPUT/*" | sh
 }
 
 function gerarEntradas(){
 	[ -x $PATH_EXEC  ] || compilar
-	[ -d "$PATH_CSV" ] || mkdir -p "$PATH_CSV"
+	[ -d "$PATH_OUTPUT" ] || mkdir -p "$PATH_OUTPUT"
 
 	for N in "${INSTANCIAS[@]}"
 	do
 		instancia="${N//k/000}"
-		saidaCSV="$PATH_CSV/${N}.csv"
+		saidaCSV="$PATH_OUTPUT/${N}.txt"
 
 		echo "Executando para $N (salvando em '$saidaCSV')" 1>&3
 		./$PATH_EXEC "$saidaCSV" $instancia $MAIOR_NUMERO 1>/dev/null
