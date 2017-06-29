@@ -1,11 +1,19 @@
 #!/bin/bash
-
+# //
+# //	[gerarEntradas.sh]
+# //	Created by Micael Levi on 06/28/2017
+# //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
+# //
+# //	Deve ser executado para a criação das entradas para os exercícios.
+# //	Será criado uma pasta '__dados__' que armazenará os arquivos
+# //	de entrada com o nome no formato '<instancia>.txt',
+# //	Faz o uso do código gerador 'randomNumbersGenerator.c'.
+# //
 
 
 # -------------------------- [ CONFIGURAÇÕES ] -------------------------- #
 declare -ri MAIOR_NUMERO=1000000
 declare -a INSTANCIAS=("32k" "64k" "128k" "256k" "512k" "1024k" "2048k")
-# declare -a THREADS=(4 16 32 64 128 256 512 1024 2048 4096)
 
 readonly PATH_OUTPUT="../__dados__"
 readonly PATH_CODE="../randomNumbersGenerator.c"

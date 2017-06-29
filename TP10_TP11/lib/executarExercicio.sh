@@ -1,9 +1,18 @@
 #!/bin/bash
-
+# //
+# //	[executarExercicio.sh]
+# //	Created by Micael Levi on 06/28/2017
+# //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
+# //
+# //	Após a execução do 'gerarEntradas.sh',
+# //	esse script executará um exercício escolhido (1..3)
+# //	salvando a saída (obtida pela execução) na pasta '__resultados__'
+# //	e dentro da pasta do sua respectiva instância
+# //	com o nome no formato '<quantidadeThreads>_threads.txt'.
+# //
 
 
 # -------------------------- [ CONFIGURAÇÕES ] -------------------------- #
-# declare -ri MAIOR_NUMERO=1000000
 declare -a INSTANCIAS=("32k" "64k" "128k" "256k" "512k" "1024k" "2048k")
 declare -a THREADS=(4 16 32 64 128 256 512 1024 2048 4096)
 declare -i numExercicio
@@ -93,7 +102,7 @@ do	case $opt in
 	esac
 done
 
-[[ $numExercicio -gt 0 ]] || exit 4
+[[ $numExercicio -ge 1 && $numExercicio -le 3 ]] || exit 4
 PATH_EXERCICIO="../exercicio $numExercicio"
 PATH_OUTPUT="${PATH_EXERCICIO}/__resultados__"
 PATH_CODE="${PATH_EXERCICIO}/exercicio${numExercicio}.cpp"
