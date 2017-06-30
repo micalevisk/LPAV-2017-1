@@ -11,18 +11,26 @@
 
 
 [[ $# -ne 1 ]] && {
-	echo -e "USO: \e[40;36m$0\e[0m\e[40;33;1m <número do exercicio>\e[0m"
+	echo -e "USO: \e[40;36m$0\e[0m \e[40;33;1m<número do exercicio>\e[0m"
 	exit 1
 }
 
-declare -ir NUM_EXERCICIO="$1"
+# ------------------------ [ CONFIGURAÇÕES ] ------------------------ #
+declare -ir NUM_EXERCICIO=${1:-0}
+
 readonly SEP=','
 readonly PATH_RESULTADOS="../exercicio ${NUM_EXERCICIO}/__resultados__"
 readonly PATH_MEDIAS="${PATH_RESULTADOS}/__medias__"
 readonly HEADER_CSV="threads,instância,tempo(ms)"
-
+# ------------------------------------------------------------------- #
+[[ $numExercicio -ge 1 && $numExercicio -le 3 ]] || exit 2
+[[ -d "$PATH_RESULTADOS" ]] || {
+	echo "'$PATH_RESULTADOS' não é um diretório"
+	exit 3
+}
 
 mkdir -p "$PATH_MEDIAS"
+
 
 for pastaInstancia in "${PATH_RESULTADOS}"/*k
 do
@@ -37,5 +45,7 @@ do
 	done
 
 	sed -i "1i\ $HEADER_CSV" "$arquivoMediaInstancia"
+	[[ $? ]] || exit 4
 	sort -n "$arquivoMediaInstancia" -o "$arquivoMediaInstancia"
 done
+echo "FIM!!"

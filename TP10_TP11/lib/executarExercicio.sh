@@ -22,7 +22,7 @@ readonly PATH_INPUT="../__dados__"
 
 
 [ -d "$PATH_INPUT" ] || {
-	imprimir "Erro ao procurar por '$PATH_INPUT'"
+	echo "'$PATH_INPUT' não é um diretório"
 	exit 2
 }
 
@@ -77,8 +77,13 @@ function executarExercicio(){
 }
 
 
+function showUsage(){
+	echo -e "USO: \e[40;36m$0\e[0m \e[40;33m[-v]\e[0m \e[40;33;1m-e<EXERCÍCIO> < -r<qtdExecucoes> , -d >\e[0m"
+	exit 1
+}
 # ----------------------------------------------------------- #
 exec 3>/dev/null # sem verbose
+[[ $# -lt 1 ]] && showUsage
 
 realizarExecucao=false
 realizarRemocao=false
@@ -98,7 +103,7 @@ do	case $opt in
 		$realizarExecucao && die
 		realizarRemocao=true
 		;;
-	\?) echo -e "USO: \e[40;36m$0\e[m \e[40;33m[-v]\e[40;33;1m -e<EXERCÍCIO> < -r<qtdExecucoes> , -d > \e[m"; exit 1;;
+	\?) showUsage ;;
 	esac
 done
 

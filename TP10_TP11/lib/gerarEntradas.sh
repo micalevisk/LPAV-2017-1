@@ -22,19 +22,22 @@ readonly PATH_EXEC="${PATH_CODE/.c}"
 
 
 [ -r "$PATH_CODE" ] || {
-	echo -e "\033[40;31m>> Arquivo '${PATH_CODE}' não encontrado/legível\033[0m"
+	echo -e "Arquivo '${PATH_CODE}' não encontrado/legível"
 	exit 2
 }
 
+function imprimir(){
+	echo "$1" 1>&3
+}
 
 function compilar(){
-	echo "Compilando '$PATH_CODE'" 1>&3
+	imprimir "Compilando '$PATH_CODE'"
 	gcc "$PATH_CODE" -o "$PATH_EXEC"
 	[ ! $? ] && exit 3
 }
 
 function apagarArquivosGerados(){
-	echo "Apagando arquivos gerados" 1>&3
+	imprimir "Apagando arquivos gerados"
 	rm -f "$PATH_EXEC"
 	echo "rm -f $PATH_OUTPUT/*" | sh
 }
@@ -48,22 +51,27 @@ function gerarEntradas(){
 		instancia="${N//k/000}"
 		saidaExec="$PATH_OUTPUT/${N}.txt"
 
-		echo "Executando para $N (salvando em '$saidaExec')" 1>&3
+		imprimir "Executando para $N (salvando em '$saidaExec')"
 		./$PATH_EXEC "$saidaExec" $instancia $MAIOR_NUMERO 1>/dev/null
 		sleep 3
 	done
 }
 
+function showUsage(){
+	echo -e "USO: \e[40;36m$0\e[0m \e[40;33m[-v]\e[0m \e[40;33;1m< -g , -d >\e[0m"
+	exit 1
+}
 
 # ----------------------------------------------------------- #
 exec 3>/dev/null # sem verbose
+[[ $# -lt 1 ]] && showUsage
 
 while getopts :vgd opt
 do	case $opt in
 	v) exec 3>&2 ;;
 	g) gerarEntradas ;;
 	d) apagarArquivosGerados ;;
-	\?) echo -e "USO: \e[40;36m$0\e[m \e[40;33m[-v]\e[40;33;1m < -g, -d > \e[m"; exit 1;;
+	\?) showUsage ;;
 	esac
 done
 # ----------------------------------------------------------- #
