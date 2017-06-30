@@ -4,6 +4,7 @@
 //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 //
 //	g++ -std=c++11 -o main -I../lib ordenacaoAnalytics.cc main.cc algoritmos/quicksort_sequencial.cpp  algoritmos/quicksort_paralelo.cpp -lpthread -D DEBUG -D VERBOSE -D MILLISECONDS
+// FIXME modo de leitura do arquivo e armazenamento dos dados
 
 #include <iostream>
 #include <cstdio>
