@@ -80,7 +80,7 @@ function executarExercicio(){
 
 
 function showUsage(){
-	echo -e "USO: \e[40;36m$0\e[0m \e[40;33m[-v]\e[0m \e[40;33;1m-e<EXERCÍCIO> < -r[QTD_EXECUÇÕES] , -d >\e[0m"
+	echo -e "USO: \e[36m$0\e[0m \e[35m[-v]\e[0m \e[35;1m-e<NÚMERO_DO_EXERCICIO> < -r\e[0m\e[35m[QTD_EXECUÇÕES]\e[35;1m , -d >\e[0m"
 	exit 1
 }
 # ----------------------------------------------------------- #

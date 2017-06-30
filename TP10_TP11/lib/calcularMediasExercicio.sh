@@ -11,7 +11,7 @@
 
 
 [[ $# -ne 1 ]] && {
-	echo -e "USO: \e[40;36m$0\e[0m \e[40;33;1m<NÚMERO_DO_EXERCICIO>\e[0m"
+	echo -e "USO: \e[36m$0\e[0m \e[35;1m<NÚMERO_DO_EXERCICIO>\e[0m"
 	exit 1
 }
 

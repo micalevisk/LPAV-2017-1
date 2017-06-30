@@ -62,7 +62,7 @@ function gerarEntradas(){
 }
 
 function showUsage(){
-	echo -e "USO: \e[40;36m$0\e[0m \e[40;33m[-v]\e[0m \e[40;33;1m< -g , -d >\e[0m"
+	echo -e "USO: \e[36m$0\e[0m \e[35m[-v]\e[0m \e[35;1m< -g , -d >\e[0m"
 	exit 1
 }
 
