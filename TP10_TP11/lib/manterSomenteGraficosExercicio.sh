@@ -14,10 +14,10 @@
 
 
 # -------------------------- [ CONFIGURAÇÕES ] -------------------------- #
-declare -ir numExercicio=${1:-0}
+declare -ir NUM_EXERCICIO=${1:-0}
 
 readonly PATH_DADOS="../__dados__"
-readonly PATH_RESULTADOS="../exercicio ${numExercicio}/__resultados__"
+readonly PATH_RESULTADOS="../exercicio ${NUM_EXERCICIO}/__resultados__"
 readonly PATH_MEDIAS="${PATH_RESULTADOS}/__medias__"
 # ----------------------------------------------------------------------- #
 
@@ -32,7 +32,7 @@ readonly PATH_MEDIAS="${PATH_RESULTADOS}/__medias__"
 
 	exit 1
 }
-[[ $numExercicio -ge 1 && $numExercicio -le 3 ]] || exit 2
+[[ $NUM_EXERCICIO -ge 1 && $NUM_EXERCICIO -le 3 ]] || exit 2
 
 
 

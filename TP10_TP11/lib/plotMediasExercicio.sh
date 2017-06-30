@@ -18,16 +18,16 @@
 }
 
 # ------------------------------------- [ CONFIGURAÇÕES ] ------------------------------------- #
-declare -ir numExercicio=${1:-0}
+declare -ir NUM_EXERCICIO=${1:-0}
 declare -i i=0
 declare -a CORES=("#7f8778" "#ba927b" "#414934" "#ff8847" "#e90e20" "#b56357" "#402158" "#7f9aff")
 
-readonly PATH_INPUT_CSV="../exercicio ${numExercicio}/__resultados__/__medias__"
+readonly PATH_INPUT_CSV="../exercicio ${NUM_EXERCICIO}/__resultados__/__medias__"
 readonly PATH_GRAFICOS="${PATH_INPUT_CSV}/__graficos__"
 # --------------------------------------------------------------------------------------------- #
-[[ $numExercicio -ge 1 && $numExercicio -le 3 ]] || exit 2
-[[ -d "$PATH_GRAFICOS" ]] || {
-	echo "'$PATH_RESULTADOS' não é um diretório"
+[[ $NUM_EXERCICIO -ge 1 && $NUM_EXERCICIO -le 3 ]] || exit 2
+[[ -d "$PATH_INPUT_CSV" ]] || {
+	echo "'$PATH_INPUT_CSV' não é um diretório"
 	exit 3
 }
 

@@ -23,7 +23,7 @@ readonly PATH_RESULTADOS="../exercicio ${NUM_EXERCICIO}/__resultados__"
 readonly PATH_MEDIAS="${PATH_RESULTADOS}/__medias__"
 readonly HEADER_CSV="threads,instância,tempo(ms)"
 # ------------------------------------------------------------------- #
-[[ $numExercicio -ge 1 && $numExercicio -le 3 ]] || exit 2
+[[ $NUM_EXERCICIO -ge 1 && $NUM_EXERCICIO -le 3 ]] || exit 2
 [[ -d "$PATH_RESULTADOS" ]] || {
 	echo "'$PATH_RESULTADOS' não é um diretório"
 	exit 3
