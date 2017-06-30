@@ -9,7 +9,7 @@
 # //	que foram automaticamente gerados pela a execução dos seguintes scripts:
 # //	'gerarEntradas.sh'
 # //	'executarExercicio.sh'
-# //	'calcularMedia.sh'
+# //	'calcularMediasExercicio.sh'
 # //
 
 
@@ -50,7 +50,7 @@ do
 	echo
 done
 
-## Apagar arquivos CSV que contém as médias, gerados por 'calcularMedia.sh'
+## Apagar arquivos CSV que contém as médias, gerados por 'calcularMediasExercicio.sh'
 [[ -d "$PATH_MEDIAS" ]] || {
 	echo "'$PATH_MEDIAS' não é um diretório"
 	exit 3

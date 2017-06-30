@@ -4,7 +4,7 @@
 # //	Created by Micael Levi on 06/30/2017
 # //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 # //
-# //	Após a execução do 'calcularMedia.sh',
+# //	Após a execução do 'calcularMediasExercicio.sh',
 # //	este script usará as médias calculadas e salvadas em '__medias__'
 # //	na pasta de um exercício e criará uma pasta '__graficos__'
 # //	que armazenará as sete imagens (png) dos gráficos obtidos das médias
