@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 	unsigned long long int maxValue = ULLONG_MAX - 1;
 	if(argc == 4) maxValue = strtoull(argv[3], (char **)NULL, 10);
 	///Gera, insere e imprime os N números aleatórios
-	for(unsigned i=0; i < valuesAmount; ++i){
+	for(i=0; i < valuesAmount; ++i){
 		unsigned long long int randomNumber = rand() % (maxValue+1);
 		fprintf(outputFile, "%llu\n", randomNumber);
 		fprintf(stdout, "%llu%s", randomNumber, i!=valuesAmount-1 ? "\n" : "");
