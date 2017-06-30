@@ -91,7 +91,7 @@ realizarExecucao=false
 realizarRemocao=false
 declare -i qtdExecucoes
 
-while getopts :ve:r?d opt
+while getopts :ve:r:d opt
 do	case $opt in
 	v)	exec 3>&2 ;;
 	e)	numExercicio=$OPTARG ;;
