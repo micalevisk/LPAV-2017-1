@@ -1,5 +1,5 @@
 //
-//	[randomNumbersGenerator]
+//	[randomNumbersGenerator.c]
 //	Created by Micael Levi on 06/21/2017
 //	Copyright (c) 2017 mllc@icomp.ufam.edu.br; All rights reserved.
 //
@@ -14,6 +14,7 @@ int main(int argc, char* argv[])
 {
 	char* filename;
 	int valuesAmount;
+	unsigned i;
 	FILE* outputFile;
 
 	srand(time(NULL));
