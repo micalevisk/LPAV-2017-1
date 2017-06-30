@@ -22,7 +22,7 @@ readonly PATH_MEDIAS="${PATH_RESULTADOS}/__medias__"
 # ----------------------------------------------------------------------- #
 
 [[ $# -ne 1 ]] && {
-	echo -e "USO: \e[40;36m$0\e[0m \e[40;33m[número do exercicio]\e[0m"
+	echo -e "USO: \e[40;36m$0\e[0m \e[40;33m[NÚMERO_DO_EXERCICIO]\e[0m"
 
 	## Apagar diretório que contém os dados de entrada para os exercícios, gerados por 'gerarEntradas.sh'
 	[[ -d "$PATH_DADOS" ]] &&{

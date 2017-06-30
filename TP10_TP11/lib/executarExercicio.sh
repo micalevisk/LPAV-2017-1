@@ -13,7 +13,6 @@
 
 
 # -------------------------- [ CONFIGURAÇÕES ] -------------------------- #
-declare -a INSTANCIAS=("32k" "64k" "128k" "256k" "512k" "1024k" "2048k")
 declare -a THREADS=(4 16 32 64 128 256 512 1024 2048 4096)
 declare -i numExercicio
 
@@ -27,7 +26,7 @@ readonly PATH_INPUT="../__dados__"
 }
 
 function imprimir(){
-	echo "$1" 1>&3
+	echo -e "$1" 1>&3
 }
 
 function die(){
@@ -52,33 +51,33 @@ function executarExercicio(){
 	[[ -x $PATH_EXEC  ]] || compilar
 	[[ -d "$PATH_OUTPUT" ]] || mkdir -p "$PATH_OUTPUT"
 
-	for N in "${INSTANCIAS[@]}"
+	for arquivoEntradaInstancia in "$PATH_INPUT"/*k.txt
 	do
-		instancia="${N//k/000}"
-		caminhoSaidaInstancia="$PATH_OUTPUT/${N}"
-		entradaInstancia="$PATH_INPUT/${N}.txt"
+		[[ -r "$arquivoEntradaInstancia" ]] || exit 5
 
-		[ -r "$entradaInstancia" ] || {
-			imprimir "Arquivo '$entradaInstancia' não encontrado/legível!"
-			exit 5
-		}
+		## definição das variáveis (NÃO ALTERAR A SEQUÊNCIA ABAIXO!)
+		local N=$(basename "$arquivoEntradaInstancia") ; N="${N%.txt}"
+		instancia="${instancia//k/000}"
+		caminhoSaidaInstancia="$PATH_OUTPUT/${N}"
 
 		mkdir -p "$caminhoSaidaInstancia"
 
 		imprimir "Executar para instância $N"
 		for nthreads in "${THREADS[@]}"
 		do
-			saidaExec="$caminhoSaidaInstancia/${nthreads}_threads.txt"
+			saidaExec="$caminhoSaidaInstancia/${nthreads}_threads.csv"
 			sleep 1
-			imprimir "Executando $N com $nthreads threads"
-			( ./"$PATH_EXEC" $nthreads < $entradaInstancia ) 2>> "$saidaExec"
+			imprimir "\tExecutando $N com $nthreads threads"
+			( ./"$PATH_EXEC" $nthreads < "$arquivoEntradaInstancia" ) >> "$saidaExec"
+			imprimir "\tSalvo em '$saidaExec'"
 		done
+		echo
 	done
 }
 
 
 function showUsage(){
-	echo -e "USO: \e[40;36m$0\e[0m \e[40;33m[-v]\e[0m \e[40;33;1m-e<EXERCÍCIO> < -r<qtdExecucoes> , -d >\e[0m"
+	echo -e "USO: \e[40;36m$0\e[0m \e[40;33m[-v]\e[0m \e[40;33;1m-e<EXERCÍCIO> < -r[QTD_EXECUÇÕES] , -d >\e[0m"
 	exit 1
 }
 # ----------------------------------------------------------- #
@@ -87,16 +86,16 @@ exec 3>/dev/null # sem verbose
 
 realizarExecucao=false
 realizarRemocao=false
-declare -i qtdExecucoes=1
+declare -i qtdExecucoes
 
-while getopts :ve:r:d opt
+while getopts :ve:r?d opt
 do	case $opt in
 	v)	exec 3>&2 ;;
 	e)	numExercicio=$OPTARG ;;
 	r)
 		$realizarRemocao && die
 		realizarExecucao=true
-		qtdExecucoes=$OPTARG
+		qtdExecucoes=${OPTARG:-1}
 		;;
 
 	d)

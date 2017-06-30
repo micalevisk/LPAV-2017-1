@@ -27,7 +27,7 @@ readonly PATH_EXEC="${PATH_CODE/.c}"
 }
 
 function imprimir(){
-	echo "$1" 1>&3
+	echo -e "$1" 1>&3
 }
 
 function compilar(){
@@ -53,7 +53,8 @@ function gerarEntradas(){
 
 		imprimir "Executando para $N (salvando em '$saidaExec')"
 		./$PATH_EXEC "$saidaExec" $instancia $MAIOR_NUMERO 1>/dev/null
-		sleep 3
+		imprimir "\tInstância criada!"
+		sleep 1
 	done
 }
 
