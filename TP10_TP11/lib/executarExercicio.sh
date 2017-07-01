@@ -43,7 +43,7 @@ function compilar(){
 
 function apagarArquivosGerados(){
 	read -n1 -p "Apagar '$PATH_EXEC' e '$PATH_OUTPUT'? (y) "
-	[[ ${REPLY,,} == "y" ]] || exit
+	[[ ${REPLY,,} == "y" ]] || exit 7
 
 	imprimir "\nApagando arquivos gerados"
 	rm -f "$PATH_EXEC"

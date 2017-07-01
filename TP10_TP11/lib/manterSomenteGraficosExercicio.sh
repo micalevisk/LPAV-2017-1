@@ -43,7 +43,7 @@ readonly PATH_MEDIAS="${PATH_RESULTADOS}/__medias__"
 }
 for pastaInstancia in "$PATH_RESULTADOS"/*k
 do
-	[[ -r "$arquivoCSV" ]] || exit 4
+	[[ -d "$pastaInstancia" ]] || exit 4
 
 	echo "Apagando diretório '$pastaInstancia'"
 	rm -I -r -v "$pastaInstancia"
