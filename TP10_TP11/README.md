@@ -62,11 +62,6 @@ O relatório deve incluir também a arquitetura da máquina em que foram feito o
 > - para verificar se o diretório contém todos os arquivos necessários (e programas), use o **[BATS](https://github.com/sstephenson/bats)** no arquivo `src/test_checarAmbiente.bats`
 > - A pasta **lib/** contém os scripts (`.sh`) que serão utilizados abaixo
 
-
-
-
-
-
 1. Criar dados aleatórios para a entrada: `./gerarEntradas.sh -v -g`
 2. Compilar e executar (uma vez) o código do exercício 1 para as entradas criadas anteriormente: `./executarExercicio.sh -v -e1 -r1`
 3. Extrair médias das execuções anteriores: `./calcularMediasExercicio.sh 1`
