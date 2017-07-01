@@ -7,14 +7,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
-#include <iostream>
-#include <vector>
-#include <string>
-#include <algorithm>
-#include <sstream>
-using namespace std;
-*/
 /******************************/
 char** matrizImagem = NULL;
 unsigned qtdLinhas = 0, qtdColunas = 0;
@@ -23,26 +15,6 @@ bool linhaInvalida(unsigned i){ return  i >= qtdLinhas; }
 bool colunaInvalida(unsigned j){ return j >= qtdColunas;}
 bool imagemNaoCriada(){ return matrizImagem == NULL; }
 /******************************/
-
-/*
-string trim(const string& str){
-	size_t first = str.find_first_not_of(' ');
-	if(string::npos == first) return str;
-	size_t last = str.find_last_not_of(' ');
-	return str.substr(first, (last - first + 1));
-}
-
-vector<string> splitString(string str, char delimiter){
-	vector<string> internal;
-	stringstream ss(str); // Turn the string into a stream.
-	string tok;
-
-	while(getline(ss, tok, delimiter)) internal.push_back(tok);
-
-	return internal;
-}
-*/
-
 
 
 
@@ -180,6 +152,7 @@ void preencherFluxo(){
 	--x; --y;
 	if(linhaInvalida(x) || colunaInvalida(y)) return;
 
+	matrizImagem[x][y] != '0'
 	colorir(x,y,c);
 }
 
@@ -234,15 +207,4 @@ main()
 	char cmd;
 	while( scanf("%c", &cmd) )
 		commandHandler(cmd);
-	/*
-	for(string line; getline(cin, line); ){
-		if(line.empty()) continue;
-		string fixed = trim(line);
-
-		vector<string> sep = splitString(line, ' ');
-		for(auto i : sep) cout << i << '.';
-
-		cout << '\n' << '{' << fixed << '}' << sep.size() << endl;
-	}
-	*/
 }
