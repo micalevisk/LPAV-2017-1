@@ -108,12 +108,6 @@ bool gradeValidaParaValor(unsigned val, unsigned i, unsigned j){
 }
 //-------------------------------------------------------//
 
-bool celulaVazia(unsigned i, unsigned j){
-	unsigned* valptr = tabuleiro.getElemento(i,j);
-	if(!valptr) return false;
-	return (*valptr == 0);
-}
-
 bool regrasValidasPara(unsigned val, unsigned i, unsigned j){
 	return
 		tabuleiro.posicaoValida(i, j)
