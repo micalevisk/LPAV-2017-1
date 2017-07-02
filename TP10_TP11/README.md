@@ -60,7 +60,7 @@ O relatório deve incluir também a arquitetura da máquina em que foram feito o
 ### Para fazer o exercício 1 _(TP10)_
 > - Os passos a seguir foram realizados também para os exercícios 2 e 3
 > - para verificar se o diretório contém todos os arquivos necessários (e programas), use o **[BATS](https://github.com/sstephenson/bats)** no arquivo `src/test_checarAmbiente.bats`
-> - A pasta **lib/** contém os scripts (`.sh`) que serão utilizados abaixo
+> - A pasta **src/lib/** contém os scripts (`.sh`) que serão utilizados abaixo
 
 1. Criar dados aleatórios para a entrada: `./gerarEntradas.sh -v -g`
 2. Compilar e executar (uma vez) o código do exercício 1 para as entradas criadas anteriormente: `./executarExercicio.sh -v -e1 -r1`
@@ -68,4 +68,8 @@ O relatório deve incluir também a arquitetura da máquina em que foram feito o
 4. Gerar gráficos das médias extraídas: `./plotMediasExercicio.sh 1`
 5. Apagar arquivos intermediários (gerados) para deixar somente os gráficos: `./manterSomenteGraficosExercicio.sh 1`
 
+#### Demo passo-a-passo
 [![asciicast demo](https://asciinema.org/a/yiM7LNc8uojkJoS1am3ypBLFc.png)](https://asciinema.org/a/yiM7LNc8uojkJoS1am3ypBLFc)
+
+#### Demo usando o script `./testadorMaster_exercicio1.sh`
+[![asciicast demo](https://asciinema.org/a/aUJgf4klkEXBJgk6pdo8mOXix.png)](https://asciinema.org/a/aUJgf4klkEXBJgk6pdo8mOXix)

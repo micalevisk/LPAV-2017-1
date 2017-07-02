@@ -100,3 +100,8 @@ CODE_EXERCICIO3="exercicio 3/exercicio3.cpp"
 	run command -v sleep
 	assert_success
 }
+
+@test "[TC18] O Programa 'sort' Existe" {
+	run command -v sort
+	assert_success
+}
