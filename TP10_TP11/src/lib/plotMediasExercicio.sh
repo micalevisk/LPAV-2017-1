@@ -92,13 +92,11 @@ done
 ## definição das variáveis (NÃO ALTERAR A SEQUÊNCIA ABAIXO!)
 INSTANCIAS_USADAS="$(tr ' ' '\n' <<< "$INSTANCIAS_USADAS" | sort -n | tr '\n' ' ')"
 INSTANCIAS_USADAS="${INSTANCIAS_USADAS# }"
-INSTANCIAS_USADAS="${INSTANCIAS_USADAS% }"
 imageFile="${PATH_GRAFICOS}/${INSTANCIAS_USADAS// /k_}"
 imageFile="${imageFile%_}.png"
 
 echo -e "Executando gnuplot com os sete gráficos salvando em '$imageFile'"
 gnuplot <<- EOF
-	# set style line 1 lc rgb "${CORES[i]}" lt 1 lw 2 pt 7 ps 1.5
 	set title "Resultados Médios de Todos" center font "Menlo,14" textcolor lt 6
 	set term png
 	set output "$imageFile"
