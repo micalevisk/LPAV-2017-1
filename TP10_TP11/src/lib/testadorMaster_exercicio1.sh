@@ -22,13 +22,17 @@ read -n1 -p ">> Deseja Prosseguir? (Yy): "
 [[ "${REPLY,,}" == "y" ]] || exit 1
 echo
 
-##1
+echo "==================== (1) ===================="
 ./gerarEntradas.sh -v -g
-##2
+
+echo "==================== (2) ===================="
 ./executarExercicio.sh -v -e1 -r1
-##3
+
+echo "==================== (3) ===================="
 ./calcularMediasExercicio.sh 1
-##4
+
+echo "==================== (4) ===================="
 ./plotMediasExercicio.sh 1
-##5
+
+echo "==================== (5) ===================="
 ./manterSomenteGraficosExercicio.sh 1
