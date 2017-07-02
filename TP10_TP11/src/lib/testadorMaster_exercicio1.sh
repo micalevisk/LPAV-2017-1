@@ -27,8 +27,8 @@ echo
 ##2
 ./executarExercicio.sh -v -e1 -r1
 ##3
-./calcularMediasExercicio.sh 2
+./calcularMediasExercicio.sh 1
 ##4
-./plotMediasExercicio.sh 2
+./plotMediasExercicio.sh 1
 ##5
 ./manterSomenteGraficosExercicio.sh 1
