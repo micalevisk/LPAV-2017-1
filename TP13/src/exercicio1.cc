@@ -4,13 +4,6 @@
  * @date 01/07/2017
  */
 
-/******************************
-Preencher todas as células sem:
-- repetir números numa mesma linha
-- repetir números numa mesa coluna
-- repetir números numa mesma grade 3x3
-******************************/
-
 #include <iostream>
 #include <cstdio>
 using namespace std;
@@ -46,40 +39,36 @@ class CoordenadasPlus {
 		void setColuna(unsigned mi, unsigned ma){ coluna.min=mi; coluna.max=ma; }
 };
 
+
 Matriz<unsigned> tabuleiro = Matriz<unsigned>(9, 9);
 //----------------------------------------------------------------------------------------//
 
 
-//{REGRA 1} 'val' não está presente na 'linha'
-//-------------------------------------------------------//
-bool linhaValidaParaValor(unsigned val, unsigned linha){
-	for(unsigned j=0; j < tabuleiro.qtdColunas; ++j){
-		unsigned curr = * tabuleiro.getElemento(linha,j);
-		if(curr == val) return false;
-	}
-	return true;
-}
-//-------------------------------------------------------//
 
-//{REGRA 2} 'val' não está presente na 'coluna'
-//-------------------------------------------------------//
-bool colunaValidaParaValor(unsigned val, unsigned coluna){
-	for(unsigned i=0; i < tabuleiro.qtdLinhas; ++i){
-		unsigned curr = * tabuleiro.getElemento(i,coluna);
-		if(curr == val) return false;
-	}
-	return true;
+//{REGRA 1 & 2} 'val' não está presente na 'linha' ou na 'coluna'
+//---------------------------------------------------------------//
+bool linhaOuColunaValidaParaValor(const unsigned val, unsigned linha, unsigned coluna,
+                                  const unsigned incrLinha, const unsigned incrColuna)
+{
+	unsigned curr;
+	return
+		!tabuleiro.posicaoValida(linha, coluna)
+	|| (
+			(	(curr = * tabuleiro.getElemento(linha, coluna)) || true )
+			&&	(curr != val)
+			&& linhaOuColunaValidaParaValor(val, linha+incrLinha, coluna+incrColuna, incrLinha, incrColuna)
+		);
 }
-//-------------------------------------------------------//
+//---------------------------------------------------------------//
 
 //{REGRA 3} 'val' não está presente no seu quadrante 3x3
 //-------------------------------------------------------//
-CoordenadasPlus getPosicaoNaGrade(unsigned i, unsigned j){
+CoordenadasPlus getPosicaoNaGrade(const unsigned i, const unsigned j){
 	unsigned colunaMod3=(j+1)%3, linhaMod3=(i+1)%3;
 	CoordenadasPlus cords;
 
 	//borda lateral esquerda
-	if(colunaMod3 == 1)	cords.setColuna(j,j+2);
+	if(colunaMod3 == 1) cords.setColuna(j,j+2);
 	//centro
 	else if(colunaMod3 == 2) cords.setColuna(j-1,j+1);
 	//borda lateral direita
@@ -95,9 +84,8 @@ CoordenadasPlus getPosicaoNaGrade(unsigned i, unsigned j){
 	return cords;
 }
 
-bool gradeValidaParaValor(unsigned val, unsigned i, unsigned j){
+bool gradeValidaParaValor(const unsigned val, const unsigned i, const unsigned j){
 	CoordenadasPlus cords = getPosicaoNaGrade(i,j);
-
 	for(unsigned linhaCurr = cords.linha.min; linhaCurr <= cords.linha.max; ++linhaCurr){
 		for(unsigned colunaCurr = cords.coluna.min; colunaCurr <= cords.coluna.max; ++colunaCurr){
 			unsigned valCurr = * tabuleiro.getElemento(linhaCurr, colunaCurr);//coordenadas sempre válidas
@@ -108,38 +96,40 @@ bool gradeValidaParaValor(unsigned val, unsigned i, unsigned j){
 }
 //-------------------------------------------------------//
 
-bool regrasValidasPara(unsigned val, unsigned i, unsigned j){
+
+bool regrasValidasPara(const unsigned val, const unsigned i, const unsigned j)
+{
 	return
 		tabuleiro.posicaoValida(i, j)
-	&&	linhaValidaParaValor(val, i)
-	&&	colunaValidaParaValor(val, j)
+	&&	linhaOuColunaValidaParaValor(val, i, 0, 0, 1)//linha
+	&&	linhaOuColunaValidaParaValor(val, 0, j, 1, 0)//coluna
 	&&	gradeValidaParaValor(val, i,j);
 }
 
-bool validarEDefinir(unsigned val, const unsigned i, const unsigned j){
+bool validarEDefinir(const unsigned val, const unsigned i, const unsigned j){
 	return (regrasValidasPara(val, i,j) && tabuleiro.setElemento(val, i,j));
 }
 
 
-bool freedomAtRow(const unsigned i, const unsigned j){
-	if(i == tabuleiro.qtdLinhas) return true;//fim
-	if(j == tabuleiro.qtdColunas) return freedomAtRow(i+1, 0);//próxima linha
-	if(!tabuleiro.celulaIgualA(0, i,j)) return freedomAtRow(i,j+1);//chamar próxima
-
-	if( (validarEDefinir(1, i,j) && freedomAtRow(i,j+1))
-	||  (validarEDefinir(2, i,j) && freedomAtRow(i,j+1))
-	||  (validarEDefinir(3, i,j) && freedomAtRow(i,j+1))
-	||  (validarEDefinir(4, i,j) && freedomAtRow(i,j+1))
-	||  (validarEDefinir(5, i,j) && freedomAtRow(i,j+1))
-	||  (validarEDefinir(6, i,j) && freedomAtRow(i,j+1))
-	||  (validarEDefinir(7, i,j) && freedomAtRow(i,j+1))
-	||  (validarEDefinir(8, i,j) && freedomAtRow(i,j+1))
-	||  (validarEDefinir(9, i,j) && freedomAtRow(i,j+1))
-	) return true;
-
-	tabuleiro.setElemento(0, i,j);//apagar a célula
-	return false;
+bool freedomAtRow(const unsigned i, const unsigned j)
+{
+	return (i == tabuleiro.qtdLinhas)
+	||(
+		(j == tabuleiro.qtdColunas) ? freedomAtRow(i+1,0)
+		:	!tabuleiro.celulaIgualA(0, i,j) ? freedomAtRow(i,j+1)
+		:	(validarEDefinir(1, i,j) && freedomAtRow(i,j+1))
+		||	(validarEDefinir(2, i,j) && freedomAtRow(i,j+1))
+		||	(validarEDefinir(3, i,j) && freedomAtRow(i,j+1))
+		||	(validarEDefinir(4, i,j) && freedomAtRow(i,j+1))
+		||	(validarEDefinir(5, i,j) && freedomAtRow(i,j+1))
+		||	(validarEDefinir(6, i,j) && freedomAtRow(i,j+1))
+		||	(validarEDefinir(7, i,j) && freedomAtRow(i,j+1))
+		||	(validarEDefinir(8, i,j) && freedomAtRow(i,j+1))
+		||	(validarEDefinir(9, i,j) && freedomAtRow(i,j+1))
+		|| !tabuleiro.setElemento(0, i,j)
+	);
 }
+
 
 
 main()
@@ -185,7 +175,7 @@ template<class T> void Matriz<T>::imprimirValores(){
 }
 
 template<class T> bool Matriz<T>::setElemento(const T newValue, unsigned i, unsigned j){
-	return (posicaoValida(i,j) && (matriz[i][j] = newValue));
+	return (posicaoValida(i,j) && ((matriz[i][j] = newValue) || true));
 }
 
 template<class T> T* Matriz<T>::getElemento(unsigned i, unsigned j){
@@ -193,5 +183,5 @@ template<class T> T* Matriz<T>::getElemento(unsigned i, unsigned j){
 }
 
 template<class T> bool Matriz<T>::celulaIgualA(const T value, unsigned i, unsigned j){
-	return posicaoValida(i,j) ? (matriz[i][j] == value) : false;
+	return posicaoValida(i,j) && (matriz[i][j] == value);
 }
