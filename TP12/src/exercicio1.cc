@@ -152,7 +152,7 @@ void preencherFluxo(){
 	--x; --y;
 	if(linhaInvalida(x) || colunaInvalida(y)) return;
 
-	matrizImagem[x][y] != '0';
+	matrizImagem[x][y] = '0';
 	colorir(x,y,c);
 }
 
