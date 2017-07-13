@@ -1,8 +1,7 @@
 /**
- * Exercício 4: Quadro de Medalhas
+ * Exercício 4: Parafusos e Porcas
  * @author Micael Levi
- * @date 07/07/2017
- * PASSOU NO URI 1520
+ * @date 12/07/2017
  */
 
 #include <iostream>
@@ -46,20 +45,17 @@ void quickSort(vector<unsigned>& v){
 }
 
 
-
 main()
 {
-	unsigned qtdTestes;
+	int qtdTestes;
+	unsigned qtdCaixas, num;
+	int posCurr, posPrimeiro, posUltimo;
+
 	cin >> qtdTestes;
-	if(qtdTestes <= 0) return 0;
-
-	do{
-		qtdTestes--;
-
+	while(qtdTestes-- > 0){
 		vector<unsigned> lotes;
-		unsigned qtdCaixas, num;
-		cin >> qtdCaixas;
 
+		cin >> qtdCaixas;
 		for(; qtdCaixas > 0; --qtdCaixas){
 			unsigned x, y; cin >> x >> y;//tamanhos dos lotes de parafusos e porcas nesta caixa
 			for(unsigned j=x; j <=y; ++j) lotes.push_back(j);
@@ -67,19 +63,28 @@ main()
 
 		quickSort(lotes);
 		cin >> num;
-		int posPrimeiro = binarySearch(lotes, num, 0,lotes.size()-1);
 
-		for(auto l : lotes) cout << l << ',';
-		cout << endl;
-
-		//TODO alternativa para a busca recuperar o mais a esq (primeiro) e o mais a direita (ultimo)
-		if(posPrimeiro >= 0){
-			int posUltimo = binarySearch(lotes, num, posPrimeiro+1, lotes.size()-1);
-			cout << num  << " found from " << posPrimeiro << " to " << ultimo << endl;
+		//===================================================§
+		posCurr = binarySearch(lotes, num, 0, lotes.size()-1);
+		posPrimeiro = posCurr;
+		while(posCurr >= 0){//procurar o mais a esquerda
+			posPrimeiro = posCurr;
+			posCurr = binarySearch(lotes, num, 0, posPrimeiro-1);
 		}
-		else{
+
+		if(posPrimeiro < 0){//não encontrou a primeira ocorrência
 			cout << num << " not found" << endl;
+			continue;
 		}
 
-	}while(qtdTestes > 0);
+		//===================================================§
+		posCurr = binarySearch(lotes, num, posPrimeiro, lotes.size()-1);
+		posUltimo = posCurr;
+		while(posCurr >= 0){//procurar o mais a direita
+			posUltimo = posCurr;
+			posCurr = binarySearch(lotes, num, posUltimo+1, lotes.size()-1);
+		}
+
+		cout << num  << " found from " << posPrimeiro << " to " << posUltimo << endl;
+	}
 }
