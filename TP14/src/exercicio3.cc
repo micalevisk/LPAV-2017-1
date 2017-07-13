@@ -55,14 +55,11 @@ main()
 	unsigned qtdAlunos, notaAluno;
 
 	cin >> qtdTestes;
-	if(qtdTestes <= 0) return 0;
-
-	do{
-		qtdTestes--;
+	while(qtdTestes-- > 0){
 		cin >> qtdAlunos;
 		vector<Elemento> fila = criarArrayLer(qtdAlunos);
 		bubbleSort(fila);//ORDENAR DECRESCENTE
 		cout << count_if(fila.begin(), fila.end(), posicoesIguais) << endl;
-	}while(qtdTestes > 0);
+	}
 
 }
