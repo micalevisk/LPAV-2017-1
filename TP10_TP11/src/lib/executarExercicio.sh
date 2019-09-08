@@ -37,7 +37,7 @@ function die(){
 
 function compilar(){
 	imprimir "Compilando '$PATH_CODE'"
-	g++ -std=c++11 -I./ "$PATH_CODE" -o "$PATH_EXEC" -lpthread -D MILLISECONDS
+	g++ -std=c++11 -I. -I./ "$PATH_CODE" -o "$PATH_EXEC" -lpthread -D MILLISECONDS
 	[ ! $? ] && exit 3
 }
 
